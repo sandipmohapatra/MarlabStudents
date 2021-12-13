@@ -120,6 +120,50 @@ Question-1
 wap to enter a student data and display it.
 rollno,name,physics,chem,maths marks.
 -------------------------------------------------------------------------
+Program-4
+---------------------
+package monday;
+import java.lang.*;
+import java.util.*;
+public class First
+{
+int rollno;
+String name,address;
+float phy,chem,math,total;
+void input()
+{
+	Scanner ob=new Scanner(System.in);
+	System.out.println("enter rollno,name,address,phy,chem,math");
+	rollno=ob.nextInt();
+	name=ob.next();
+	address=ob.next();
+	phy=ob.nextFloat();
+	chem=ob.nextFloat();
+	math=ob.nextFloat();
+}
+void display()
+{
+System.out.println("the rollnono is "+rollno);	
+System.out.println("the name  is "+name);	
+System.out.println("the address is "+address);	
+System.out.println("phy"+phy+" chem"+chem+"math"+math);
+System.out.println("the total is "+(phy+chem+math));
+}
+public static void main(String[] args) {
+	First obj=new First();
+	obj.input();
+	obj.display();
+}
+}
+
+----------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
 
 
 
