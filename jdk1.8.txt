@@ -157,6 +157,102 @@ public static void main(String[] args) {
 }
 
 ----------------------------------------------------------------------------------------------------
+Constructor
+-----------------------------
+A constructor is a method which has the same name as that of the class name.
+It doesnot return any value.it doesnot have any return type.
+There are 2 types of constructor
+1)default constructor :- it is without any parameter.
+2)parameterized constructor :- it is with parameter.
+To access a constructor we require an object.
+-----------------------------------------------------
+program-5
+--------------------
+package monday;
+import java.util.*;
+class first
+{
+int rollno;//intance variable
+String name,address;
+first()
+{
+	System.out.println("this is a default constructor which is without any parameter");
+}
+first(int rollno,String name,String address)//local variable
+{
+	this.rollno=rollno;//to differenciate between intance variable and local variable we use this
+	this.name=name;//keyword.
+	this.address=address;
+}
+void display()
+{
+	System.out.println("the rollno is "+rollno);
+	System.out.println("the name is "+name);
+	System.out.println("the address is "+address);
+	}
+}
+class second
+{
+public static void main(String[] args) {
+	first ob=new first();
+	first ob1=new first(101,"ajay","bangalore");
+	first ob2=new first(102,"trupti","orissa");
+	ob1.display();ob2.display();
+}
+}
+-------------------------------------------------------------
+Difference between constructor and a method.
+-----------------------------------------------------------------
+1)a method can have any name but a constructor will have only the class name .
+2)a method returns a value but constructor doesnot return any value.
+----------------------
+program-6
+---------------------
+package monday;
+import java.util.*;
+class first
+{
+int rollno;//intance variable
+String name,address;
+first()
+{
+	System.out.println("this is a default constructor which is without any parameter");
+}
+first(int rollno,String name,String address)//local variable
+{
+	this.rollno=rollno;//to differenciate between intance variable and local variable we use this
+	this.name=name;//keyword.
+	this.address=address;
+}
+void display()
+{
+	System.out.println("the rollno is "+rollno);
+	System.out.println("the name is "+name);
+	System.out.println("the address is "+address);
+	}
+int sum(int a,int b) //method overloading
+{
+	return a+b;
+}
+float sum(float a,float b)
+{
+	return a+b;
+}
+}
+class second
+{
+public static void main(String[] args) {
+	first ob=new first();
+	first ob1=new first(101,"ajay","bangalore");
+	first ob2=new first(102,"trupti","orissa");
+	ob1.display();ob2.display();
+	System.out.println(ob1.sum(6, 6));//compiler will decide where to send the value
+	System.out.println(ob1.sum(6.5f, 6.3f));
+	
+}
+}
+-----------------------------------------------------------------------
+
 
 
 
