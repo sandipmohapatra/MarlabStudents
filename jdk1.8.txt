@@ -252,7 +252,105 @@ public static void main(String[] args) {
 }
 }
 -----------------------------------------------------------------------
+Question-2
+wap to create a parameterized constractor .pass the values and display it.
+employee :- empno,name,designation,salary.
+-------------------------------------------------------------------------------------------------------------
+program-7
+---------------------
+package monday;
+import java.util.*;
+class first1
+{
+int empno;//intance variable
+String name,address;
+first1()
+{
+	System.out.println("this is a default constructor which is without any parameter");
+}
+first1(int rollno,String name,String address)//local variable
+{
+	this.empno=rollno;
+	this.name=name;
+	this.address=address;
+}
+void display()
+{
+	System.out.println("the rollno is "+empno);
+	System.out.println("the name is "+name);
+	System.out.println("the address is "+address);
+	}
 
+}
+class second2
+{
+public static void main(String[] args) {
+	first1 ob=new first1();
+	first1 ob1=new first1(101,"ajay","bangalore");
+	first1 ob2=new first1(102,"trupti","orissa");
+	ob1.display();ob2.display();
+	
+}
+}
+------------------------------------------------------------------------------------
+setter() is used to set the values
+getter() is used to get the values
+-----------------------------------------------------------------
+program-8
+-----------------------
+package monday;
+
+public class Employee 
+{
+int empno;
+String name,designation;
+float salary;
+//right click >source >generate getter and setter
+public int getEmpno() {
+	return empno;
+}
+public void setEmpno(int empno) {
+	this.empno = empno;
+}
+public String getName() {
+	return name;
+}
+public void setName(String name) {
+	this.name = name;
+}
+public String getDesignation() {
+	return designation;
+}
+public void setDesignation(String designation) {
+	this.designation = designation;
+}
+public float getSalary() {
+	return salary;
+}
+public void setSalary(float salary) {
+	this.salary = salary;
+}
+
+
+}
+------------------------------------------------------------
+package monday;
+
+public class Test 
+{
+public static void main(String[] args) {
+	Employee ob=new Employee();
+	ob.setEmpno(101);
+	ob.setName("Trupti");
+	ob.setDesignation("software eng");
+	ob.setSalary(45000.50f);
+	System.out.println(ob.getEmpno());
+	System.out.println(ob.getName());
+	System.out.println(ob.getSalary());
+	System.out.println(ob.getDesignation());
+}
+}
+---------------------------------------------------------------------------------------------
 
 
 
