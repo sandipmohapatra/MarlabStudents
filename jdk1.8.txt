@@ -116,6 +116,11 @@ public static void main(String[] args) {
 }
 
 ----------------------------------------------------------------------------------
+Question-1
+wap to enter a student data and display it.
+rollno,name,physics,chem,maths marks.
+-------------------------------------------------------------------------
+
 
 
 
