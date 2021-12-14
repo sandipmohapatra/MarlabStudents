@@ -334,11 +334,40 @@ public void setSalary(float salary) {
 
 }
 ------------------------------------------------------------
-package monday;
+package Wednesday;
 
+public class Student 
+{
+int rollno;
+String name,email;
+public int getRollno() {
+	return rollno;
+}
+public void setRollno(int rollno) {
+	this.rollno = rollno;
+}
+public String getName() {
+	return name;
+}
+public void setName(String name) {
+	this.name = name;
+}
+public String getEmail() {
+	return email;
+}
+public void setEmail(String email) {
+	this.email = email;
+}
+
+}
+--------------------------------------------------------------------------
+package Tuesday;
+import Wednesday.Student;
+import monday.Employee;
 public class Test 
 {
-public static void main(String[] args) {
+public static void main(String[] args)
+{
 	Employee ob=new Employee();
 	ob.setEmpno(101);
 	ob.setName("Trupti");
@@ -348,8 +377,16 @@ public static void main(String[] args) {
 	System.out.println(ob.getName());
 	System.out.println(ob.getSalary());
 	System.out.println(ob.getDesignation());
+	Student ob1=new Student();
+	ob1.setRollno(102);
+	ob1.setName("Madhu");
+	ob1.setEmail("Madhu@gmail.com");
+	System.out.println(ob1.getRollno());
+	System.out.println(ob1.getName());
+	System.out.println(ob1.getEmail());
 }
 }
+
 ---------------------------------------------------------------------------------------------
 
 
