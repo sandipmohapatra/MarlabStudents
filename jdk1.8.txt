@@ -669,8 +669,62 @@ public static void main(String[] args) {
 -------------------------------------------------------------------------
 *super constructor will execute first.
 -----------------------------------------------------------------------
+In inheritance the child class will depend upon the parent class.It is known as tight coupling.
+Java supports loose coupling.
+Inheritance(IS-A) relationship.
+Aggregation(HAS-A) relationship.
+example:-
+Employee has-a address
+Bank has-a customer
+-------------------------------------------------------------------------------------
+program-14
+---------------------
+package Wednesday;
 
+public class Employee
+{
+int empno;
+String name,phoneno;
+Address address;
+public Employee(int empno, String name, String phoneno, Address address) {
+	this.empno = empno;
+	this.name = name;
+	this.phoneno = phoneno;
+	this.address = address;
+}
+void display()
+{
+	System.out.println("empno :"+empno+"Name :"+name+"phone no :"+phoneno+"address :"+address);
+}
+}
+----------------------------------------------------------------
+package Wednesday;
 
+public class Address
+{
+int streetno,roadno;
+String city,state;
+public Address(int streetno, int roadno, String city, String state)
+{
+	this.streetno = streetno;
+	this.roadno = roadno;
+	this.city = city;
+	this.state = state;
+}
+
+@Override
+public String toString() {
+	return "Address [streetno=" + streetno + ", roadno=" + roadno + ", city=" + city + ", state=" + state + "]";
+}
+
+public static void main(String[] args) 
+{
+	Address address=new Address(10,20,"Bangalore","Karnataka");
+	Employee emp=new Employee(101,"sandip","7766554433",address);
+	emp.display();
+}
+}
+---------------------------------------------------------------------------------------------------
 
 
 
