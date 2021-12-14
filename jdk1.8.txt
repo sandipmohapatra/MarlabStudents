@@ -408,6 +408,44 @@ for(int i=0;i<5;i++)
 }
 }
 ----------------------------------------------------------
+Program-10
+--------------------
+package Tuesday;
+import java.util.*;
+public class Student1 
+{
+	String rollno,name,address;
+	void input()
+	{
+		Scanner ob=new Scanner(System.in);
+		System.out.println("Enter rollno,name,address");
+		rollno=ob.nextLine();//it excepts space in between
+		name=ob.nextLine();
+		address=ob.nextLine();
+	}
+	void display()
+	{
+		System.out.println("the rollno is "+rollno);
+		System.out.println("the name is "+name);
+		System.out.println("the address is "+address);
+	}
+	public static void main(String[] args) {
+		Student1[] obj=new Student1[3];
+		for(int i=0;i<3;i++)
+		{
+			System.out.println("enter data of student no"+(i+1));
+			obj[i]=new Student1();
+			obj[i].input();
+		}
+		for(int i=0;i<3;i++)
+		{
+			System.out.println("data of student no"+(i+1));
+			obj[i].display();
+		}
+
+	}
+}
+----------------------------------------------------------------------
 
 
 
