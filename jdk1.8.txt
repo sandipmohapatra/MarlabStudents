@@ -816,12 +816,19 @@ Then we can create object for the child class.
 We cannot have a method without body .we have to declare it as abstract or it should be inside the interface.
 What is the use of abstract class.
 It contains some abstract methods which has to be overriden inside the child class.
+We can have a constructor in the abstract class.
+*abstract windowing toolkit(AWT)
+
 -------------------------------------------------------------------
 program-17
 ------------------
 package Wednesday;
 abstract class Abstract1
 {
+Abstract1()
+{
+	System.out.println("this is a constractor");
+}
 abstract void display();
 int sum(int a,int b)
 {
@@ -842,7 +849,48 @@ class AbstractDemo extends Abstract1
 	}
 }
 -----------------------------------------------------------------------------
-
+Program-18
+---------------------
+package Wednesday;
+abstract class Abstract1
+{
+Abstract1()
+{
+	System.out.println("this is a constractor");
+}
+Abstract1(int a,int b)
+{
+	System.out.println("the sum of super constrctor is "+(a+b));
+}
+abstract void display();
+int sum(int a,int b)
+{
+	return a+b;
+}
+}
+class AbstractDemo extends Abstract1
+{
+	AbstractDemo()
+	{
+		super();
+	}
+	AbstractDemo(int a,int b)
+	{
+		super(a,b);
+	}
+	@Override
+	void display() 
+	{
+		System.out.println("This is display");
+		}
+	public static void main(String[] args) {
+		AbstractDemo ob=new AbstractDemo(7,8);
+		AbstractDemo ob1=new AbstractDemo();
+		System.out.println("the sum is "+ob.sum(6, 3));
+		ob.display();
+	}
+}
+--------------------------------------------------------------------------
 
 
 
