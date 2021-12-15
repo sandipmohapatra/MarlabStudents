@@ -1019,8 +1019,70 @@ display();
 StaticDemo.display();
 }}
  ----------------------------------------------------------------------------------------------
- 
- 
+ we cannot access a non-static variables inside a static method.
+we can access static variables inside a non-static method.
+program-22
+----------------------
+package Wednesday;
+public class StaticDemo 
+{
+static int rollno=10;
+static String name="trupti";
+ static String address="orissa";
+static void display()//we cannot access a non-static variable inside a static method.
+{
+	System.out.println(rollno+ " "+name+"  "+address);
+}
+static 
+{
+	System.out.println("This is a static block");
+}
+public static void main(String[] args)//we cannot access a non-static variable inside a static method.
+{
+System.out.println("rollno is "+rollno);	
+System.out.println("the name is "+StaticDemo.name);
+System.out.println("the address is"+StaticDemo.address);
+display();
+StaticDemo.display();
+}}
+--------------------------------------------------------
+Once incremented the static variable value remain incremented.
+ program-23
+--------------------------
+
+package Wednesday;
+public class StaticDemo 
+{
+static int rollno=10;
+static String name="trupti";
+ static String address="orissa";
+ static int i;
+static void display()//we cannot access a non-static variable inside a static method.
+{
+	System.out.println(rollno+ " "+name+"  "+address);
+}
+static void counter()
+{
+	i++;
+	System.out.println(i);
+}
+static 
+{
+	System.out.println("This is a static block");
+}
+public static void main(String[] args)//we cannot access a non-static variable inside a static method.
+{
+System.out.println("rollno is "+rollno);	
+System.out.println("the name is "+StaticDemo.name);
+System.out.println("the address is"+StaticDemo.address);
+display();
+StaticDemo.display();
+counter();
+counter();
+counter();
+counter();
+}}
+----------------------------------------------------------------------------------
  
  
  
