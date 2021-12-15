@@ -725,9 +725,55 @@ public static void main(String[] args)
 }
 }
 ---------------------------------------------------------------------------------------------------
+wap to enter details of a (HAS-A)
+Bank has-a customer
+bank :- accno,branch,balance,customer(object of the customer class)
+Customer :- custid,name,address
+--------------------------------------------------------------------
+Method Overloading:-
+Method Overriding:-
+Abstract class
+Interface
+static keyword
+final keyword
+-----------------------------------------------------------------------------------------------------------------
+Polymerphisim :-
+Method Overloading :- compile time Polymerphisim.we need one class.
+The method name is same but the return type and parameter has different data type.
+example:-
+int sum(int a,int b);
+float sum(float a,float b);
+--------------------------------------------------------
+program-15
+-------------------
+package Wednesday;
 
+public class MethodOverloading 
+{
+int sum(int a,int b)
+{
+	return a+b;
+}
+float sum(float a,float b)
+{
+	return a+b;
+}
+double sum(double a,double b)
+{
+	return a+b;
+}
+public static void main(String[] args) {
+	MethodOverloading ob=new MethodOverloading();
+	System.out.println("the sum is "+ob.sum(6, 7));
+	System.out.println("the sum is "+ob.sum(6.5f, 7.3f));
+	System.out.println("the sum is "+ob.sum(6.53, 7.32));
+		}
+}
 
+------------------------------------------------------------------------------------------------------
 
+Method Overriding:- runtime Polymerphisim.(abstract class,Interface).we need two or more class.
+----------------------------------------------------------------------------
 
 
 
