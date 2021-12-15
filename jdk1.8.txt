@@ -737,8 +737,8 @@ Interface
 static keyword
 final keyword
 -----------------------------------------------------------------------------------------------------------------
-Polymerphisim :-
-Method Overloading :- compile time Polymerphisim.we need one class.
+polymorphism:-
+Method Overloading :- compile time Polymerphism.we need one class.
 The method name is same but the return type and parameter has different data type.
 example:-
 int sum(int a,int b);
@@ -754,6 +754,10 @@ int sum(int a,int b)
 {
 	return a+b;
 }
+int sum(int a,int b,int c)
+{
+	return a+b+c;
+}
 float sum(float a,float b)
 {
 	return a+b;
@@ -765,6 +769,7 @@ double sum(double a,double b)
 public static void main(String[] args) {
 	MethodOverloading ob=new MethodOverloading();
 	System.out.println("the sum is "+ob.sum(6, 7));
+	System.out.println("the sum is "+ob.sum(6,7,8));
 	System.out.println("the sum is "+ob.sum(6.5f, 7.3f));
 	System.out.println("the sum is "+ob.sum(6.53, 7.32));
 		}
@@ -773,7 +778,7 @@ public static void main(String[] args) {
 ------------------------------------------------------------------------------------------------------
 
 Method Overriding:- runtime Polymerphisim.(abstract class,Interface).we need two or more class.
-----------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------
 
 
 
