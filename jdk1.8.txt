@@ -1082,9 +1082,32 @@ counter();
 counter();
 counter();
 }}
-----------------------------------------------------------------------------------
- 
- 
+----------------------------------------------------------------------------------------------------
+ final keyword
+-------------------------
+This is a done to protect the data.
+We can declare the variable as final,method as final and class as final.
+If we declare variable as final we have to assign it and it cannot be changed.
+If we declare method as final we cannot override it.
+If we declare a class as final we cannot inherite it.
+--------------------------------------------------------------------------------------------------
+program-24
+-----------------------
+package Wednesday;
+public final class FinalDemo 
+{
+final int a=10;
+final void display()
+{
+	System.out.println("this is final display");
+}
+public static void main(String[] args) {
+	FinalDemo ob=new FinalDemo();
+	ob.display();
+	System.out.println("the value of a is"+ob.a);
+}
+}
+------------------------------------------------------------------------------ 
  
  
 
