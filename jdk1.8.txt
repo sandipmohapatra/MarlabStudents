@@ -776,7 +776,7 @@ public static void main(String[] args) {
 }
 
 ------------------------------------------------------------------------------------------------------
-Method Overriding:- runtime Polymerphisim.(abstract class,Interface).we need two or more class.
+Method Overriding:- runtime Polymerphism.(abstract class,Interface).we need two or more class.
 ------------------------------------------------------------------------------------------------------
 program-16
 ---------------------
@@ -806,7 +806,42 @@ Here in the parent class we have the display().
 In the child class we have display().We are creating object of the child class.
 The child class display() is overriding on the parent class display().The parent class display() is hidden.
 ----------------------------------------------------------------------------
-
+Abstract class
+------------------------
+It is a class which contain abstract method means method without body.
+It can also contain method with body known as concret method.
+we cannot create object of the abstract class.
+we have to inherite it into a child class where we have to override the abstract methods.
+Then we can create object for the child class.
+We cannot have a method without body .we have to declare it as abstract or it should be inside the interface.
+What is the use of abstract class.
+It contains some abstract methods which has to be overriden inside the child class.
+-------------------------------------------------------------------
+program-17
+------------------
+package Wednesday;
+abstract class Abstract1
+{
+abstract void display();
+int sum(int a,int b)
+{
+	return a+b;
+}
+}
+class AbstractDemo extends Abstract1
+{
+	@Override
+	void display() 
+	{
+		System.out.println("This is display");
+		}
+	public static void main(String[] args) {
+		AbstractDemo ob=new AbstractDemo();
+		System.out.println("the sum is "+ob.sum(6, 3));
+		ob.display();
+	}
+}
+-----------------------------------------------------------------------------
 
 
 
