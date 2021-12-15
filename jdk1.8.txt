@@ -987,7 +987,38 @@ void display4();
 	}
  }
  -----------------------------------------------------------------------------------------------------------------------
- 
+ static :- we can declare a variable as static,method as static,we can have static block and we can have static class.
+We can access it without creating an object.
+We can access it with the help of the class name.
+A single copy of the static variable,method,block or class is created in the JVM.
+It is used for memory management.
+If we declare a static block it execute before the main method.
+---------------------------
+progarm-21
+---------------------------
+package Wednesday;
+public class StaticDemo 
+{
+static int rollno=10;
+static String name="trupti";
+static String address="orissa";
+static void display()
+{
+	System.out.println(rollno+ " "+name+"  "+address);
+}
+static
+{
+	System.out.println("This is a static block");
+}
+public static void main(String[] args)
+{
+System.out.println("rollno is "+rollno);	
+System.out.println("the name is "+StaticDemo.name);
+System.out.println("the address is"+StaticDemo.address);
+display();
+StaticDemo.display();
+}}
+ ----------------------------------------------------------------------------------------------
  
  
  
