@@ -1278,11 +1278,29 @@ System.out.println("The end of the program");
 }
 -----------------------------------------------------------------
 In this case when there is error means we divide the number by zero.
-The catch will execute and display the error message.then the rest part of the program will execute.
---------------------------------------------
-when there is no error the catch block will not execute.
+The catch will execute and display the error message.Then the rest part of the program will execute.
+-------------------------------------------------------------------------------------------------------
+when there is no error the catch block will not execute.The program will execute normally.
 --------------------------------------------------------------------------------------------------
-
+There are 3 type of Exception
+--------------------------------------------
+1)checked exception(we have to handle it first otherwise it will give compile time error.)
+i)IOException
+ii)SQLException
+iii)ClassNotFoundException
+iv)Interrupted Exception
+-----------------------------------------------------------------
+2)unchecked exception
+i)Arithmatic exception
+ii)NumberFormat exception
+iii)IndexOutOfBound exception
+iv)NullPointer exception
+--------------------------------------------
+3)error
+i)StackOverFlow error
+ii)OutOfMemory error
+iii)Machine error
+-----------------------------------------------
 
 
  
