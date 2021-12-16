@@ -1397,7 +1397,36 @@ public static void main(String[] args) throws Exception
 }
 }
 ---------------------------------------------------------------------------
-
+*sleep is a static method so we call it using the class name.
+Thread is a class belongs to lang package.
+Thread.sleep(1000);
+------------------------------------------------------------------
+throw keyword
+--------------------------------
+It is used for user defined exception.
+example :- 
+1)age should be greater than or equal to 18 years to cast your vote.
+2)salary of employee should be greater than 15000.
+3)marks should be greater than zero.
+------------------------------------------------------------------------
+program-31
+---------------------
+package Thrusday;
+import java.util.*;
+public class ErrorExample 
+{
+public static void main(String[] args) throws Exception
+{
+	Scanner ob=new Scanner(System.in);
+	System.out.println("enter your age to cast your vote");
+	int age=ob.nextInt();
+	if(age>=18)
+		System.out.println("your are eligible to cash your vote");
+	else
+		throw new Exception("The age should be greater than or equal to 18 to caste your vote");
+}
+}
+----------------------------------------------------------------------------
 
 
 
