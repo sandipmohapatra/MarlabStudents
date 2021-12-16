@@ -1154,6 +1154,12 @@ obj.display();
 }
 }
 ------------------------------------------------------------------
+we can take the class as public or default.
+we cannot declare the class as private or protected.
+Because the class has to be accessed by the JVM which is out side the class.
+JVM can access default or public access specifier.
+-------------------------------------------------------------------------
+
 
  
 
