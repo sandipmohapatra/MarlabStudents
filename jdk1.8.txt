@@ -1376,6 +1376,27 @@ System.out.println("The result is "+c);
 }
 }
 ------------------------------------------------------------------------------------------------------------------
+throws Exception:-
+-------------------------------
+we don't require any body for throws exception .we mention it with the method.
+This is mostly used with checked exception.
+when we work with IOException,SQLException,Interrupted Exception etc.
+------------------------------------------------------------------
+program-30
+-----------------------
+package Thrusday;
+public class ErrorExample 
+{
+public static void main(String[] args) throws Exception
+{
+	for(int i=1;i<=10;i++)
+	{
+		System.out.println(i);
+		Thread.sleep(1000);//interrupt the flow of control
+	}
+}
+}
+---------------------------------------------------------------------------
 
 
 
