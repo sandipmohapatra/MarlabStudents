@@ -1344,7 +1344,38 @@ because catch(Exception ae) will handle all type of errors.but catch(ArithmeticE
 We generally don't write so many catch block .It will increase the line of code.
 and the execution time also increases.so it in not adviceable to write multiple catch block.
 --------------------------------------------------------------------
- 
+try-catch :-if try is getting error then the catch with handle the error and catch will display the error.
+try-finally:-In this if try gets a error or not it doesn't matter the finally block will definatelly exceute.
+It handles the error and mainly used for closing of connection,file closing etc.
+Can we write try block without catch block.
+yes using finally block.
+--------------------------------------------------------------------------------------------------------------------
+ Example-29
+---------------------------
+//try with finally
+package Thrusday;
+import java.util.*;
+public class ErrorExample 
+{
+public static void main(String[] args) 
+{
+	try
+	{
+Scanner ob=new Scanner(System.in);
+System.out.println("Enter 2 nos");
+int a=ob.nextInt();
+int b=ob.nextInt();
+int c=a/b;
+System.out.println("The result is "+c);
+	}
+
+	finally
+	{
+	System.out.println("The end of the program");
+	}
+}
+}
+------------------------------------------------------------------------------------------------------------------
 
 
 
