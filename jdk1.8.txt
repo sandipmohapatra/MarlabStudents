@@ -1159,9 +1159,80 @@ we cannot declare the class as private or protected.
 Because the class has to be accessed by the JVM which is out side the class.
 JVM can access default or public access specifier.
 -------------------------------------------------------------------------
+Wrapper class
+----------------------
+All datatypes in java are also class known as wrapper class.
+1)byte -Byte
+2)short - Short
+3)int - Integer
+4)float - Float
+5)double - Double
+6)String
+7)long - Long
+8)char - Character
+9)boolean - Boolean
+These class belongs to lang package.It is a default package.
+---------------------------------------------------------------------
+javap java.lang package ---->Integer
+javap java.lang.String
+javap java.lang.Object -------super class in java.
+------------------------------------------------------------------ 
+program-26
+----------------------
+package Thrusday;
+public class Test1
+{
+public static void main(String h[]) 
+{
+String a=h[0];
+String b=h[1];
+String c=h[2];
+int x=Integer.parseInt(a);
+int y=Integer.parseInt(b);
+int z=Integer.parseInt(c);
+int sum=x+y+z;
+System.out.println("the sum is "+sum);
+}
+}
+--------------------------------------------------------------------
+package Thrusday;
+public class Test1
+{
+public static void main(String h[]) 
+{
+String a=h[0];
+String b=h[1];
+String c=h[2];
+float x=Float.parseFloat(a);
+float y=Float.parseFloat(b);
+float z=Float.parseFloat(c);
+float sum=x+y+z;
+System.out.println("the sum is "+sum);
+}
+}
+----------------------------------------------------------
+public static void main(String h[]) 
+
+public is a access specifier so that JVM can access the main method which is outside the package.
+static is used so that we can access static variables and methods inside it.and we need not create object of the main()
+void is the return type.
+main is the keyword for making the method as main.
+(String h[]) -- we can pass string arguments inside it.
+---------------------------------------------------------------------------------------------
+constructor :-
+First obj=new First();
+First is the class name.
+obj is the reference pointer to the class.
+new is a keyword which creates the memory block for storing the data.
+First() is a default constructor.
+-------------------------------------------------------------------------------------------------------------
+
+
 
 
  
+
+
 
 
 
