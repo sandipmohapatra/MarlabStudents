@@ -1226,7 +1226,28 @@ obj is the reference pointer to the class.
 new is a keyword which creates the memory block for storing the data.
 First() is a default constructor.
 -------------------------------------------------------------------------------------------------------------
-
+Exception Handling
+------------------------------
+There are 3 type of error.
+1)compile time error.(manually)
+2)logical error(manually)
+3)runtime error.
+In exception handling we will discuss about only runtime error.
+example:-
+-------------------
+1)dividing a number by zero.
+2)crossing the array limit.
+3)entering a character in place to number.
+The aim of exception handling is we don't want the program to terminate in between.
+The program should display an error message but the flow of the program should be till the end.
+----------------------------------------------------------------------------
+There are 5 keywords used to handle the runtime errors.
+1)try
+2)catch
+3)finally
+4)throw
+5)throws
+------------------------------------------------------------------------------------------------
 
 
 
