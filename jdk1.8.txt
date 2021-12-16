@@ -1301,8 +1301,49 @@ i)StackOverFlow error
 ii)OutOfMemory error
 iii)Machine error
 -----------------------------------------------
-
-
+program-28
+-------------------------
+Try with multiple catch
+-------------------------------------
+//try with multiple catch
+package Thrusday;
+import java.util.*;
+public class ErrorExample 
+{
+public static void main(String[] args) 
+{
+	try
+	{
+Scanner ob=new Scanner(System.in);
+System.out.println("Enter 2 nos");
+int a=ob.nextInt();
+int b=ob.nextInt();
+int c=a/b;
+System.out.println("The result is "+c);
+	}
+	catch(ArithmeticException ae)
+	{
+		System.out.println("the error is "+ae);
+	}
+	catch(InputMismatchException ae)
+	{
+		System.out.println("the errorr is "+ae);
+	}
+	catch(Exception ae) //this can handle all types of error
+	{
+		System.out.println("the errorrr is "+ae);
+	}
+System.out.println("The end of the program");
+}
+}
+-------------------------------------------------------------------------
+* we cannot put the catch(Exception ae) above the catch(ArithmeticException ae) or catch(InputMismatchException ae).
+This will show error unreachable code.
+because catch(Exception ae) will handle all type of errors.but catch(ArithmeticException ae) will handle only Arithmatic exception.
+--------------------------------------------------------------------------------------------------------------------------------
+We generally don't write so many catch block .It will increase the line of code.
+and the execution time also increases.so it in not adviceable to write multiple catch block.
+--------------------------------------------------------------------
  
 
 
