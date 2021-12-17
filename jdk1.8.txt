@@ -1499,6 +1499,68 @@ class GFG
     }
 }
 ----------------------------------------------------------------------------------
+Lambda Expression
+--------------------------------
+It is also known as functional interface.
+In this the interface will only contain one abstract method so it is called functional interface.
+There is a anotation @FunctionalInterface.
+It is used to declare an interface as functional interface.(optional)
+------------------------------------------------------------------------
+@Override :- It was introduced from jdk1.5.It will match the methods of the parent class and the child class.
+both method name and the signatures(return type,parameter) should match.(optional)
+-------------------------------------------------------------------------
+what is the use of lambda expression
+1)The code is reduced in this.
+2)To provide the implementation of functional interface.
+3)Generally a interface is non-functional we have to override into the child class and introduce some functionality.
+example:- 
+interface bank
+{
+void loan();  <------these are non-functional
+void applyforCreditCard();
+}
+------------------------------------------------------------------
+*by using lambda expression we will make the interface as functional.
+----------------------------------------------------------------------
+There are 3 new components in it.
+1)Arguument-list:-It can be empty or have parameters.
+(),->,{body}
+2)Arrow-token:- It is used to link arguments-list and body of the expression.
+3)Body:- It contains the expression and statement .
+--------------------------------------------------------------------------------------------
+()->{System.out.println("Hello");} //no parameter
+----------------------------------------------------------------
+(a)->{System.out.println("Hello");} //single parameter
+----------------------------------------------------------------
+(a,b)->{System.out.println("Hello");} //multiple parameter
+----------------------------------------------------------------
+program-34
+--------------------
+package Friday;
+@FunctionalInterface
+interface example1
+{
+	public void display();  //only one abstract method
+}
+public class Lambda1
+{
+public static void main(String[] args) 
+{
+int length=10;
+int breadth=20;
+example1 obj=()->
+{
+	System.out.println("the length is "+length);
+	System.out.println("the breadth is "+breadth);
+	System.out.println("the area is "+(length*breadth));
+};
+obj.display();
+}
+}
+------------------------------------------------------------------------------------
+
+
+
 
 
 
