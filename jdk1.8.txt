@@ -1764,12 +1764,99 @@ System.out.println(s1.capacity());
 }
 }
 ----------------------------------------------------------------------------------------------
-StringBuffer is synchronized.
+StringBuffer is synchronized. 
+with the methods we use the key word synchronized.
+in this after one method complete then the second method start excecuting.
+------------------------------------------------------------------------------------------------------
 StringBuilder is not synchronized.
 StringBuffer takes more time to execute than StringBuilder.
 Thread synchronized means one thread complete excecution then the next thread will start execute.
 example :-ATM (one person will do the transaction then the second person will do the transaction).
------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------------
+Collection Framework
+----------------------------------------
+It is a collection of Object.
+1)Set 2)List 3)Map
+Set is a Interface .It doesnot allow duplicate data.
+It has classes :-
+1)TreeSet :- It will display the data in the shorted order.
+2)HashSet :-It will display the data in random order.
+3)LinkedHashSet :- It will display the data in same order.
+---------------------------------------------------------------------------------
+program-39
+---------------------
+//TreeSet :- It will display the data in the shorted order.
+package Friday;
+import java.util.*;
+public class SetDemo 
+{
+public static void main(String[] args)
+{
+TreeSet<Integer> ts=new TreeSet<Integer>();
+ts.add(70);
+ts.add(20);
+ts.add(30);
+ts.add(10);
+ts.add(50);
+ts.add(50);
+ts.add(60);
+System.out.println(ts);
+}
+}
+---------------------------------------------------------------------------
+//HashSet :-It will display the data in random order.
+package Friday;
+import java.util.*;
+public class SetDemo 
+{
+public static void main(String[] args)
+{
+HashSet<Integer> ts=new HashSet<Integer>();
+ts.add(70);
+ts.add(20);
+ts.add(30);
+ts.add(10);
+ts.add(50);
+ts.add(50);
+ts.add(60);
+System.out.println(ts);
+}
+}
+-----------------------------------------------------------------
+LinkedHashSet :- It will display the data in same order.
+package Friday;
+import java.util.*;
+public class SetDemo 
+{
+public static void main(String[] args)
+{
+LinkedHashSet<Integer> ts=new LinkedHashSet<Integer>();
+ts.add(70);
+ts.add(20);
+ts.add(30);
+ts.add(10);
+ts.add(50);
+ts.add(50);
+ts.add(60);
+System.out.println(ts);
+}
+}
+----------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
