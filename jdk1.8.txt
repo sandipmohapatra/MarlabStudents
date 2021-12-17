@@ -1672,7 +1672,41 @@ return a+b;
 System.out.println("the sum is "+obj3.sum(400,500));
 }}
 -----------------------------------------------------------------------------------
-
+wap to enter amount for withdraw or deposite.
+Then display the balance amount.
+Use case and switch and FunctionalInterface.
+---------------------------------------------------------------------
+We have 3 classes String,StringBuffer,StringBuilder
+--------------------------------------------------------------------------
+String :-Immutable(cannot be changed).
+StringBuffer:-mutable(can be changed)
+StringBuilder:-mutable(can be changed)
+---------------------------------------------------------------------------
+Progarm-36
+----------------
+package Friday;
+public class StringDemo
+{
+public static void main(String[] args) {
+	String s1="apple";
+	String s2="apple";
+	String s3=new String("apple"); //new memory block is created
+	String s4=new String("apple");
+	if(s1==s2) //constant pool
+		System.out.println("true");
+	else
+		System.out.println("false");
+	if(s1.equals(s2))
+		System.out.println("true");
+	else
+		System.out.println("false");
+	if(s1==s3)
+		System.out.println("true");
+	else
+		System.out.println("false");
+}
+}
+------------------------------------------------------------------------
 
 
 
