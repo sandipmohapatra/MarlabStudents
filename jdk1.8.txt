@@ -1559,7 +1559,63 @@ obj.display();
 }
 }
 ------------------------------------------------------------------------------------
+program-35
+-------------------
+package Friday;
+@FunctionalInterface
+interface example1
+{
+	public void display(); //only one method
+}
+@FunctionalInterface
+interface example2
+{
+	public String name();
+}
 
+@FunctionalInterface
+interface example3
+{
+	public String address(String loc);
+}
+@FunctionalInterface
+interface example4
+{
+	public int sum(int a,int b);
+}
+
+public class Lambda1
+{
+public static void main(String[] args) 
+{
+int length=10;
+int breadth=20;
+example1 obj=()->     //display method defined
+{
+	System.out.println("the length is "+length);
+	System.out.println("the breadth is "+breadth);
+	System.out.println("the area is "+(length*breadth));
+};
+obj.display();
+
+example2 obj1=()->
+{
+	return "Lambda Expression";
+};
+System.out.println(obj1.name());
+
+example3 obj2=(loc)->
+{
+	return "My Loaction is :"+loc;
+};
+System.out.println(obj2.address("Bangalore"));
+
+example4 obj3=(a,b)->(a+b);
+System.out.println("the sum is "+obj3.sum(400,500));
+
+}
+}
+---------------------------------------------------------------------------------------
 
 
 
