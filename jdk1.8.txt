@@ -1775,7 +1775,12 @@ example :-ATM (one person will do the transaction then the second person will do
 -----------------------------------------------------------------------------------------------------------------
 Collection Framework
 ----------------------------------------
+int a[]=new int[5]; ---------------array the size is fixed.
+In case of Collection the size will be incrementing dyamicallt as we enter the data.
+---------------------------------------------------------------
 It is a collection of Object.
+It provides architecture to store,manupulate group of Objects.
+We can do all operations such as searching,sorting,inserting,delete,manupulating .
 1)Set 2)List 3)Map
 Set is a Interface .It doesnot allow duplicate data.
 It has classes :-
@@ -1842,6 +1847,44 @@ System.out.println(ts);
 }
 }
 ----------------------------------------------------------------------------------------
+Program-40
+-----------------------
+package Friday;
+public class Student 
+{
+int rollno;
+String name,address;
+public Student(int rollno, String name, String address) {
+	super();
+	this.rollno = rollno;
+	this.name = name;
+	this.address = address;
+}
+@Override
+public String toString() {
+	return "Student [rollno=" + rollno + ", name=" + name + ", address=" + address + "]";
+}
+
+}
+---------------------------------------------------------------------------------------
+package Friday;
+import java.util.*;
+public class SetDemo 
+{
+public static void main(String[] args)
+{
+	Student ob=new Student(101,"sandip","bangalore");
+	Student ob1=new Student(102,"shubam","bangalore");
+	Student ob2=new Student(103,"trupti","bangalore");
+	
+LinkedHashSet ts=new LinkedHashSet();
+ts.add(ob);
+ts.add(ob1);
+ts.add(ob2);
+System.out.println(ts);
+}
+}
+--------------------------------------------------------------------------------------------------
 
 
 
