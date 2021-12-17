@@ -1503,6 +1503,7 @@ Lambda Expression
 --------------------------------
 It is also known as functional interface.
 In this the interface will only contain one abstract method so it is called functional interface.
+In lambda expression we don't require 2 classes (parent and child).we don't have to override.we don't have to implement the interface.
 There is a anotation @FunctionalInterface.
 It is used to declare an interface as functional interface.(optional)
 ------------------------------------------------------------------------
