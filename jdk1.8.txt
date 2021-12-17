@@ -1764,7 +1764,12 @@ System.out.println(s1.capacity());
 }
 }
 ----------------------------------------------------------------------------------------------
-
+StringBuffer is synchronized.
+StringBuilder is not synchronized.
+StringBuffer takes more time to execute than StringBuilder.
+Thread synchronized means one thread complete excecution then the next thread will start execute.
+example :-ATM (one person will do the transaction then the second person will do the transaction).
+-----------------------------------------------------------------------------------
 
 
 
