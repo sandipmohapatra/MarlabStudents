@@ -1459,8 +1459,46 @@ System.out.println(a[i]);
 }
 }
 ----------------------------------------------------------------------------------------------------------------
-
-
+wap to enter am employees data.
+1)empno it should only contain number.
+2)name
+3)age it should be greater than 20 years to do this job.
+4)qualification should be Btech.
+if all the critaria are ok then he/she is eligible to do the job
+----------------------------------------------------------------------------------------------
+program-33
+-------------------
+package Friday;
+import java.util.*;
+class GFG
+{
+    public static void main (String[] args)throws Exception
+    {
+    	Scanner ob=new Scanner(System.in);
+          try
+    {
+      System.out.println("enter empno :");
+        String str =ob.next();
+        int num = Integer.parseInt(str);
+            }
+    catch(NumberFormatException ex)
+    {
+           System.out.println("Enter only number");
+              }
+         finally
+    {
+        System.out.println("Enter name,age and qualification");
+        String name=ob.next();
+        int age=ob.nextInt();
+        String qual=ob.next();
+        if(age>=20 && qual.equalsIgnoreCase("btech"))
+        	System.out.println("you are eligible");
+        else
+        	throw new Exception("not eligible");
+    }
+    }
+}
+----------------------------------------------------------------------------------
 
 
 
