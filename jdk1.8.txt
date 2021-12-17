@@ -1728,10 +1728,16 @@ System.out.println(s1.charAt(0));//starts from 0
 System.out.println(s1.startsWith("Marlabs"));//return true or false
 System.out.println(s1.endsWith("Solution"));
 System.out.println(s1.replace("Marlabs", "Marlab"));
-
+System.out.println(s1.length());
+char x[]=s1.toCharArray();//convert string to char array
+int len=x.length;
+System.out.println("the length of the array is "+len);
+for(int i=0;i<len;i++)
+	System.out.println(x[i]);
 
 }
 }
+
 ------------------------------------------------------------------------------------
 
 
