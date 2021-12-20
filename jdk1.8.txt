@@ -2198,9 +2198,183 @@ while(li.hasPrevious())
 }
 }
 -------------------------------------------------------------------------------------------------------
+ java.util.Collections
+---------------------------------------
+It has lot of static methods which can be implemented ob set,list,map,queue
+It this we have sort() which can sort a list,map,queue.
+Collections.sort()
+---------------------------------------------------
+Example-47
+----------------------
+package monday;
+import java.util.*;
+public class ListDemo
+{
+public static void main(String[] args)
+{
+LinkedList<String> ls=new LinkedList<String>();
+ls.add("Trupti");
+ls.add("Shubham");
+ls.add("Madhu");
+ls.add("Geetanjali");
+ls.add("Sunil");
+ls.add("Deepak");
+Collections.sort(ls);
+ls.forEach((x)->System.out.println(x));
+}
+}
+-------------------------------------------------------------------------
+package monday;
+import java.util.*;
+public class ListDemo
+{
+public static void main(String[] args)
+{
+LinkedList<Integer> ls=new LinkedList<Integer>();
+ls.add(10);
+ls.add(40);
+ls.add(30);
+ls.add(20);
+ls.add(50);
+Collections.sort(ls);
+ls.forEach((x)->System.out.println(x));
+System.out.println("the largest no is "+Collections.max(ls));
+System.out.println("the smallest no is "+Collections.min(ls));
+}
+}
+-------------------------------------------------------------------------------------------------
+package monday;
+import java.util.*;
+public class ListDemo
+{
+public static void main(String[] args)
+{
+ArrayList<Integer> ls=new ArrayList<Integer>();
+ls.add(10);
+ls.add(40);
+ls.add(30);
+ls.add(20);
+ls.add(50);
+Collections.sort(ls);
+ls.forEach((x)->System.out.println(x));
+System.out.println("the largest no is "+Collections.max(ls));
+System.out.println("the smallest no is "+Collections.min(ls));
+}
+}
+-------------------------------------------------------------------------
+package monday;
+import java.util.*;
+public class ListDemo
+{
+public static void main(String[] args)
+{
+ArrayList<Integer> ls=new ArrayList<Integer>();
+ls.add(10);
+ls.add(40);
+ls.add(30);
+ls.add(20);
+ls.add(50);
+Collections.sort(ls,Collections.reverseOrder());
+ls.forEach((x)->System.out.println(x));
+}
+}
+------------------------------------------------------------------------------------------------------------
+package monday;
+import java.util.*;
+public class ListDemo
+{
+public static void main(String[] args)
+{
+ArrayList<Integer> ls=new ArrayList<Integer>();
+ls.add(Integer.valueOf(10));//it will convert Object to primative datatype
+ls.add(Integer.valueOf(40));
+ls.add(30);//it internally convert object to primative datatype
+ls.add(20);
+ls.add(50);
+Collections.sort(ls,Collections.reverseOrder());
+ls.forEach((x)->System.out.println(x));
+}
+}
+-------------------------------------------------------------
+java.lang.Comparable :-
+public abstract int compareTo(T);
+it is used to sort our own object data.It checks the String ascii code.
+in this if the current object is greater than the specified object it return (+) value.
+in this if the current object is smaller than the specified object it return (-) value.
+in this if the current object is equal than the specified object it return zero value.
+-----------------------------------------------------------------------
+Example-48
+----------------------
+package monday;
 
+public class MarlabsEmp implements Comparable<MarlabsEmp>
+{
 
+String name;
+MarlabsEmp(String name)
+{
+	this.name=name;
+}
+		@Override
+		public int compareTo(MarlabsEmp obj)
+	{
+		return name.compareTo(obj.name);
+	}}
+--------------------------------------------------------------------------------------------------------------------------
+package monday;
+import java.util.*;
+public class ListDemo
+{
+public static void main(String[] args) 
+{
+ArrayList<MarlabsEmp> al=new ArrayList<MarlabsEmp>();
+al.add(new MarlabsEmp("Geetanjali"));
+al.add(new MarlabsEmp("Shubam"));
+al.add(new MarlabsEmp("Deepak"));
+al.add(new MarlabsEmp("Trupti"));
+Collections.sort(al);
+for(MarlabsEmp ob:al)
+	System.out.println(ob.name);
+}
+}
+--------------------------------------------------------------------------------------------
+Example-47
+---------------------
+package monday;
 
+public class MarlabsEmp implements Comparable<MarlabsEmp>
+{
+	Integer empid;
+String name;
+MarlabsEmp(Integer empid,String name)
+{
+	this.empid=empid;
+	this.name=name;
+}
+@Override
+		public int compareTo(MarlabsEmp obj)
+	{
+		return empid.compareTo(obj.empid);
+	}}
+
+-----------------------------------------------------------
+package monday;
+import java.util.*;
+public class ListDemo
+{
+public static void main(String[] args) 
+{
+ArrayList<MarlabsEmp> al=new ArrayList<MarlabsEmp>();
+al.add(new MarlabsEmp(104,"Geetanjali"));
+al.add(new MarlabsEmp(103,"Shubam"));
+al.add(new MarlabsEmp(102,"Deepak"));
+al.add(new MarlabsEmp(101,"Trupti"));
+Collections.sort(al);
+for(MarlabsEmp ob:al)
+	System.out.println(ob.empid);
+}
+}
+--------------------------------------------------------------------------------------
 
 
 
