@@ -2162,8 +2162,42 @@ ls.forEach((x)->System.out.println(x));
 }
 }
 --------------------------------------------------------------------------------------
-
-
+Interface to iterate the data:-
+----------------------------------------------
+Iterator:-hasNext(),next();remove();//In this we can move in one direction.
+ListIterator:- In this we can move in both direction.
+forward :- In this we have hasNext(),next().First the pointer with move in forward direction then it will move in backward direction.
+backword:- In this we have hasPrevious(),previous();
+-------------------------------------------------------------------------------------------------------------
+Example-46
+--------------------------
+package monday;
+import java.util.*;
+public class ListDemo
+{
+public static void main(String[] args)
+{
+LinkedList<String> ls=new LinkedList<String>();
+ls.add("Trupti");
+ls.add("Shubham");
+ls.add("Madhu");
+ls.add("Geetanjali");
+ls.add("Sunil");
+ls.add("Deepak");
+System.out.println("Forword Direction");
+ListIterator<String> li=ls.listIterator();
+while(li.hasNext())
+{
+	System.out.println(li.next());
+}
+System.out.println("Backward Direction");
+while(li.hasPrevious())
+{
+	System.out.println(li.previous());
+}
+}
+}
+-------------------------------------------------------------------------------------------------------
 
 
 
