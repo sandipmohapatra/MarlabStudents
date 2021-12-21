@@ -2641,6 +2641,30 @@ while(itr1.hasNext())
 System.out.println("the head is "+queue.element());//this will display the head element
 }}
 ----------------------------------------------------------------------------
+ArrayDeque :- It is a class.We can remove and add the elements from both sides.
+It is also called double-ended queue.
+Example-52
+----------------------
+package HashMapDemo;
+import java.util.*;
+public class DequeDemo {
+public static void main(String[] args) {
+	ArrayDeque<String> obj=new ArrayDeque();
+	obj.add("sunil");
+	obj.add("Subham");
+	obj.add("Sandip");
+	obj.add("Geetanjali");
+	obj.add("Ajay");
+	obj.addFirst("Kiran");
+	obj.addLast("trupti");
+	System.out.println(obj.getFirst());
+	System.out.println(obj.getLast());
+	System.out.println("****************************************");
+	for(String abc : obj)
+		System.out.println(abc);
+}
+}
+-----------------------------------------------------------------------------------------------------
 
 
 
