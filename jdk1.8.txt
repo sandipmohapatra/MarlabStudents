@@ -2300,7 +2300,7 @@ java.lang.Comparable :-
 public abstract int compareTo(T);
 it is used to sort our own object data.It checks the String ascii code.
 in this if the current object is greater than the specified object it return (+) value.
-in this if the current object is smaller than the specified object it return (-) value.
+in this if the current object is lesser than the specified object it return (-) value.
 in this if the current object is equal than the specified object it return zero value.
 -----------------------------------------------------------------------
 Example-48
@@ -2375,6 +2375,38 @@ for(MarlabsEmp ob:al)
 }
 }
 --------------------------------------------------------------------------------------
+Map :-It is an interface.
+ In this we enter key and values pair.
+The key should not be duplicate.The value can be duplicate.
+The key and value pair is known as entry.
+Map is useful to search,update or delete elements on the basis of the key.
+-------------------------------------------------------------
+Map --HashMap,LinkedHashMap,TreeMap(sorting)
+-----------------------------------------------------------------------------------
+Example-48
+------------------
+package monday;
+import java.util.*;
+public class HashMapDemo
+{
+public static void main(String[] args)
+{
+HashMap<Integer, String> hm=new HashMap<Integer, String>();
+hm.put(1, "Gitanjali");
+hm.put(2, "Subham");
+hm.put(3, "sandip");
+hm.put(4, "sunil");
+hm.put(5, "sunil");
+hm.put(4, "ajay");
+Scanner ob=new Scanner(System.in);
+System.out.println("enter rollno and name");
+int rollno=ob.nextInt();
+String name=ob.next();
+hm.put(rollno, name);
+System.out.println(hm);
+}
+}
+-------------------------------------------------------------------
 
 
 
