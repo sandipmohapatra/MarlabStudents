@@ -2582,6 +2582,26 @@ public static void main(String[] args)
 }
 }
 -----------------------------------------------------------------------------------------------------------------------
+HashMap :- It gives high performance in the total data-structure of java collection framework.
+There are 2 factors which effect the performance of hashmap.
+1)Initial Capacity.
+2)Load Factor.
+------------------------------------------
+1)Initial Capacity is 16 bytes.
+2)It increses automatically when it reaches to the threshold.
+ 3)Initailly it is 2 pow 4=16,Then it will 2 pow 5=32,then it will be 2 pow 6=64
+--------------------------------------------------------------------------------------------------------------------------
+Load Factor :- is measured that decides when to increase the HashMap capacity to maintain the get() and put() request.
+--------------------------------------------------------------------------------------------------------------------------------
+
+wap to create a BookShop where we have some books.(bookid,book name,price)
+enter the book list into a HashMap.
+if the book is sold remove from the list.
+if the price of the book is increased modify the list.
+if a person wants to search for the book he can put the bookid and see the book is available or not.
+finally display the total books available.
+--------------------------------------------------------------------------------
+
 
 
 
