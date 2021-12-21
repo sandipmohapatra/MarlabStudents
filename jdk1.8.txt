@@ -2407,6 +2407,52 @@ System.out.println(hm);
 }
 }
 -------------------------------------------------------------------
+Set set=hm.entrySet();
+Iterator itr=set.iterator();
+while(itr.hasNext())
+{
+	Map.Entry en=(Map.Entry<Integer, String>)itr.next();
+	System.out.println(en.getKey()+ "  "+en.getValue());
+}
+---------------------------------------------------------------------------------------------
+HashSet is converted to set because we don't the Interface Iterator in the HashMap.We have it in Set.
+entrySet() is used to convert the Map into set.
+Map.Entry is a class contain getKey(),getValue()
+-------------------------------------------------------------------------------------------------------
+Example-49
+--------------------
+package monday;
+import java.util.*;
+public class HashMapDemo
+{
+public static void main(String[] args)
+{
+HashMap<Integer, String> hm=new HashMap<Integer, String>();
+hm.put(1, "Gitanjali");
+hm.put(2, "Subham");
+hm.put(3, "sandip");
+hm.put(4, "sunil");
+hm.put(5, "sunil");
+hm.put(4, "ajay");
+Scanner ob=new Scanner(System.in);
+System.out.println("enter rollno and name");
+int rollno=ob.nextInt();
+String name=ob.next();
+hm.put(rollno, name);
+System.out.println(hm);
+Set set=hm.entrySet();
+Iterator itr=set.iterator();
+while(itr.hasNext())
+{
+	Map.Entry en=(Map.Entry<Integer, String>)itr.next();
+	System.out.println(en.getKey()+ "  "+en.getValue());
+}}}
+-------------------------------------------------------------------------------------------------------------
+
+
+
+
+
 
 
 
