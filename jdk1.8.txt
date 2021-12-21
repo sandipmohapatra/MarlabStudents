@@ -2601,7 +2601,46 @@ if the price of the book is increased modify the list.
 if a person wants to search for the book he can put the bookid and see the book is available or not.
 finally display the total books available.
 --------------------------------------------------------------------------------
-
+Queue Interface
+------------------------------
+It maintains the first-in-first-out order.
+It can be defined as an ordered list that is used to hold elements in the same order.
+The classes are PriorityQueue,Deque and ArrayDeque .
+------------------------------------------------------------------ 
+Example-51
+---------------------
+package HashMapDemo;
+import java.util.*;
+public class PriorityQueueDemo 
+{
+public static void main(String[] args) 
+{
+PriorityQueue<String> queue=new PriorityQueue<String>();
+queue.add("Subham");
+queue.add("Sandip");
+queue.add("Geetanjali");
+queue.add("Ajay");//first-in-first-out
+System.out.println(queue.element());//this will display the head element
+System.out.println(queue.peek());//this will display the head element
+System.out.println(queue.remove());//this removes the head element
+System.out.println(queue.poll());//remove the head element
+System.out.println("************************************************");
+Iterator itr=queue.iterator();
+while(itr.hasNext())
+{
+	System.out.println(itr.next());
+}
+queue.add("sunil");
+queue.add("trupti");
+System.out.println("************************************************");
+Iterator itr1=queue.iterator();
+while(itr1.hasNext())
+{
+	System.out.println(itr1.next());
+}
+System.out.println("the head is "+queue.element());//this will display the head element
+}}
+----------------------------------------------------------------------------
 
 
 
