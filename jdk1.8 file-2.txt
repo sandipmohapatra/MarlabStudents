@@ -1,0 +1,22 @@
+//we want to convert Array to List.
+//We manually have to traverse the array and add the element into list one by one.
+//The array size is fix but the arraylist size increase dynamically.
+package Wednesday;
+import java.util.*;
+public class ArrayToListDemo
+{
+public static void main(String[] args)
+{
+	//array
+	String arr[]= {"Shubham","Geetanjali","Trupti","Ajay"};
+	System.out.println("the array is :"+Arrays.toString(arr));
+//Convert array to List
+	ArrayList<String> list=new ArrayList<String>();
+	for(String str:arr)
+	{
+		list.add(str);
+	}
+	System.out.println("The list is :"+list);
+}
+}
+--------------------------------------------------------------------------------------------------
