@@ -43,3 +43,59 @@ System.out.println("Print the array :"+Arrays.toString(arr));
 }
 }
 ---------------------------------------------------------------------------------
+Properties class
+-----------------------------
+1)The properties object contains key and value pair both as string.
+2)It belongs to java.util.Properties class .It is a subclass of HashTable.
+3)We get the properties value based on the properties key.
+4)The advantage is we neednot to re-compile when the value in the properties files is changed.
+5)It is mostly useful during migration of project from one database to another database (Example:Oracle9 to Oracle11)
+
+
+Example :- 
+database setup
+----------------------------
+db.properties
+----------------------------
+user=system
+password=1234
+Driver=oracle.jdbc.driver.OracleDriver
+connection=jdbc:oracle:thin:@localhost:1521:xe
+
+Server.Port=8090
+--------------------------------------------------------------------------
+Example-3
+-------------------
+package Wednesday;
+import java.util.*;
+import java.io.*;
+public class PropertiesDemo
+{
+public static void main(String[] args)throws Exception
+{
+FileReader fr=new FileReader("db.properties");
+Properties p=new Properties();
+p.load(fr);
+
+System.out.println("the user name is :"+p.getProperty("user"));
+System.out.println("the password is :"+p.getProperty("password"));
+System.out.println("the Driver is :"+p.getProperty("Driver"));
+
+}
+}
+------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
