@@ -80,14 +80,69 @@ p.load(fr);
 System.out.println("the user name is :"+p.getProperty("user"));
 System.out.println("the password is :"+p.getProperty("password"));
 System.out.println("the Driver is :"+p.getProperty("Driver"));
-
+System.out.println("the connection is :"+p.getProperty("connection"));
+//System.out.println("the data base is :"+p.getProperty("Data"));
 }
 }
 ------------------------------------------------------------------------------
+We have 2 interfaces to sort the data.
+1)Comparable interface:- 
+It provides a single sorting sequence only.We can sort a single element only.
+In this we have a abstract method
+public int compareTo(Student obj);//This will compare the single element of the object which may be a rollno,name or age.
+--------------------------------------------------------------------------------------------------
+2)Comparator interface.
+We can sort a object of a class.
+In this we have a abstract method 
+public int compare(Object ob1,Object ob2);//This will compare the first object with the second object.
+----------------------------------------------------------------------------------------------------------------
+Example-4
+---------------------
+package Wednesday;
 
+public class Student implements Comparable<Student>
+{
+	int rollno,age;
+	String name;
 
+	public Student(int rollno, int age, String name) 
+	{
+		super();
+		this.rollno = rollno;
+		this.age = age;
+		this.name = name;
+	}
 
+	@Override
+	public int compareTo(Student obj) 
+	{
+		if(age==obj.age)
+		return 0;
+		else if(age>obj.age)
+			return 1;
+		else
+			return -1;
+	}
 
+}
+---------------------------------------------------------
+package Wednesday;
+import java.util.*;
+public class ComparableDemo 
+{
+public static void main(String[] args) 
+{
+ArrayList<Student> al=new ArrayList<Student>();
+al.add(new Student(101,21,"Trupti"));
+al.add(new Student(102,24,"Shubam"));
+al.add(new Student(103,22,"Ajay"));
+al.add(new Student(104,23,"Madhu"));
+Collections.sort(al);
+for(Student st:al)
+	System.out.println(st.age+"  "+st.rollno+"   "+st.name);
+}
+}
+-------------------------------------------------------------------------------------------------------
 
 
 
