@@ -1,3 +1,5 @@
+Example-1
+-----------------------
 //we want to convert Array to List.
 //We manually have to traverse the array and add the element into list one by one.
 //The array size is fix but the arraylist size increase dynamically.
@@ -20,3 +22,24 @@ public static void main(String[] args)
 }
 }
 --------------------------------------------------------------------------------------------------
+Example-2
+---------------------
+//to convert List to Array 
+package Wednesday;
+import java.util.*;
+public class ListToArrayDemo
+{
+public static void main(String[] args)
+{
+ArrayList<String> list=new ArrayList<String>();
+list.add("apple");
+list.add("orange");
+list.add("grapes");
+list.add("strawberry");
+System.out.println("the list is :"+list);
+//to convert List to Array we use toArray()
+String arr[]=list.toArray(new String[list.size()]);
+System.out.println("Print the array :"+Arrays.toString(arr));
+}
+}
+---------------------------------------------------------------------------------
