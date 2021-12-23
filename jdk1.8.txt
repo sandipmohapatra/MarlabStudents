@@ -2846,6 +2846,73 @@ for(Map.Entry<meet, MeetingDetails> ab:em.entrySet())
 }
 }
 ---------------------------------------------------------------------------------------------------------------
+Wap to enter names,shopping done for Chistmas (productname,price,shop/online)
+and display it.(EnumMap).
+----------------------------------------------------------------------------------------------------
+ArrayList and LinkedList Difference
+-----------------------------------------------------------------
+ArrayList :-
+1)It internally use dynamic array to store the elements.
+2)Manipulation of arraylist is slow.
+3)We can add the element at the rear end.
+
+LinkedList:-
+1)It internally use double link list to store the elements.
+2)Manipulation of Linkedlist is faster.
+3)LinkedList class acts like a list and queue.
+4)We can add the element at both the ends.
+-----------------------------------------------------------------------------------
+HashMap and HashTable Difference
+-------------------------------------------------------
+HashMap
+1)It is not-synchronized .(not Thread safe we can use this with threads)
+2)It allows one null key and multiple null values.
+3)This faster than hashTable
+4)It is traversed by Iterator.
+5)It inherits AbstractMap class.
+
+HashTable
+1)It is synchronized .(Thread safe.we can use with threads)
+2)It doesn't allow any null key or value.
+3)It is slower than HashMap.
+4)It is traversed by Iterator and Enumerator.
+5)It inherits Dictionary class.
+---------------------------------------------------------------------------------------------
+package Collection;
+import java.util.*;
+public class DictonaryDemo 
+{
+public static void main(String[] args)
+{
+Dictionary<String, String> d=new Hashtable<String, String>();//Dictionary is It is abstract parent 
+d.put("1","sandip");
+d.put("2","shubham");
+d.put("3","sunil");
+d.put("4","ajay");
+for(Enumeration i=d.elements();i.hasMoreElements();)
+System.out.println("the value are :"+i.nextElement());
+}
+}
+-----------------------------------------------------------------------------
+package Collection;
+import java.util.*;
+public class DictonaryDemo 
+{
+public static void main(String[] args)
+{
+AbstractMap<String, String> d=new HashMap<String, String>();//AbstractMap is the abstact parent class.
+d.put("1","sandip");
+d.put("2","shubham");
+d.put("3","sunil");
+d.put("4","ajay");
+for(Map.Entry ab:d.entrySet())
+{
+	System.out.println(ab.getKey()+"    "+ab.getValue());
+}
+}
+}
+---------------------------------------------------------------------
+
 
 
 
