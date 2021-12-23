@@ -2797,6 +2797,55 @@ for(Map.Entry m:em.entrySet())
 }
 }
 --------------------------------------------------------------------------------------------------
+Example-57
+---------------------
+ how can I mention Time suppose today I have meeting from 2 to 6 and 7 to 8 another meeting how can i display.
+-------------------------------------------
+package Collection;
+public class MeetingDetails
+{
+int empid,roomno;
+String name,Project,meetingstart,meetingend;
+public MeetingDetails(int empid, int roomno, String name, String project, String meetingstart, String meetingend) 
+{
+	super();
+	this.empid = empid;
+	this.roomno = roomno;
+	this.name = name;
+	Project = project;
+	this.meetingstart = meetingstart;
+	this.meetingend = meetingend;
+}
+@Override
+public String toString() {
+	return "MeetingDetails of Madhusudhan [empid=" + empid + ", roomno=" + roomno + ", name=" + name + ", Project=" + Project+ ", meetingstart=" + meetingstart + ", meetingend=" + meetingend + "]";
+}
+}
+
+----------------------------------------------------------------------------------------
+package Collection;
+import java.util.*;
+enum meet{Meeting1,Meeting2,Meeting3,Meeting4};
+public class MeetingEnumMap 
+{
+public static void main(String[] args) 
+{
+EnumMap<meet, MeetingDetails> em=new EnumMap<meet, MeetingDetails>(meet.class);
+MeetingDetails ob1=new MeetingDetails(101,1,"Madhu","WMCG","2PM","6PM");
+MeetingDetails ob2=new MeetingDetails(101,1,"Madhu","Product Lunch","6PM","8PM");
+MeetingDetails ob3=new MeetingDetails(101,1,"Madhu","FMCG","8PM","10PM");
+MeetingDetails ob4=new MeetingDetails(101,1,"Madhu","Windows-11","10PM","11.30 PM");
+em.put(meet.Meeting1, ob1);
+em.put(meet.Meeting2, ob2);
+em.put(meet.Meeting3, ob3);
+em.put(meet.Meeting4, ob4);
+for(Map.Entry<meet, MeetingDetails> ab:em.entrySet())
+{
+	System.out.println(ab.getKey()+"    "+ab.getValue());
+}
+}
+}
+---------------------------------------------------------------------------------------------------------------
 
 
 
