@@ -2870,6 +2870,8 @@ HashMap
 3)This faster than hashTable
 4)It is traversed by Iterator.
 5)It inherits AbstractMap class.
+------------------------------------
+
 
 HashTable
 1)It is synchronized .(Thread safe.we can use with threads)
@@ -2878,6 +2880,13 @@ HashTable
 4)It is traversed by Iterator and Enumerator.
 5)It inherits Dictionary class.
 ---------------------------------------------------------------------------------------------
+AbstractMap and Dictonary difference
+----------------------------------------------------------
+1)AbstractMap it is the super class of HashMap .we cann't intanceate the AbstractMap so we have to create object of the HashMap.
+-------------------------------------------
+1)Dictionary it is the super class of HashTable .we cann't intanceate the Dictionary so we have to create object of the HashTable.
+
+------------------------------------------------------------------------------
 package Collection;
 import java.util.*;
 public class DictonaryDemo 
@@ -2911,7 +2920,7 @@ for(Map.Entry ab:d.entrySet())
 }
 }
 }
----------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------
 
 
 
