@@ -2985,6 +2985,25 @@ Methods in Thread class
 3)run():- Entry point for the thread.
 
 4)start():- It Starts a thread by calling the run().
+
+5)sleep():- In this based on the requirement we can make a thread sleep or wait for a specific time period.
+
+6)setPriority():- we can set the thead priority.
+
+7)getPriority():- we can get the thread priority.
+
+8)MIN_PRIORITY= range (1 to 4)
+NORM_PRIORITY= 5
+MAX_PRIORITY=RANGE(6 to 10)
+
+9)Daemon Thread :- It is a low priority thread which runs in the background doing garbage collection operation.
+
+10)wait() :- The thread will go to wait until some other thread doesnot notify.
+
+11)notify():- Wake up a thread which is in waiting state.
+
+12)notifyAll() :- This will wake up all the waiting threads.
+
 ----------------------------------------------------------------------------------
 Example-59
 ---------------------
@@ -3018,7 +3037,83 @@ public static void main(String[] args)
 }
 }
 -----------------------------------------------------------------
-
+Example-60
+----------------------
+package Thread;
+public class Thread5 implements Runnable
+{
+	@Override
+	public void run() {
+		
+		for(int i=1;i<=10;i++)
+		{
+			System.out.println(Thread.currentThread().getName()+" "+i);
+			try {
+				Thread.sleep(1000);
+			} catch (InterruptedException e) {
+							e.printStackTrace();
+			}
+	}
+	}
+	public static void main(String[] args) 
+	{
+		Thread5 ob=new Thread5();
+		Thread obj1=new Thread(ob,"Shubham");
+		Thread obj2=new Thread(ob,"Madhu");
+		Thread obj3=new Thread(ob,"Shilpa");
+		obj1.start();obj2.start();obj3.start();
+	}
+}
+---------------------------------------------------------------
+Example-61
+------------------------
+package Thread;
+public class Thread5 implements Runnable
+{
+	@Override
+	synchronized public void run() {
+		try {
+		String name=Thread.currentThread().getName();
+		for(int i=1;i<=10;i++)
+		{
+			System.out.println(name+"  "+i);
+			Thread.sleep(1000);
+			if(name.equals("Shubham") && (i==4))
+			{
+				wait();
+			}
+			if(name.equals("Madhu") && (i==4))
+			{
+				wait();
+			}
+			if(name.equals("Shilpa") && (i==6))
+			{
+				notifyAll(); //wakeup all waiting Thread
+			}
+			
+			  if(name.equals("Shubham") && (i==9))
+			  { notify(); //wakeup 1 thread
+			
+			  }
+			 
+		}}
+		catch(Exception ae)
+		{
+			ae.printStackTrace();
+		}
+				
+	}
+	
+	public static void main(String[] args) 
+	{
+		Thread5 ob=new Thread5();
+		Thread obj1=new Thread(ob,"Shubham");
+		Thread obj2=new Thread(ob,"Madhu");
+		Thread obj3=new Thread(ob,"Shilpa");
+		obj1.start();obj2.start();obj3.start();
+	}
+}
+-------------------------------------------------------------------------------------
 
 
 
