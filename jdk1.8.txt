@@ -3461,6 +3461,7 @@ methods of Thread pool
 4)ExecutorService :- It is used to create FixedThreadPool(5).
 5)Executor :-It is used to execute the threads in the Thread Pool.
 6)import java.util.concurrent :- This package is used for creating ThreadPool .
+7)!exe.isTerminated()) //it is checking each and every thread that it is terminated after the task is done
 -------------------------------------------------------------------------------------------------------------------------
 Example-68
 ------------------------
