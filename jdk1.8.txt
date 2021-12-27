@@ -3399,6 +3399,49 @@ public static void main(String[] args) {
 }
 }
 -----------------------------------------------------------------------------------------------
+example-67
+---------------------
+package Thread;
+public class StudentDemo 
+{
+ int rollno;
+ String name,address;
+ public void finalize()
+ {
+ 	System.out.println("the object is going to garbage collection");
+ }
+ public StudentDemo(int rollno, String name, String address) {
+	super();
+	this.rollno = rollno;
+	this.name = name;
+	this.address = address;
+}
+
+@Override
+public String toString() {
+	return "StudentDemo [rollno=" + rollno + ", name=" + name + ", address=" + address + "]";
+}
+
+}
+-----------------------------------------------
+package Thread;
+
+public class GarbageDemo
+{
+
+public static void main(String[] args) {
+	StudentDemo ob1=new StudentDemo(101,"Madhu","hyd");
+	StudentDemo ob2=new StudentDemo(102,"Sandip","Bangalore");
+	System.out.println(ob1);
+	System.out.println(ob2);
+	ob1=null;
+	ob2=null;
+	System.gc();
+	System.out.println("the corrent value is "+ob1);
+	System.out.println("the corrent value is "+ob2);
+}
+}
+--------------------------------------------------------------------------------
 
 
 
