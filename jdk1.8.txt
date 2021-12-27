@@ -3524,8 +3524,7 @@ we have ConcurrentHashMap,ConcurrentHashTable also.
 ConcurrentHashMap:-
 It is similar to HashMap but it is threadsafe and concurrent and we have some more methods.we have to import java.util.concurrent
 ----------------------------------------------------------------------------------------
-ConcurrentHashTable:- 
- It is similar to HashTable but it is threadsafe and concurrent and we have some more methods.we have to import java.util.concurrent.
+
 ---------------------------------------------------------------------------------------------------
 Example-69
 --------------------
