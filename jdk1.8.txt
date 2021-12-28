@@ -3867,10 +3867,149 @@ task 2 is Completed
 task 4 is Completed
 task 3 is Completed
 -------------------------------------------------------------------------
+Syncronized Thread :- One Thread exceute and after its execution the second thread will start execution.
+------------------------------------------------------------------------------------------
+DeadLock:-
 
+public void run()
+{
+Syncronized Thread1 //this will first start
+sleep(1000);//block state
+Syncronized Thread2 //Thread 2 will be waiting for thread1 to complete its execution so that it will start excuting
+}
 
+This is the condition for DeadLock.
+---------------------------------------------------------------------------------------------
+Example-71
+--------------------
+package Thread;
+public class SecThread implements Runnable 
+{
+	Object ob1;
+	Object ob2;
+	public SecThread(Object ob1, Object ob2) 
+	{
+		super();
+		this.ob1 = ob1;
+		this.ob2 = ob2;
+	}
+	@Override
+	public void run() {
+	String name=Thread.currentThread().getName();
+		System.out.println(name +" Putting lock on ob1");
+		synchronized(ob1)
+		{
+			System.out.println(name +" Putting lock on ob1");
+			work();
+			System.out.println(name +" Putting lock on ob2");
+			synchronized(ob2)
+			{
+			System.out.println(name +" Putting lock on ob2");
+			work();
+		}
+			
+			System.out.println(name+ "Lock Released on ob1");
+		}
+		System.out.println(name+ "Lock Released on ob2");
+		System.out.println("Finish Excecution");
+	}
+void work()
+{
+	try {
+		Thread.sleep(30000);
+	} catch (InterruptedException e) {
+		e.printStackTrace();
+	}
+	
+}
+}
+-------------------------------------------------------------------------------------
+package Thread;
+public class ThreadDeadlock 
+{
+public static void main(String[] args)throws Exception
+{
+Object ob1=new Object();
+Object ob2=new Object();
+Object ob3=new Object();
 
+Thread t1=new Thread(new SecThread(ob1,ob2),"t1");
+Thread t2=new Thread(new SecThread(ob2,ob3),"t2");
+Thread t3=new Thread(new SecThread(ob3,ob1),"t3");
+t1.start();
+Thread.sleep(5000);
+t2.start();
+Thread.sleep(5000);
+t3.start();
+Thread.sleep(5000);
+}
+}
+----------------------------------------------------------------
+synchronized there are 3 types
+--------------------------------------
+1)synchronized method :- 
+2)synchronized block
+3)static synchronized
+----------------------------------------------------
+synchronized block
+-------------------------------------------
+package Thread;
 
+class Table
+{
+	void printTable(int n)
+	{
+		synchronized(this)
+		{
+			for(int i=1;i<=5;i++)
+			{
+				System.out.println(i*n);
+				try {
+					Thread.sleep(1000);
+				} catch (InterruptedException e) {
+				e.printStackTrace();
+				}
+			}
+		}
+	}
+}
+class Thread1 extends Thread
+{
+	Table t;
+	Thread1(Table t)
+	{
+		this.t=t;
+			}
+	public void run()
+	{
+		t.printTable(5);
+	}
+}
+
+class Thread2 extends Thread
+{
+	Table t;
+	Thread2(Table t)
+	{
+		this.t=t;
+			}
+	public void run()
+	{
+		t.printTable(50);
+	}
+}
+
+public class synchronizedBlockDemo 
+{
+public static void main(String[] args)
+{
+Table obj=new Table();
+Thread1 t1=new Thread1(obj);
+Thread2 t2=new Thread2(obj);
+t1.start();t2.start();
+}
+}
+--------------------------------------------------------------------------------
 
 
 
