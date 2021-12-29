@@ -4243,8 +4243,31 @@ the rollno is :101
 the name is :null
 the address is :bangalore
 ------------------------------------------------------
-
-
+wap to store data of few employees into a files and retrive it using serialization and de-serialization.
+employee class (empno,name,salary,designation)
+----------------------------------------------------------------------------------
+character stream
+------------------------------
+1)Reader 2)writer
+--------------------------------------------
+example:-
+-------------------
+package File;
+import java.io.*;
+public class FileExample5 
+{
+public static void main(String[] args) throws IOException
+{
+FileReader fr=new FileReader("student1.txt");
+BufferedReader br=new BufferedReader(fr);
+String x;
+while((x=br.readLine())!=null) //null indicates EOF 
+{
+	System.out.println(x);
+}
+}
+}
+---------------------------------------------------
 
 
 
