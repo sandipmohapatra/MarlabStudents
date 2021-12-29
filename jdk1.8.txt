@@ -4180,6 +4180,69 @@ System.out.println("the salary is :"+sal);
 }
 }
 -------------------------------------------------------------------
+The process of reading and writing object into a file is known as serialization and de-serialization.
+-----------------------------------------------------------------------
+ObjectInputStream/ObjectOutputStream ----serialization and de-serialization.
+-------------------------------------------------------------------------------
+Serializable -it is a marker interface.There will be no abstract method in it.
+---------------------------
+example-
+package File;
+
+import java.io.Serializable;
+
+public class Student implements Serializable 
+{
+int rollno;
+String name,address;
+}
+---------------------------------------------------------------------------------
+package File;
+import java.io.*;
+public class SerializableDemo 
+{
+	public static void main(String[] args) throws IOException
+	{
+	Student obj=new Student();
+	obj.rollno=101;
+	obj.name="sandip";
+	obj.address="bangalore";
+	FileOutputStream fos=new FileOutputStream("object.txt");
+	ObjectOutputStream os=new ObjectOutputStream(fos);
+	os.writeObject(obj);
+	fos.close();os.close();
+	System.out.println("Object written into the file.......");
+	}
+}
+---------------------------------------------------------------------------------
+package File;
+import java.io.*;
+public class DeserializableDemo 
+{
+public static void main(String[] args) throws Exception
+{
+	Student s1=null;
+	FileInputStream fos=new FileInputStream("object.txt");
+	ObjectInputStream os=new ObjectInputStream(fos);
+	s1=(Student) os.readObject();
+	fos.close();os.close();
+System.out.println("the rollno is :"+s1.rollno);
+System.out.println("the name is :"+s1.name);
+System.out.println("the address is :"+s1.address);
+}}
+---------------------------------------------------------------------------------------
+transient :- it is a keyword .this will not be Serialized.
+------------------------------------------------------------------------------------------------
+o/p:-int
+the rollno is :0
+the name is :sandip
+the address is :bangalore
+------------------------------------------------------
+o/p:-String
+the rollno is :101
+the name is :null
+the address is :bangalore
+------------------------------------------------------
 
 
 
