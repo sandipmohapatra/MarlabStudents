@@ -4484,7 +4484,75 @@ public static void main(String[] args)throws Exception
 }
 }
 ---------------------------------------------------------------------------------------------
+Basic of Oracle
+---------------------------
+creating table
+-----------------------
+create table marlabsstud(empno number, name varchar2(50),address varchar2(100))
 
+select data from the table 
+------------------------------------------
+select * from marlabsstud;
+
+insert data into table
+-----------------------------
+insert into marlabsstud values(103,'shubham','Bangalore');
+
+update data in the table
+---------------------------------
+update marlabsstud set address='hyderabad' where empno=103;
+
+delete data from the table
+-----------------------------
+delete marlabsstud where empno=103
+
+select empno,name from marlabsstud;
+
+the table will be deleted
+-----------------------------------
+drop table marlabsstud; 
+
+table structure will be present but rows will be deleted
+-------------------------------------------------------------
+truncate table marlabsstud;
+
+add a column phoneno to marlabsstud
+-------------------------------------------
+alter table marlabsstud add phoneno number
+
+how to update phoneno
+--------------------------
+update marlabsstud set phoneno='6543435' where empno=102;
+
+how to drop the column
+---------------------------
+alter table marlabsstud drop column phoneno;
+----------------------------------------------------------------------------------------------------------------------------
+update
+---------------
+package JDBC;
+import java.sql.*;
+import java.util.*;
+public class Student 
+{
+public static void main(String[] args)throws Exception
+{
+		Class.forName("oracle.jdbc.driver.OracleDriver");
+		Connection con=DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe","system","1234");
+		Scanner ob=new Scanner(System.in);
+		System.out.println("enter name,address and empno which you want to update");
+		String name=ob.next();
+		String address=ob.next();
+		int empno=ob.nextInt();
+		PreparedStatement st=con.prepareStatement("update marlabsstud set name=?,address=? where empno=?");
+		st.setString(1,name);
+		st.setString(2,address);
+		st.setInt(3,empno);
+		st.execute();
+		System.out.println("row updated");
+}
+}
+----------------------------------------------------------------------------------------------
 
 
 
