@@ -4447,6 +4447,15 @@ types of execute methods
 3)excute() ----insert,update,delete,create (returns true,false);
 ---------------------------------------------------------------------------------------------
 
+1)Oracle 10xe 
+2)MySql 
+3)MongoDB
+-------------------------------------------------
+Path where you can find the ojdbc14.jar (driver)
+
+C:\oraclexe\app\oracle\product\10.2.0\server\jdbc\lib
+-----------------------------------------------------------------------------
+
 
 
 
