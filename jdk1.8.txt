@@ -4553,10 +4553,58 @@ public static void main(String[] args)throws Exception
 }
 }
 ----------------------------------------------------------------------------------------------
+delete
+--------------
+package JDBC;
+import java.sql.*;
+import java.util.*;
+public class Student 
+{
+public static void main(String[] args)throws Exception
+{
+		Class.forName("oracle.jdbc.driver.OracleDriver");
+		Connection con=DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe","system","1234");
+		Scanner ob=new Scanner(System.in);
+		System.out.println("enter empno which you want to delete");
+		int empno=ob.nextInt();
+		PreparedStatement st=con.prepareStatement("delete marlabsstud where empno=?");
+		st.setInt(1,empno);
+		st.execute();
+		System.out.println("row deleted");
+		}
+}
 
+-----------------------------------------------------------------------------------------------------
+package JDBC;
+import java.sql.*;
+import java.util.*;
+public class Student 
+{
+public static void main(String[] args)throws Exception
+{
+	Scanner ob=new Scanner(System.in);
+	System.out.println("enter empno,name,address,DOJ");
+	int empno=ob.nextInt();
+	String name=ob.next();
+	String address=ob.next();
+	String DOJ=ob.next();
+		Class.forName("oracle.jdbc.driver.OracleDriver");
+		Connection con=DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe","system","1234");
+	/*	PreparedStatement st=con.prepareStatement("create table marlabemp(empno number,name varchar2(30),address varchar2(30),DOJ date)");
+		st.execute();
+		System.out.println("table created");*/
+		PreparedStatement st=con.prepareStatement("insert into marlabemp values(?,?,?,?)");
+		st.setInt(1, empno);
+		st.setString(2,name);
+		st.setString(3,address);
+		st.setString(4,DOJ);
+		st.execute();
+		System.out.println("row inserted");
+		
+		}
+}
 
-
-
+---------------------------------------------------------------------------------------------------------------
 
 
 
