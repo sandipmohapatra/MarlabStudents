@@ -4663,10 +4663,77 @@ public static void main(String[] args)throws Exception
 ------------------------------------------------------
 *add MySql connector to the build path
 ----------------------------------------------------------
+Connecting the database using GUI (servlet/JSP)
+-------------------------------------------------------------------------
+Servlet is a server side programming language.
+There are 2 types of servlet
+1)Generic Servlet(Protocal Independent)
+2)HttpServlet(Protocal dependent)
+-------------------------------------------------------------
+In the servlet we don't have the main()
+
+we have the lifecycle method for Generic Servlet.
+init():- This execute for one time .It is used to create the memory block.
+service() :- This execute for 'n' no of times .It accepts request and gives the response. 
+destroy():-This execute for one time .It is used to delete the  memory block. 
+------------------------------------------------------------------------------------
+we have the lifecycle method for Http Servlet.
+init():- This execute for one time .It is used to create the memory block.
+service()/doGet()/doPost() :- This execute for 'n' no of times .It accepts request and gives the response. 
+destroy():-This execute for one time .It is used to delete the  memory block. 
+------------------------------------------------------------------------------------------------------------
+Example-1
+------------------
+<html>
+<body bgcolor=cyan>
+<h1>Employee Registration Page</h1><hr>
+<form action=StudentData>
+<table>
+<tr><td>Enter StudID<td><input type=text name=t1 placeholder="enter studentID" size=20 required></tr>
+<tr><td>Enter Name<td><input type=text name=t2 placeholder="enter studentName" size=20 required></tr>
+<tr><td>Enter Address<td><input type=text name=t3 placeholder="enter studentAddress" size=20 required></tr>
+<tr><td><td><input type=submit value=Insert name=b1>
+<input type=submit value=Update name=b1>
+<input type=submit value=Delete name=b1>
+<input type=submit value=Select name=b1>
+</tr>
+</table>
+</form>
+</body>
+</html>
+----------------------------------------------------------------------------------------
+import java.io.*;
+import java.sql.*;
+import javax.servlet.*;
+import javax.servlet.annotation.WebServlet;
+@WebServlet("/StudentData")
+public class StudentData extends GenericServlet 
+{
+public void init()
+{System.out.println("init");}
 
 
-
-
+@Override
+public void service(ServletRequest req, ServletResponse res) throws ServletException, IOException 
+{
+res.setContentType("text/html");
+PrintWriter pw=res.getWriter();
+String a=req.getParameter("t1");
+String b=req.getParameter("t2");
+String c=req.getParameter("t3");
+pw.println("The StudentID is :"+a);
+pw.println("<br>");
+pw.println("The Student Name is :"+b);
+pw.println("<br>");
+pw.println("The Student Address is :"+c);
+}
+public void destroy()
+{System.out.println("Destroy");}
+}
+---------------------------------------------------------------------------
+*Add tomcat server
+*Add 2 jar files:- MySql Connector.jar ,Servlet-api.jar
+------------------------------------------------------------------------------------
 
 
 
