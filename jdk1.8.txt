@@ -4605,6 +4605,64 @@ public static void main(String[] args)throws Exception
 }
 
 ---------------------------------------------------------------------------------------------------------------
+wap to use case and switch and perform the task.
+1.insert 2.update 3.delete 4 .display the records.
+------------------------------------------------------------------------------------
+MySql
+-----------------
+To see the databases present
+1)show databases;
+-------------------------------------------
+To create database
+2)create database marlabs
+---------------------------------------------------
+To go into the database
+3)use marlabs;
+----------------------------------------------------
+To delete the database
+4)drop database marlabs;
+-----------------------------------------------------
+To create a table in the database
+5)create table student(studid int,name varchar(30),address varchar(30));
+-------------------------------------------------------------------------
+To insert the row into the table
+6)insert into student values(102,'Trupti','Bangalore');
+-----------------------------------------------------------------------------------
+To update the data 
+7)update student set address='Orissa' where studid=102;
+--------------------------------------------------------------------------------------
+To delete the data
+8)delete from student where studid=101;
+---------------------------------------------------------------------------------
+Program-1
+-------------------
+package JDBC;
+import java.sql.*;
+import java.util.*;
+public class Student 
+{
+public static void main(String[] args)throws Exception
+{
+	Scanner ob=new Scanner(System.in);
+	System.out.println("enter studID,name,address");
+	int studid=ob.nextInt();
+	String name=ob.next();
+	String address=ob.next();
+			Class.forName("com.mysql.jdbc.Driver");
+		Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/marlabs","root","1234");
+		PreparedStatement st=con.prepareStatement("insert into student values(?,?,?)");
+		st.setInt(1, studid);
+		st.setString(2,name);
+		st.setString(3,address);
+		st.execute();
+		System.out.println("row inserted");
+		
+		}
+}
+
+------------------------------------------------------
+*add MySql connector to the build path
+----------------------------------------------------------
 
 
 
