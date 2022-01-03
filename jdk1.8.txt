@@ -1,5 +1,3 @@
-Oracle link
-https://drive.google.com/file/d/0B_8PmSMM3tRdMl9PS1hUMFFEbkk/view?usp=sharing&resourcekey=0-qjqe8sjixyAi8meOXxO_jQ
 Java 1.8 features
 --------------------------
 1)Java is Object Oriented programming Language.
