@@ -5110,6 +5110,17 @@ public static void main(String[] args) throws Exception
 }
 }
 
+
+/*
+ create or replace function addno(i IN number,j IN number) return number is
+ k number;
+ begin
+ k:=i+j; 
+return k; 
+end;
+ */
+
+
 -------------------------------------------------------------------------------------
 program-2
 ----------------------
@@ -5127,26 +5138,27 @@ public static void main(String[] args)throws Exception
 	rs.setPassword("1234");
 	rs.setCommand("select * from marlabemp");
 	rs.execute();
-	boolean first=rs.isBeforeFirst();
-	boolean last=rs.isAfterLast();
+	boolean first=rs.isBeforeFirst();//true
+	boolean last=rs.isAfterLast();//false
 	System.out.println("the cursor is at Before First :"+first);
 	System.out.println("the cursor is at After Last :"+last);
 	while(rs.next())
 	{
 		System.out.println(rs.getString(1)+"  "+rs.getString(2)+" "+rs.getString(3)+" "+rs.getString(4));
 	}
+	System.out.println("***********************************");
 	rs.absolute(2);
 	System.out.println(rs.getString(1)+"  "+rs.getString(2)+" "+rs.getString(3)+" "+rs.getString(4));
-	
+	System.out.println("***********************************");
 	rs.absolute(1);
 	System.out.println(rs.getString(1)+"  "+rs.getString(2)+" "+rs.getString(3)+" "+rs.getString(4));
-	
+	System.out.println("***********************************");
 	rs.absolute(4);
 	System.out.println(rs.getString(1)+"  "+rs.getString(2)+" "+rs.getString(3)+" "+rs.getString(4));
-	
+	System.out.println("***********************************");
 	rs.first();
 	System.out.println(rs.getString(1)+"  "+rs.getString(2)+" "+rs.getString(3)+" "+rs.getString(4));
-	
+	System.out.println("***********************************");
 	rs.last();
 	System.out.println(rs.getString(1)+"  "+rs.getString(2)+" "+rs.getString(3)+" "+rs.getString(4));
 }
