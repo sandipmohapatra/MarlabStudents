@@ -4484,7 +4484,7 @@ public static void main(String[] args)throws Exception
 }
 }
 ---------------------------------------------------------------------------------------------
-Basic of Oracle
+Basic of Oracle (SQL)
 ---------------------------
 creating table
 -----------------------
@@ -5050,8 +5050,95 @@ https://drive.google.com/drive/folders/14Ht1eOCBnImEDYLwlw8hS4VY63GsSolM?usp=sha
 -----------------------------------------------------------------------------------------------------------------------------------------
 call me---7760213015
 -----------------------------------------------
-
-
+GitHUB :-github.com(global)
+GitBase:-https://git-scm.com/download/win(local)
+---------------------------------------------------------------------
+version control tool
+-------------------------------------
+5 members are developing a project
+we will have five branches .We can merge the files.this is with the help of gitbase.
+Local machine -------------->Global storage.
+if your system crash we have no effect on the project.
+---------------------------------------------------------------------------
+Function and Procedure in Oracle
+--------------------------------------------
+Function will return a value.
+Procedure will not return a value.
+---------------------------------------------------------------------------
+Pl-SQL
+-----------------
+Declare
+a number:=110;
+b number:=20;
+c number;
+begin
+c:=a+b;
+dbms_output.put_line('The result is '||c);
+end;
+----------------------------------------------------------------------------------------
+Functions
+----------------------
+create or replace function addno(i number,j number) return number is
+begin
+return i+j;
+end;
+---------------------------------------------------
+DECLARE
+K number;
+begin
+K:=addno(135,145);
+dbms_output.put_line('the sum is '||K);
+end;
+----------------------------------------------------------------------
+program-1
+-----------------------
+package com.app;
+import java.sql.*;
+import javax.sql.rowset.*;
+import oracle.jdbc.rowset.*;
+public class JDBCRowset 
+{
+public static void main(String[] args)throws Exception
+{
+	JdbcRowSet rs=new OracleJDBCRowSet();
+	Class.forName("oracle.jdbc.driver.OracleDriver");
+	Connection con=DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe","system","1234");
+	rs.setCommand("select * from marlabemp");
+	boolean first=rs.isBeforeFirst();
+	boolean last=rs.isAfterLast();
+	System.out.println("the cursor is at Before First :"+first);
+	System.out.println("the cursor is at After Last :"+last);
+	while(rs.next())
+	{
+		System.out.println(rs.getString(1)+"  "+rs.getString(2)+" "+rs.getString(3)+" "+rs.getString(4));
+	}
+	
+}
+}
+-------------------------------------------------------------------------------------
+program-2
+----------------------
+package com.app;
+import java.sql.*;
+public class Function1 
+{
+public static void main(String[] args) throws Exception
+{
+	String driverclass="oracle.jdbc.driver.OracleDriver";
+	String url="jdbc:oracle:thin:@localhost:1521:xe";
+	String username="system";
+	String password="1234";
+	Class.forName(driverclass);
+	Connection con=DriverManager.getConnection(url,username,password);
+	CallableStatement st1=con.prepareCall("{?=call addno(?,?)}");
+	st1.registerOutParameter(1,Types.INTEGER);
+	st1.setInt(2,10);
+	st1.setInt(3,30);
+	int n=st1.getInt(1);
+	System.out.println("The result is "+n);
+}
+}
+------------------------------------------------------------------------------------------------------------------------
 
 
 
