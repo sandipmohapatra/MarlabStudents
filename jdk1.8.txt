@@ -5115,16 +5115,18 @@ program-2
 ----------------------
 package com.app;
 import java.sql.*;
-import javax.sql.rowset.*;
-import oracle.jdbc.rowset.*;
+import javax.sql.rowset.JdbcRowSet;
+import oracle.jdbc.rowset.OracleJDBCRowSet;
 public class JDBCRowset 
 {
 public static void main(String[] args)throws Exception
 {
 	JdbcRowSet rs=new OracleJDBCRowSet();
-	Class.forName("oracle.jdbc.driver.OracleDriver");
-	Connection con=DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe","system","1234");
+	rs.setUrl("jdbc:oracle:thin:@localhost:1521:xe");
+	rs.setUsername("system");
+	rs.setPassword("1234");
 	rs.setCommand("select * from marlabemp");
+	rs.execute();
 	boolean first=rs.isBeforeFirst();
 	boolean last=rs.isAfterLast();
 	System.out.println("the cursor is at Before First :"+first);
