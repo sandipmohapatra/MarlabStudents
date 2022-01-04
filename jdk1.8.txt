@@ -4945,7 +4945,102 @@ public static void main(String[] args)throws Exception
 
 }}
 ------------------------------------------------------------------
+display the employees 
+1)select All employees
+2)select employee by ID
+3)select employee by name
+4)update employee by ID
+---------------------------------------------------------------------------
+example:-
+package Connection;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.Scanner;
+
+public class EmpData {
+public static void main(String[] args)throws Exception
+{
+String driverclass="com.mysql.cj.jdbc.Driver";
+String url="jdbc:mysql://localhost:3306/Student";
+String username="root";
+String password="Root@1234";
+String sql="Select from Employee";
+String sql1="Select table Employee";
+Class.forName(driverclass);
+Connection con=DriverManager.getConnection(url,username,password);
+PreparedStatement st=null;
+System.out.println("************************************");
+System.out.println("MENU");
+System.out.println("1.Select ALL Employee");
+System.out.println("2.Select BY ID");
+System.out.println("3.Select BY Name");
+System.out.println("4.Select BY salary");
+System.out.println("*************************************");
+Scanner ob=new Scanner(System.in);
+System.out.println("Enter your Choice");
+int option=ob.nextInt();
+switch(option)
+{
+case 1:
+st=con.prepareStatement(sql1);
+System.out.println("Selected all rows" );
+ResultSet rs=st.executeQuery("select* from Employee");
+while(rs.next())
+{
+System.out.println(rs.getInt(1)+" "+rs.getString(2)+" "+rs.getString(3));
+}
+break;
+case 2:
+sql+=" where Empid=?";
+System.out.println(sql);
+System.out.println("enter Empid");
+int Empid=ob.nextInt();
+st=con.prepareStatement("select * from Employee where Empid=?");
+st.setInt(1,Empid);
+ResultSet rs1=st.executeQuery();
+while(rs1.next())
+{
+System.out.println(rs1.getInt(1)+" "+rs1.getString(2)+" "+rs1.getString(3));
+}
+break;
+case 3:
+sql+=" where name=?";
+System.out.println(sql);
+System.out.println("enter name");
+String name=ob.next();
+st=con.prepareStatement("select * from Employee where name=?");
+st.setString(1, name);
+ResultSet rs2=st.executeQuery();
+while(rs2.next())
+{
+System.out.println(rs2.getInt(1)+" "+rs2.getString(2)+" "+rs2.getString(3));
+}
+break;
+case 4:
+sql+=" where empsalary=?";
+System.out.println(sql);
+System.out.println("enter salary");
+int empsalary=ob.nextInt();
+ob.close();
+st=con.prepareStatement("select * from Employee where empSalary=?");
+st.setInt(1,empsalary);
+ResultSet rs3=st.executeQuery();
+while(rs3.next())
+{
+System.out.println(rs3.getInt(1)+" "+rs3.getString(2)+" "+rs3.getString(3));
+}
+break;
+default:
+System.out.println("sorry wrong option");
+break;
+
+}
+}
+}
+----------------------------------------------------------------------------------------------------------
 
 
 
