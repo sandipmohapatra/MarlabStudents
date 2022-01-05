@@ -5281,6 +5281,31 @@ public static void main(String[] args)throws Exception
 	}
 }
 -------------------------------------------------------------------
+Batch Update:-
+package com.app;
+import java.sql.*;
+public class BatchDemo {
+	public static void main(String[] args) throws Exception 
+	 {
+	String driverclass="com.mysql.jdbc.Driver";
+	String url="jdbc:mysql://localhost:3306/sandip";
+	String username="root";
+	String password="1234";
+	Class.forName(driverclass);
+	Connection con=DriverManager.getConnection(url,username,password);
+	con.setAutoCommit(false);
+	Statement st=con.createStatement();
+	st.addBatch("insert into student values(2,'shubham','bangalore')");
+	st.addBatch("insert into student values(3,'shatish','bangalore')");
+	st.addBatch("insert into student values(4,'sunil','bangalore')");
+	st.addBatch("delete from student where studid=101");
+	st.addBatch("update student set address='hyd' where studid=3");
+	st.executeBatch();
+	con.commit();
+	System.out.println("Operation Successful");
+}
+}
+-----------------------------------------------------------------------------------------------------------------
 
 
 
