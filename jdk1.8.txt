@@ -5306,13 +5306,35 @@ public class BatchDemo {
 }
 }
 -----------------------------------------------------------------------------------------------------------------
+wap to insert data,update data,delete data,read data from a table employee (empno,name,salary,DOJ);
+Do it using case and switch.(MYSQL)
+
+create table employee(empno int NOT NULL AUTO_INCREMENT PRIMARY KEY,
+name varchar(30),salary float,DOJ date);
+
+mysql> create table employee(empno int NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    -> name varchar(30),salary float,DOJ date);
 
 
+mysql> insert into employee values(101,'Shubham',67000.50,now());
 
 
+mysql> insert into employee values(102,'madhu',67000.50,curdate());
 
 
+mysql> insert into employee values(103,'trupti',67000.50,'2019-05-01');
 
+
+mysql> insert into employee(name,salary,DOJ) values('shilpa',67000.50,'2019-05-01');
+
+mysql> select * from employee;
+
+mysql> insert into employee(name,salary,DOJ) values('rohit',67000.50,'2019-05-01');
+
+
+mysql> insert into employee(name,salary,DOJ) values('mohit',67000.50,'2019-05-01');
+
+-------------------------------------------------------------------------------------------------------------------------------------
 
 
 
