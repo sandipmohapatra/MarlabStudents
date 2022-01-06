@@ -28,10 +28,10 @@ out.println("The Student address is "+c);%>
 <% String a=request.getParameter("t1");
 String b=request.getParameter("t2");
 String c=request.getParameter("t3");%>
-
-<%out.println("The Student Id is "+a);
-out.println("<br>");
-out.println("The Student name is "+b);
+<h1><center>Student Details</center></h1><hr color=red><hr color=blue>
+<%out.println("The Student Id is "+a);%>
+<br>
+<% out.println("The Student name is "+b);
 out.println("<br>");
 out.println("The Student address is "+c);%>
 <% try
@@ -60,4 +60,44 @@ String driverclass="com.mysql.jdbc.Driver";
 
 
 	%>
+
 ---------------------------------------------------------------------------------
+    when we use Createstatement, when we use preparestatement??
+Createstatement :- static statement
+ preparestatement :- dynamic statement
+----------------------------------------------------------------------
+    when we use jsp file and when we use GUI
+servlet,JSP,spring boot,spring MVC
+
+------------------------------------------------------------------------------------------
+servlet and Jsp
+servlet is faster than JSP.
+JSP internally is converted to servlet.
+The code is less in JSP compared to servlet.
+Servlet are java files.where as JSP are webbased file.
+------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
