@@ -5335,9 +5335,61 @@ mysql> insert into employee(name,salary,DOJ) values('rohit',67000.50,'2019-05-01
 mysql> insert into employee(name,salary,DOJ) values('mohit',67000.50,'2019-05-01');
 
 -------------------------------------------------------------------------------------------------------------------------------------
+ResultSet :- It is a memory block which can store the entire table.
+We have a method next() which will move the cursor in forward direction .Then we can print the rows of the table.
+It is use to display the data of a table.
 
+We have TYPE_SCROLL_INSENSITIVE  and TYPE_SCROLL_SENSITIVE add with the statement parameters which help in moving the cursor in forward and backward direction.
 
-
+--------------------------------------------------------------------------------------------------------------------------------------
+package com.app;
+import java.sql.*;
+public class ResultSetDemo 
+{
+public static void main(String[] args)throws Exception
+{
+	String driverclass="com.mysql.jdbc.Driver";
+	String url="jdbc:mysql://localhost:3306/sandip";
+	String username="root";
+	String password="1234";
+	Class.forName(driverclass);
+	Connection con=DriverManager.getConnection(url,username,password);
+	Statement st=con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);
+	ResultSet rs=st.executeQuery("select * from student");
+	rs.absolute(2);
+	System.out.println(rs.getString(1)+" "+rs.getString(2)+" "+rs.getString(3));
+	rs.absolute(-1);
+	System.out.println(rs.getString(1)+" "+rs.getString(2)+" "+rs.getString(3));
+	con.close();
+}
+}
+--------------------------------------------------------------------------------------------------------------
+package com.app;
+import java.sql.*;
+public class ResultSetDemo 
+{
+public static void main(String[] args)throws Exception
+{
+	String driverclass="com.mysql.jdbc.Driver";
+	String url="jdbc:mysql://localhost:3306/sandip";
+	String username="root";
+	String password="1234";
+	Class.forName(driverclass);
+	Connection con=DriverManager.getConnection(url,username,password);
+	Statement st=con.createStatement();
+	ResultSet rs=st.executeQuery("select * from student");
+	ResultSetMetaData rsmd=rs.getMetaData();
+	System.out.println("the no of coulmns in the table is "+rsmd.getColumnCount());
+	System.out.println("the first column name is "+rsmd.getColumnName(1));
+	System.out.println("the second column name is "+rsmd.getColumnName(2));
+	System.out.println("the third column name is "+rsmd.getColumnName(3));
+	System.out.println("The 1st column types are "+rsmd.getColumnTypeName(1));
+	System.out.println("The 2nd column types are "+rsmd.getColumnTypeName(2));
+	System.out.println("The 3rd column types are "+rsmd.getColumnTypeName(3));
+	con.close();
+}
+}
+-------------------------------------------------------------------------------------------------------------------------------------
 
 
 
