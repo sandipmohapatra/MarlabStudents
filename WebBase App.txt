@@ -127,6 +127,161 @@ String driverclass="com.mysql.jdbc.Driver";
 
 	%>
 ----------------------------------------------------------------------------------------------------
+Servlet is a server side programming language.
+There are 2 types of servlet
+1)Generic Servlet(Protocal Independent)
+2)HttpServlet(Protocal dependent)
+-------------------------------------------------------------
+In the servlet we don't have the main()
+
+we have the lifecycle method for Generic Servlet.
+init():- This execute for one time .It is used to create the memory block.
+service() :- This execute for 'n' no of times .It accepts request and gives the response. 
+destroy():-This execute for one time .It is used to delete the  memory block. 
+------------------------------------------------------------------------------------
+HttpServlet it also don't have the main()
+
+we have the lifecycle method.
+init():-This execute for one time .It is used to create the memory block.
+service()/doGet()/doPost:-This execute for 'n' no of times .It accepts request and gives the response.
+destroy():-This execute for one time .It is used to delete the  memory block. 
+------------------------------------------------------------------------------------------------
+<form action="JspTest.jsp" method=get/post>
+by default it is get.we can see the data on the address bar.
+http://localhost:8090/MySqlDemo1/JspTest.jsp?t1=1001&t2=ajay&t3=Bangalore&b1=Insert
+in post we cannot see the data on the address bar.
+the data is secured.
+---------------------------------------------------------------------------------------------------------------------
+The internet works with HTTP protocal.
+so have cookies and session.
+we have methods like sendRedirect(),requestDispatcher().
+----------------------------------------------------------------------------------------------------------
+sendRedirect();
+--------------------------
+we will have a registration page and after registration it will redirect to login page.
+--------------------------------------------------register.html-------------------------------------------------------------
+Example :-
+<html>
+<body bgcolor=cyan>
+<h1>Student Registration Page</h1><hr>
+<form action="ServletRedirect" method="get">
+<table>
+<tr><td>Enter StudID<td><input type=text name=t1 size=20 required></tr>
+<tr><td>Enter Name<td><input type=text name=t2  size=20 required></tr>
+<tr><td>Enter Address<td><input type=text name=t3  size=20 required></tr>
+<tr><td>Enter password<td><input type=password name=t4  size=20 required></tr>
+<tr><td><td><input type=submit value=Submit></tr>
+</table>
+</form>
+</body>
+</html>
+--------------------------------------------------------------------------
+import java.io.*;
+import java.sql.*;
+import javax.servlet.*;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.*;
+@WebServlet("/ServletRedirect")
+public class ServletRedirect extends HttpServlet 
+{
+	public void doGet(HttpServletRequest req,HttpServletResponse res)throws ServletException,IOException
+	{
+		PrintWriter pw=res.getWriter();
+		res.setContentType("text/html");
+		String a=req.getParameter("t1");
+		String b=req.getParameter("t2");
+		String c=req.getParameter("t3");
+		String d=req.getParameter("t4");
+		String driverclass="oracle.jdbc.driver.OracleDriver";
+		String url="jdbc:oracle:thin:@localhost:1521:xe";
+		String username="system";
+		String password="1234";
+	//	String sql="create table marlabsstud1 (studid number,name varchar2(30),address varchar2(30),password varchar2(30))";
+		String sql1="insert into marlabsstud1 values(?,?,?,?)";
+		try
+		{
+		Class.forName(driverclass);
+		Connection con=DriverManager.getConnection(url,username,password);
+		//PreparedStatement st=con.prepareStatement(sql);
+		//st.execute();
+		PreparedStatement st1=con.prepareStatement(sql1);
+		st1.setInt(1,Integer.parseInt(a));
+		st1.setString(2,b);
+		st1.setString(3,c);
+		st1.setString(4,d);
+		st1.execute();
+		res.sendRedirect("login.html");
+	}
+	catch(Exception ae)
+	{
+		ae.printStackTrace();
+	}
+	}
+}
+--------------------------------------------login.html-------------------------------------------------------
+<html>
+<body bgcolor=cyan>
+<h1>Student Login Page</h1><hr>
+<form action="Login" method="get">
+<table>
+<tr><td>Enter Name<td><input type=text name=t1  size=20 required></tr>
+<tr><td>Enter password<td><input type=password name=t2  size=20 required></tr>
+<tr><td><td><input type=submit value=submit></tr>
+</table>
+</form>
+</body>
+</html>
+-----------------------------------------------------------------------
+import java.io.*;
+import java.sql.*;
+import javax.servlet.*;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.*;
+@WebServlet("/Login")
+	public class Login extends HttpServlet 
+	{
+		public void doGet(HttpServletRequest req,HttpServletResponse res)throws ServletException,IOException
+		{
+			PrintWriter pw=res.getWriter();
+			res.setContentType("text/html");
+			String a=req.getParameter("t1");
+			String b=req.getParameter("t2");
+			String driverclass="oracle.jdbc.driver.OracleDriver";
+			String url="jdbc:oracle:thin:@localhost:1521:xe";
+			String username="system";
+			String password="1234";
+				try
+			{
+			Class.forName(driverclass);
+			Connection con=DriverManager.getConnection(url,username,password);
+			PreparedStatement ps=con.prepareStatement("select * from marlabsstud1 where name=? and password=?");
+			ps.setString(1,a);
+			ps.setString(2,b);
+			ResultSet rs=ps.executeQuery();
+			int x=0;
+			while(rs.next())
+			{
+				x=1;
+			}
+			if(x==1)
+				res.sendRedirect("success.html");
+			else
+			 res.sendRedirect("login.html");
+		}
+		catch(Exception ae)
+		{
+			ae.printStackTrace();
+		}
+		}
+	}
+
+
+-----------------------------------------------------------------------------------------------------------
+<body>
+<h1>Login Success</h1>
+</body>
+-----------------------------------------------------
+
 
 
 
