@@ -349,8 +349,10 @@ public class Session1 extends HttpServlet
 		pw.println("<form action=Session2 method=get>");
 		pw.println("Enter the product1 name :");
 		pw.println("<input type=text name=t5  size=20 required>");
+		pw.println("<br>");
 		pw.println("Enter the product1 price :");
 		pw.println("<input type=text name=t6  size=20 required>");
+		pw.println("<br>");
 		pw.println("<input type=submit value=Submit>");
 		pw.println("</body>");
 		pw.println("</form></html>");
@@ -362,7 +364,7 @@ import java.io.*;
 import javax.servlet.*;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
-@WebServlet("/Session1")
+@WebServlet("/Session2")
 public class Session2 extends HttpServlet 
 {
 	public void doGet(HttpServletRequest req,HttpServletResponse res)throws ServletException,IOException
@@ -379,8 +381,10 @@ public class Session2 extends HttpServlet
 		pw.println("<form action=Session3 method=get>");
 		pw.println("Enter the product2 name :");
 		pw.println("<input type=text name=t7  size=20 required>");
+		pw.println("<br>");
 		pw.println("Enter the product2 price :");
 		pw.println("<input type=text name=t8  size=20 required>");
+		pw.println("<br>");
 		pw.println("<input type=submit value=Submit>");
 		pw.println("</body>");
 		pw.println("</form></html>");
@@ -392,7 +396,7 @@ import java.io.*;
 import javax.servlet.*;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
-@WebServlet("/Session1")
+@WebServlet("/Session3")
 public class Session3 extends HttpServlet 
 {
 	public void doGet(HttpServletRequest req,HttpServletResponse res)throws ServletException,IOException
@@ -415,14 +419,14 @@ public class Session3 extends HttpServlet
 		pw.println("<html>");
 		pw.println("<body bgcolor=cyan>");
 		pw.println("<h2>The Final Bill Of Amazon</h2><hr><br><br>");
-		pw.println("Name :"+x);
-		pw.println("Address :"+y);
-		pw.println("Phone no :"+z);
-		pw.println("Email :"+x1);
-		pw.println("Product Name :"+y1);
-		pw.println("Price :"+z1);
-		pw.println("Product Name :"+y2);
-		pw.println("Price :"+z2);
+		pw.println("Name :"+x);pw.println("<br>");
+		pw.println("Address :"+y);pw.println("<br>");
+		pw.println("Phone no :"+z);pw.println("<br>");
+		pw.println("Email :"+x1);pw.println("<br>");
+		pw.println("Product Name :"+y1);pw.println("<br>");
+		pw.println("Price :"+z1);pw.println("<br>");
+		pw.println("Product Name :"+y2);pw.println("<br>");
+		pw.println("Price :"+z2);pw.println("<br>");
 		pw.println("<br><br>");
 		pw.println("Total Bill is  :"+(Integer.parseInt(z1)+Integer.parseInt(z2)));
 		pw.println("<br><br>");
