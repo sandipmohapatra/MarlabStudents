@@ -286,6 +286,22 @@ Cookies and session
 Cookies are memory block created in the client system.
 example:- save the username/password of gmail.
 It is not secured.
+cookies and session both work together.
+example:- login to gmail,amazon .once you have logged in the system will use the username/password from the cookies and redirect to different pages.
+-----------------------------------------------------------------------------
+to add cookies
+---------------------------
+Cookie c=new Cookie(key,value);
+res.addCookie(c);
+-------------------------------------------------------------------------
+to get cookies
+----------------------------
+Cookie ck[]=req.getCookies();
+		for(int i=0;i<ck.length;i++)
+		{
+			String key=ck[i].getName();
+			String Value=ck[i].getValue();
+		}
 ---------------------------------------------------
 session :- They are memory blocks created in the server.
 It is used when we do inter servlet communication.
@@ -307,7 +323,7 @@ HttpSession ses=req.getSession(false);//it will be under the same session id.
 String x=(String)ses.getAttribute("ob");
 String y=(String)ses.getAttribute("ob1");
 String z=(String)ses.getAttribute("ob2");
--------------------------------------------------------------------------------------------------------------------
+-------------------------------------------session ------------------------------------------------------------------------
 Example:-
 <html>
 <body bgcolor=cyan>
@@ -433,9 +449,80 @@ public class Session3 extends HttpServlet
 		pw.println("Thank you Visit Again...");
 			}
 	}
-----------------------------------------------------------------------------------------------------
+---------------------------------------------------Cookies-------------------------------------------------
 
+<html>
+<body bgcolor=cyan>
+<h1>Add Cookies</h1><hr>
+<form action="AddCookies" method="get">
+<table>
+<tr><td>Enter Name<td><input type=text name=t1  size=20 required></tr>
+<tr><td>Enter Password<td><input type=text name=t2  size=20 required></tr>
+<tr><td><td><input type=submit value=Submit></tr>
+</table>
+</form>
+</body>
+</html>
+-----------------------------------------------------------------
+import java.io.*;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.*;
+@WebServlet("/AddCookies")
+public class AddCookies extends HttpServlet 
+{
+	public void doGet(HttpServletRequest req,HttpServletResponse res)throws ServletException,IOException
+	{
+		res.setContentType("text/html");
+		PrintWriter pw=res.getWriter();
+		String key=req.getParameter("t1");
+		String value=req.getParameter("t2");
+		Cookie c=new Cookie(key,value);
+		res.addCookie(c);
+		pw.println("The key is :"+key);
+		pw.println("The value is :"+value);
+		pw.println("Cookies Added Successfully");
+		pw.close();
+}
+}
+-----------------------------------------------------------------------------
+<html>
+<body bgcolor=cyan>
+<h1>Get Cookies</h1><hr>
+<form action="GetCookies" method="get">
+<h1>Click the Button to view the Cookies</h1>
+<input type="submit" value="submit"/>
+</form>
+</body>
+</html>
+------------------------------------------------------
+import java.io.*;
+import javax.servlet.*;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.*;
 
+@WebServlet("/GetCookies")
+public class GetCookies extends HttpServlet 
+{
+	public void doGet(HttpServletRequest req,HttpServletResponse res)throws ServletException,IOException
+	{
+		res.setContentType("text/html");
+		PrintWriter pw=res.getWriter();
+		pw.println("<html>");
+		pw.println("<h1>The Cookies Stored are</h1>");
+		Cookie ck[]=req.getCookies();
+		for(int i=0;i<ck.length;i++)
+		{
+			String key=ck[i].getName();
+			String Value=ck[i].getValue();
+			pw.println("the cookie key :"+key);
+			pw.println("the cookie value :"+Value);
+		}
+		pw.println("</html>");
+		
+}
+}
+--------------------------------------------------------------------------------------------------------------------------
 
 
 
