@@ -523,9 +523,104 @@ public class GetCookies extends HttpServlet
 }
 }
 --------------------------------------------------------------------------------------------------------------------------
+difference between sendRedirect() and RequestDispatcher
+----------------------------------------------------------------------------
+sendRedirect() will redirect to any servlet,html or JSP
+RequestDispatcher will redirect to any servlet or JSP along with the request comming from any html/jsp.
+*It will carry the request to the next page.
+--------------------------------------------------------------------------------------------------------
+
+RequestDispatcher :- 
+It is a Interface.
+It has 2 methods.
+1)public void forward(ServletRequest req,ServletResponse res)throws ServletException,IOException
+* it will forward to the next page(servlet/jsp) along with the request .
 
 
-
+2)public void include(ServletRequest req,ServletResponse res)throws ServletException,IOException
+* The present servlet and the next servlet output will be combined and displayed on the same page.
+example :- Login page failure stay on the same page.+failure message(included which is o/p of another file).
+--------------------------------------------------------------------------------------------------------------------------------------------
+<html>
+<body bgcolor=yellow>
+<form action=FirstPage method=get>
+<center><h1>Employee Registration Page</h1></center>
+<table>
+<tr><td>Enter Name<td><input type=text name=t1  size=20 required></tr>
+<tr><td>Enter Address<td><input type=text name=t2  size=20 required></tr>
+<tr><td>Enter Phoneno<td><input type=number name=t3 size=20 required></tr>
+<tr><td>Enter Email<td><input type=email name=t4  size=20 required></tr>
+<tr><td><td><input type=submit value=Submit></tr>
+</table>
+</form>
+</body>
+</html>
+-------------------------------------------------------
+import java.io.*;
+import javax.servlet.*;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.*;
+@WebServlet("/FirstPage")
+public class FirstPage extends HttpServlet 
+{
+public void doGet(HttpServletRequest req,HttpServletResponse res)throws ServletException,IOException
+{
+	RequestDispatcher rd=req.getRequestDispatcher("SecondPage");
+	rd.forward(req, res);
+}
+	
+}
+----------------------------------------------------------------------
+import java.io.*;
+import javax.servlet.*;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.*;
+@WebServlet("/SecondPage")
+public class SecondPage extends HttpServlet 
+{
+	public void doGet(HttpServletRequest req,HttpServletResponse res)
+	{
+		try
+		{
+			PrintWriter pw=res.getWriter();
+			res.setContentType("text/html");
+			String a=req.getParameter("t1");
+			String b=req.getParameter("t2");
+			String c=req.getParameter("t3");
+			String d=req.getParameter("t4");
+			pw.println("The name is :"+a);
+			pw.println("The address is :"+b);
+			pw.println("The phone no is :"+c);
+			pw.println("The email is :"+d);
+		}
+		catch(Exception ae)
+		{
+			ae.printStackTrace();
+		}
+	}
+}
+--------------------------------------------------------------------------------------------------------------------------
+Include:-
+-----------------
+import java.io.*;
+import javax.servlet.*;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.*;
+@WebServlet("/FirstPage")
+public class FirstPage extends HttpServlet 
+{
+public void doGet(HttpServletRequest req,HttpServletResponse res)throws ServletException,IOException
+{
+	PrintWriter pw=res.getWriter();
+	res.setContentType("text/html");
+	pw.println("<h1>This is include Example</h1>");
+	pw.println("<br>");
+	RequestDispatcher rd=req.getRequestDispatcher("SecondPage");
+	rd.include(req, res);
+}
+	
+}
+------------------------------------------------------------------------------------------------------------
 
 
 
