@@ -621,8 +621,26 @@ public void doGet(HttpServletRequest req,HttpServletResponse res)throws ServletE
 	
 }
 ------------------------------------------------------------------------------------------------------------
+DAO layer:-Data access Object
 
-
+1)Connection Object
+2)handle user defined error
+3)DAO interface
+i)addPerson() ii)getPerson() iii)updatePerson()  iv)deletePerson()
+4)DAO implementation
+5)Testing the DAO implementation
+i)addPerson.java
+ii)getOnePerson.java
+iii)getAllPerson.java
+iv)DeletePerson.java
+------------------------------------------------------------------------
+addPerson
+step 1:- Person class :-getter,setter,constructor parameterized,default,toString().
+step 2:-PersonDao dao=new JdbcPersonDao();
+		dao.addPerson(person);
+--------------------------------------------------------------------------------------------------------------------
+create table person(id number, firstname varchar2(30),lastname varchar2(30),phone varchar2(30),email varchar2(30))
+-------------------------------
 
 
 
