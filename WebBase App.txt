@@ -641,14 +641,35 @@ step 2:-PersonDao dao=new JdbcPersonDao();
 --------------------------------------------------------------------------------------------------------------------
 create table person(id number, firstname varchar2(30),lastname varchar2(30),phone varchar2(30),email varchar2(30))
 -------------------------------
+updatePerson
+getPersonByPhone
 
+------------------------------------------Flow of Servlet Crud ---------------------------------------------------------------
+EmployeeReg.html :-Enter the data from the frontend.
+step 1:-<form action="SaveServlet" method=get>  ----------to save the data
+step 2:-<a href="ViewServlet">View Employee</a>---------to view the data
+--------------------------------------------------------------------------
+SaveServlet :-Insert query
+ViewServlet:-select query
+-------------------------------------------
+ViewServlet
+<a href='EditServlet?id="+e.getId()+"'>Edit</a></td>
+<td><a href='DeleteServlet?id="+e.getId()+"'>Delete</a>
+------------------------------------------------------------------------------
 
-
-
-
-
-
-
+add 2 more columns 
+phoneno
+project name
+----------------------------------------------------------------------------------------------------------
+https://www.w3schools.com/bootstrap/
+create an application on covid-19 create it using bootstrap
+home page
+1)registration
+2)check for doctors avability
+3)book a bed
+4)book an ambulance
+5)give feedback 
+-----------------------------------------------
 
 
 
