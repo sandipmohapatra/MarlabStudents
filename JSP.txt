@@ -1,0 +1,107 @@
+JSP
+-----------
+1)Action tags
+2)JSTL
+----------------------------------------
+In jsp we have
+1)Directives
+2)scripting elements
+3)declaration tags
+4)expression tags
+5)comment tags
+---------------------------
+1)Directives:-
+---------------------------------------------------------------------------
+Page directive and include directive
+In page directive we have 11 attributes.
+1)info :- <% page info="This is a login page" %> :-This will give message to the user.
+2)language :-<% page language="Java" %> :- This will specify the language.
+3)content type:-<% page contentType="text/html" %> :- This will indicate the MINE type.
+4)import :-<% page import="java.util.Date" %> :- This will extend the java package.
+5)session:-<% page session="false" %> :- This will be used for session management.
+6)buffer:-<% page buffer="12kb" %> :- This will specify the buffer size.
+7)autoFlash:-<% page autoFlash="true" %> :- This will automatically flush the memory.
+8)isThreadSafe:-<% page isThreadSafe="true" %> :- This will specify if it can respond to multiple request.
+9)ErrorPage:-<% page errorPage="error.jsp" %> :- This will specify a alternate page if error occor.
+10)isErrorPage:-<% page isErrorPage="true" %> :- This a common error page.
+11)extends :-<% page extends="com.student.result" %> :- This is super class which is used inside a jsp program.
+---------------------------------------------------------------------------------------------------------
+2)include Directive
+-------------------------
+It is similar to servlet include .It will include a file output within another file.
+It will include during the runtime.
+----------------------------------------------------------------------
+3)declaration tags :- <% int i=10;%>
+4)scripting elements :- This contain java code.
+5)expression tage :- <%=sum%>.It starts with "=" sign.
+6)comment tags :- <% !-- This is a comment tag -- %>
+------------------------------------------------------------
+Action tag:-
+**We don't use jsp tag for it.
+1)<jsp:plugin>
+2)<jsp:include>
+3)<jsp:forword>
+4)<jsp:param>
+5)<jsp:useBean>
+6)<jsp:getProperty>
+7)<jsp:setProperty>
+-----------------------------------------------------------------------
+Implicit object:-
+-----------------------
+1)out
+2)request
+3)response
+4)page
+5)config
+6)session
+7)application
+8)exception
+------------------------------------------------------------
+scope of a variable
+1)request
+2)page
+3)session
+4)application.
+------------------------------------------------------------------
+Servlet are faster than JSP as jsp is internally converted to servlet.
+The code is small compared to servlet.
+-----------------------------------------------------
+JSTL(jsp standard tag library).we use a jar file jstl1.2.jar
+-------------------------------------------------------------------------------
+we have 5 type of jstl tags
+1)jstl core tags :- the url used is http://java.sun.com/jsp/jstl/core .The prefix of core tag is c.
+2)jstl function tags:-the url used is http://java.sun.com/jsp/jstl/functions .The prefix of  tag is fn.
+3)jstl formatting tags:-the url used is http://java.sun.com/jsp/jstl/fmt .The prefix of  tag is fmt.
+4)jstl xml tags:-the url used is http://java.sun.com/jsp/jstl/xml .The prefix of core tag is x.
+5)jstl sql tags:-the url used is http://java.sun.com/jsp/jstl/sql .The prefix of core tag is sql.
+------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
