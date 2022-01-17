@@ -75,8 +75,47 @@ we have 5 type of jstl tags
 4)jstl xml tags:-the url used is http://java.sun.com/jsp/jstl/xml .The prefix of core tag is x.
 5)jstl sql tags:-the url used is http://java.sun.com/jsp/jstl/sql .The prefix of core tag is sql.
 ------------------------------------------------------------------------------------------------------------------------------
+wap to enter a subject/language
+and display some comments about it.
 
+example :- java .It should give a comment "java is a OOP language."
+----------------------------------------------------------------------------------------------------------------
 
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>  
+<html>  
+<head>  
+<title>Tag Example</title>  
+</head>  
+<body>  
+<c:out value="${'Welcome to jstl'}"/>  
+</body>  
+</html>  
+-----------------------------------------------------
+<%@ page import="java.io.*,java.util.*,java.sql.*,javax.servlet.http.*,javax.servlet.*"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql" %>
+
+<sql:setDataSource var="db" driver="oracle.jdbc.driver.OracleDriver"
+						 url="jdbc:oracle:thin:@localhost:1521:XE"
+    					user="system" password="1234"/>
+    					
+   <sql:query dataSource="${db}" var="x">
+   select * from maremp
+   </sql:query>
+   
+   <table border=2 width=100%>
+   <tr><td>ID</td><td>NAME</td><td>EMAIL</td><td>COUNTRY</td>	</tr>	
+   <tr>
+   <c:forEach var="table" items="${x.rows}">
+   <td><c:out value="${table.id }"/></td>
+   <td><c:out value="${table.name }"/></td>
+   <td><c:out value="${table.email }"/></td>
+   <td><c:out value="${table.country }"/></td>
+   </tr>
+      </c:forEach>
+   </table>
+   
+   ---------------------------------------------------------------
 
 
 
