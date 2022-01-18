@@ -670,6 +670,37 @@ home page
 4)book an ambulance
 5)give feedback 
 -----------------------------------------------
+group-1
+--------------
+Abhilasha,afreenbanu,amrute
+----------------------------------------------------
+group-2
+-------------
+Dileep,geethanjali,Madhusudhan
+--------------------------------------------------------------
+group-3
+--------------
+Amajad,mohit,shohaib
+---------------------------------------------------------------------
+group-4
+----------------
+subham,rohit,shilpa,trupti
+------------------------------------------------------------------------------------
+Servlet/hibernate
+admin :- see the report which will be in JSTL.
+use a template to design it.
+---------------------------------------------------------
+download a template  
+https://www.free-css.com/free-css-templates
+-----------------------------------------------------------------------
+admin login :- username/password will be admin/admin
+---------------------------------------------------------------------------
+redirecting to report page.
+-----------------------------------------------------------------------
+<a href=book.jsp>Booking Details</a>
+
+<a href=search.jsp>Searching Details</a>
+-----------------------------------------------------------------------
 
 
 
