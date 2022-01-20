@@ -362,9 +362,10 @@ spring-servlet.xml
 	</bean>
 ---------------------------------------------------------------
 
-web-app :- web.xml,spring-servlet.xml,index.jsp,index1.jsp
+web-app :-index.jsp,index1.jsp
 web-inf:- we have a folder web-inf/.jsp ----welcome.jsp,Hello.jsp
 lib:- all the library files.
+ web.xml,spring-servlet.xml,
 src:-controller
 
 ---------------------------------------------------------------------------
