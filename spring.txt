@@ -105,7 +105,7 @@ public static void main(String args[])
 {
 //read the .xml file from the given path
 Resource r=new classpathResource("spring.xml");
-BeanFactory factory=new XmlBeanFactory(r);
+BeanFactory factory=new XmlBeanFactory(r); <---to read the XML file.
 Test t1=(Test)factory.getBean("t");
 t1.hello();
 }}
@@ -284,3 +284,106 @@ or
 </bean>
 </beans>
 ----------------------------------------------------------
+wap to enter employee data using setter injection.
+empid,name,salary,designation.
+--------------------------------------------------------------------
+
+Create a employee class empno,name,email,phoneno
+create a project class projectid,projectname,project manager,location.
+--------------------------------------------------------------------------------------------
+Spring MVC
+--------------------------
+Servlets are single-action controller.
+Spring MVC is known as multi-action.
+1)Input form or view .
+2)DispatcherServlet :- It handles the request and send it to the particular section of the controller.
+There will be multiple sections in the contoller.(web.xml)
+3)It is a controller which has multiple sections
+example:-
+public ModelAndView save()
+{
+return new ModelAndView("save");
+}
+--------------------------------------------------------------
+public ModelAndView update()
+{
+return new ModelAndView("update");
+}
+--------------------------------------------------------------
+public ModelAndView delete()
+{
+return new ModelAndView("delete");
+}
+--------------------------------------------------------------
+4)InternalResourceViewResolver :-which desides which output it has to display.(spring-servlet.xml)
+----------------------------------------------------------------------
+5)output :- These are the output screen.
+-------------------------------------------------------------------
+example 1:-
+------------------------index.jsp----------------------------
+<a href="hello.pqr">Click Here</a>
+-----------------------------------index2.jsp--------------------
+<a href="welcome.pqr">Click This Here</a>
+---------------------------------------------------------------------------
+web.xml
+----------------------
+<servlet>
+<servlet-name>spring</servlet-name>
+<servlet-class>org.springframework.servlet.DispatcherServlet</servlet-class>
+</servlet>
+<servlet-mapping>
+<servlet-name>spring</servlet-name>
+<servlet-class>*.pqr</servlet-class>
+</servlet-mapping>
+
+-----------------------------------------------------------------------------------------
+controller
+--------------------------------
+public class MyController
+{
+@RequestMapping("/hello")
+public ModelAndView sayHello()
+{
+String msg="Hello spring";
+return new ModelAndView("hellopage","message",msg);-----hellopage is a jsp page(hellopage.jsp)
+}
+@RequestMapping("/welcome")
+public ModelAndView sayWelcome()
+{
+String msg1="Hello welcome spring";
+return new ModelAndView("welcomepage","message",msg1);----welcomepage is a jsp page(welcomepage.jsp)
+}}
+----------------------------------------------------------------------
+spring-servlet.xml
+------------------------------
+<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+	<property name="prefix" value="/WEB-INF/jsp/"></property>
+	<property name="suffix" value=".jsp"></property>
+	</bean>
+---------------------------------------------------------------
+
+web-app :- web.xml,spring-servlet.xml,index.jsp,index1.jsp
+web-inf:- we have a folder web-inf/.jsp ----welcome.jsp,Hello.jsp
+lib:- all the library files.
+src:-controller
+
+---------------------------------------------------------------------------
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
