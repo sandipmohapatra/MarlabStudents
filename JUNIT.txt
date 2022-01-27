@@ -223,6 +223,47 @@ public class AnnotationTest {
 	
 }
 -----------------------------------------------------------------------------------------------
+Log4J
+------------------
+To check the flow of the control/program we use log files.
+logger.info("This gives information");
+logger.error("This gives error information");
+logger.warn("This gives warning information");
+logger.debug("This gives debug information");
+logger.fatal("This gives fatal information");
+-----------------------------------------------------------------------
+package loggingDemo;
+import org.slf4j.*;
+public class LoggingDemo 
+{
+	static Logger log=LoggerFactory.getLogger(LoggingDemo.class);
+	public static void greater()
+	{
+		try {
+		int a=10,b=20;
+		if(a<b)
+
+				log.debug("This is debug message");
+		else
+			log.info("This is information message");
+			} catch (Exception e) {
+			
+				e.printStackTrace();
+			}
+	}
+public static void main(String[] args) {
+	log.debug("This is debug message");
+	//log.fatal("This is fatal message");
+	log.info("This is an information message");
+	log.error("This is an error message");
+	log.warn("This is a warning message");
+	greater();
+	greater();
+	
+}
+}
+------------------------------------------------------------------------------------
+
 
 
 
