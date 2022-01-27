@@ -1,0 +1,82 @@
+Spring Boot is a project that is built on the top of the Spring Framework. It provides an easier and faster way to set up, configure, and run both simple and web-based applications.
+
+It is a Spring module that provides the RAD (Rapid Application Development) feature to the Spring Framework. It is used to create a stand-alone Spring-based application that you can just run because it needs minimal Spring configuration.
+
+Spring Boot is the combination of Spring Framework and Embedded Servers.
+
+In Spring Boot, there is no requirement for XML configuration (deployment descriptor). It uses convention over configuration software design paradigm that means it decreases the effort of the developer.
+
+1)We can use Spring STS IDE to develop Spring Boot Java applications.
+2)The dependency injection approach is used in Spring Boot.
+3)It contains powerful database transaction management capabilities.
+4)It simplifies integration with other Java frameworks like JPA/Hibernate ORM,  etc.
+
+5)It creates stand-alone Spring applications that can be started using Java -jar.
+6)It tests web applications easily with the help of different Embedded HTTP servers such as Tomcat, Jetty, etc. We don't need to deploy WAR files.
+7)It provides opinionated 'starter' POMs to simplify our Maven configuration.
+8)It provides production-ready features such as metrics, health checks, and externalized configuration.
+9)There is no requirement for XML configuration.
+10)It offers a CLI tool for developing and testing the Spring Boot application.
+11)It offers the number of plug-ins.
+12)It also minimizes writing multiple boilerplate codes (the code that has to be included in many places with little or no alteration), XML configuration, and annotations.
+13)It increases productivity and reduces development time.
+
+-------------------------------------------------------------------------
+Spring Boot follows a layered architecture in which each layer communicates with the layer directly below or above (hierarchical structure) it.
+
+Before understanding the Spring Boot Architecture, we must know the different layers and classes present in it. There are four layers in Spring Boot are as follows:
+
+resentation Layer: The presentation layer handles the HTTP requests, translates the JSON parameter to object, and authenticates the request and transfer it to the business layer. In short, it consists of views i.e., frontend part.
+
+Business Layer: The business layer handles all the business logic. It consists of service classes and uses services provided by data access layers. It also performs authorization and validation.
+
+Persistence Layer: The persistence layer contains all the storage logic and translates business objects from and to database rows.
+
+Database Layer: In the database layer, CRUD (create, retrieve, update, delete) operations are performed.
+------------------------------------------------------------------------------------------
+Spring Boot provides a number of starters that allow us to add jars in the classpath. Spring Boot built-in starters make development easier and rapid. Spring Boot Starters are the dependency descriptors.
+----------------------------------------------------------------------------------------------------------------------
+1)spring-boot-starter-thymeleaf:-	It is used to build MVC web applications using Thymeleaf views.
+2)spring-boot-starter-web-services:-	It is used for Spring Web Services.
+3)spring-boot-starter-mail:-It is used to support Java Mail and Spring Framework's email sending.
+4)spring-boot-starter-web:-It is used for building the web application, including RESTful applications using Spring MVC. It uses Tomcat as the default embedded container.
+5)spring-boot-starter-activemq:-It is used in JMS messaging using Apache ActiveMQ.
+6)spring-boot-starter-test:-It is used to test Spring Boot applications with libraries, including JUnit, Hamcrest, and Mockito.
+7)spring-boot-starter-jdbc:-It is used for JDBC with the Tomcat JDBC connection pool.
+8)spring-boot-starter-validation:-It is used for Java Bean Validation with Hibernate Validator.
+9)spring-boot-starter-hateoas:-It is used to build a hypermedia-based RESTful web application with Spring MVC and Spring HATEOAS.
+10)spring-boot-starter-jersey:-It is used to build RESTful web applications using JAX-RS and Jersey. An alternative to spring-boot-starter-web.
+11)spring-boot-starter-aop:-It is used for aspect-oriented programming with Spring AOP and AspectJ.
+12)spring-boot-starter-amqp:-It is used for Spring AMQP and Rabbit MQ.
+13)spring-boot-starter-data-cassandra:-It is used for Cassandra distributed database and Spring Data Cassandra.
+14)spring-boot-starter-security:-It is used for Spring Security.
+15)spring-boot-starter-data-jpa:-It is used for Spring Data JPA with Hibernate.
+16)spring-boot-starter:-It is used for core starter, including auto-configuration support, logging, and YAML.
+17)spring-boot-starter-data-mongodb:-It is used for MongoDB document-oriented database and Spring Data MongoDB.
+18)spring-boot-starter-data-rest:-It is used for exposing Spring Data repositories over REST using Spring Data REST.
+----------------------------------------------------------------------------------------------------------------------
+Spring Boot Production Starters
+---------------------------------------------------------------
+1)spring-boot-starter-actuator:-It is used for Spring Boot's Actuator that provides production-ready features to help you monitor and manage your application.
+2)spring-boot-starter-logging:-It is used for logging using Logback. Default logging starter.
+3)spring-boot-starter-tomcat:-It is used for Tomcat as the embedded servlet container. Default servlet container starter used by spring-boot-starter-web.
+4)spring-boot-starter-log4j2:-It is used for Log4j2 for logging. An alternative to spring-boot-starter-logging.
+-----------------------------------------------------------------------------------------------------------------------
+Spring Boot Starter Parent
+The spring-boot-starter-parent is a project starter. It provides default configurations for our applications. It is used internally by all dependencies. All Spring Boot projects use spring-boot-starter-parent as a parent in pom.xml file.
+
+<parent>  
+<groupId>org.springframework.boot</groupId>  
+<artifactId>spring-boot-starter-parent</artifactId>  
+<version>1.4.0.RELEASE</version>  
+</parent>  
+Parent Poms allow us to manage the following things for multiple child projects and modules:
+
+Configuration: It allows us to maintain consistency of Java Version and other related properties.
+Dependency Management: It controls the versions of dependencies to avoid conflict.
+Default Java Version
+Resource filtering
+It also controls the default plugin configuration.
+-----------------------------------------------------------------------------------------------------------------
+The spring-boot-starter-parent inherits dependency management from spring-boot-dependencies. We only need to specify the Spring Boot version number. If there is a requirement of the additional starter, we can safely omit the version number.
+
