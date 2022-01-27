@@ -146,4 +146,93 @@ public static void main(String[] args) {
 }
 }
 ----------------------------------------------------------
+Annotation
+--------------------
+1)@BeforeClass:- This annotation specifies that method will be invoked only once ,before starting all the tests.
+
+2)@Before :- This annotation specifies that method will be invoked before each test.
+
+3)@After:- This annotation specifies that method will be invoked after each test.
+
+4)@AfterClass :-  This annotation specifies that method will be invoked only once ,after finishing all the tests.
+
+---------------------------------------------------------------------------------------
+example-5
+-------------------
+import java.util.*;
+public class Test2Demo 
+{
+	String str;
+public static String reverseWord(String str)
+{
+	StringBuilder res=new StringBuilder();
+	StringTokenizer token=new StringTokenizer(str,"");
+	while(token.hasMoreTokens())
+	{
+		StringBuilder sb=new StringBuilder();
+		sb.append(token.nextToken());
+		sb.reverse();
+		res.append(sb);
+		res.append(" ");
+	}
+	return res.toString();
+}
+public static int cube(int n)
+{
+	return n*n*n;
+}
+}
+-------------------------------
+import static org.junit.Assert.*;
+import org.junit.*;
+public class AnnotationTest {
+
+	@BeforeClass
+	public static void beforeClass() throws Exception
+	{
+		System.out.println("First Before any Execution");
+	}
+	@Before
+	public void beforeMethod() throws Exception
+	{
+		System.out.println("Before each Test Execution");
+	}
+	@Test
+	public void testCube()
+	{
+		assertEquals(27,Test2Demo.cube(3));
+	}
+
+	
+	
+	  @Test public void reverseWord() {
+	  System.out.println(Test2Demo.reverseWord("my name is khan"));
+	  assertEquals("ym eman si nahk ",Test2Demo.reverseWord("my name is khan")); }
+	 
+	 
+	@After
+	public  void afterMethod() throws Exception
+	{
+		System.out.println("After each Test Execution");
+	}
+	@AfterClass
+	public static void afterClass() throws Exception
+	{
+		System.out.println("Finally After All Execution");
+	}
+	
+}
+-----------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
 
