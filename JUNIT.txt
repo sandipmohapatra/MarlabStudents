@@ -1,0 +1,72 @@
+Junit:- This is used for testing our functions.
+Developers have to do 2 types of Testing
+1)unit test
+2)integration testing
+--------------
+Methods used in Junit are
+1)assertEquals(25,cal.square(5));  -----25 is the expected o/p and ,cal.square(5) is the function to test.
+----------------
+Example-1
+-------------------
+public class Calculator 
+{
+public int square(int i)
+{
+	return i*i;
+}
+public String user(String string)
+{
+	return "Shubham";
+}
+public int sub(int i,int j)
+{
+	return i-j;
+}
+public int add(int i,int j)
+{
+	return i+j;
+}
+public String concat(String string1,String string2)
+{
+	return string1+string2;
+}
+}
+----------------------------------------------
+test
+--------------------
+import static org.junit.Assert.*;
+import org.junit.Test;
+public class CalculatorTest
+{
+Calculator cal=new Calculator();
+@Test  //used to identify that a method is a test method
+public void testSquare()
+{
+assertEquals(25,cal.square(5));
+assertEquals(36,cal.square(6));
+}
+@Test
+public void testUser()
+{
+	assertEquals("Shubham",cal.user("Shubham"));
+}
+@Test
+public void stringTest1()
+{
+	String result=cal.concat("Hello", "EveryOne");
+	assertEquals("HelloEveryOne",result);
+	String s1="Hello";
+	String s2="Hello";
+	assertSame(s1,s2);
+}
+}
+----------------------------------------------
+pom.xml
+--------------------
+<dependency>
+    <groupId>junit</groupId>
+    <artifactId>junit</artifactId>
+    <version>4.12</version>
+    <scope>test</scope>
+</dependency>
+----------------------------------------------------
