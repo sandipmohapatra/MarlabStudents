@@ -99,3 +99,51 @@ assertArrayEquals(expectedArray,resultArray);//check whether 2 arrays are equal 
 }
 }
 ----------------------------------------------------------------------------------------
+example-3
+-----------------
+public class MaxNumber {
+
+	public static int findMax(int arr[])
+	{
+	int max=0;
+	for(int i=1;i<arr.length;i++)
+	{
+		if(max< arr[i])
+			max=arr[i];
+	}
+	return max;
+}
+}
+-------------------------------------------------------------------------------
+import static org.junit.Assert.*;
+import org.junit.Test;
+
+public class TestMax 
+{
+@Test
+public void testMax()
+{
+	assertEquals(14,MaxNumber.findMax(new int[] {1,2,3,14}));
+	assertEquals(24,MaxNumber.findMax(new int[] {1,2,3,14,24}));
+	
+}
+}
+----------------------------------------------------------
+check the class error
+-----------------------------
+import org.junit.runner.*;
+import org.junit.runner.notification.Failure;
+public class TestClassDemo 
+{
+public static void main(String[] args) {
+	
+	Result res=JUnitCore.runClasses(TestMax.class);
+	for(Failure fail:res.getFailures())
+	{
+		System.out.println("The class is fauilure :"+fail.toString());
+	}
+	System.out.println("The class is successful :"+res.wasSuccessful());
+}
+}
+----------------------------------------------------------
+
