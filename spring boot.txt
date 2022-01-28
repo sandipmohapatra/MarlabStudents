@@ -163,5 +163,83 @@ application.properties(src/main/resources)
 server.port=8090
 -----------------------------------------------------------------
 
--------------------------------------------------Example-2-----------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------
+create a class employee and constructor pass values(empid,name,salary) and display it
+create 3 more functions sub,mul,div
+---------------------------------------------Example-2---------------------
+package com.example.demo;
+import java.util.*;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ApplicationContext;
+
+@SpringBootApplication
+public class SpringBootExample8Application {
+
+	public static void main(String[] args) {
+		SpringApplication.run(SpringBootExample8Application.class, args);
+		
+	}
+
+}
+---------------------------------------------------------------------
+package com.example.demo;
+import java.util.Map;
+import java.util.Properties;
+
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.stereotype.Component;
+
+//ctrl+shift+O
+@Component
+@ConfigurationProperties(prefix = "my.app")
+public class MyMessage implements CommandLineRunner
+{
+private Map<String,String> details;
+private Properties info;
+	public void run(String... args) throws Exception 
+	{
+			System.out.println(this);	
+	}
+	public Map<String, String> getDetails() {
+		return details;
+	}
+	public void setDetails(Map<String, String> details) {
+		this.details = details;
+	}
+	public Properties getInfo() {
+		return info;
+	}
+	public void setInfo(Properties info) {
+		this.info = info;
+	}
+	@Override
+	public String toString() {
+		return "MyMessage [details=" + details + ", info=" + info + "]";
+	}
+
+	
+	
+}
+---------------------------------------------------------------
+server.port=8090
+my.app.details.M1=sandip
+my.app.details.M2=springboot
+my.app.details.M3=example2
+
+my.app.info.C1=Shubham
+my.app.info.C2=Madhu
+my.app.info.C3=Trupti
+
+-------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
 	
