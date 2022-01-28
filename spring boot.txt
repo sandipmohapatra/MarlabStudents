@@ -475,6 +475,8 @@ public void run(String... args) throws Exception
 		}
 	-----------------------------------------------------------------------
 
+create table student (studid int,name varchar(30),address varchar(30));
+
 
 
 	
