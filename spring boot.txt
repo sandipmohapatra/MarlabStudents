@@ -232,8 +232,77 @@ my.app.info.C1=Shubham
 my.app.info.C2=Madhu
 my.app.info.C3=Trupti
 
--------------------------------------------------------------------------
+--------------------------------------------Example-3-----------------------------
+In this we are mentioning the order no 
+----------------------------------------------------------
+package com.example.demo;
+import java.util.*;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ApplicationContext;
 
+@SpringBootApplication
+public class SpringBootExample8Application {
+
+	public static void main(String[] args) {
+		SpringApplication.run(SpringBootExample8Application.class, args);
+		System.out.println("This is Trupti");
+	}
+
+}
+---------------------------------------------------------
+package com.example.demo;
+import java.util.Map;
+import java.util.Properties;
+
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.core.Ordered;
+import org.springframework.stereotype.Component;
+
+//ctrl+shift+O
+@Component
+
+public class MyMessage implements CommandLineRunner,Ordered
+{
+	public void run(String... args) throws Exception 
+	{
+			System.out.println("This is shubham");	
+	}
+
+	public int getOrder() {
+		
+		return 1;
+	}
+	
+}
+---------------------------------------------
+package com.example.demo;
+import java.util.Map;
+import java.util.Properties;
+
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.core.Ordered;
+import org.springframework.stereotype.Component;
+
+//ctrl+shift+O
+@Component
+
+public class MyMessage2 implements CommandLineRunner,Ordered
+{
+	public void run(String... args) throws Exception 
+	{
+			System.out.println("This is Madhu");	
+	}
+
+	public int getOrder() {
+		
+		return 2;
+	}
+	
+}
+---------------------------------------------------------------------------------------------------
 
 
 
