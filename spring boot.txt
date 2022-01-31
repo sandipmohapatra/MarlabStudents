@@ -476,6 +476,244 @@ public void run(String... args) throws Exception
 
 create table student (studid int,name varchar(30),address varchar(30));
 -----------------------------------------------------------------------------------------
+Wap to create an employee class(empno,name,salary,designation)
+perform the insert,update,delete operations.
+-----------------------------------------------------------------------------------
+WebServices
+-----------------------
+1)SOAP
+2)REST :- Representational State Transfer.
+-----------------------------------------------------------------
+Rest is an architectural approach.It is not a protocal.
+It uses HTTP protocal.
+we build REST services with both XML and JSON.The data transfermation is done either using JSON or XML.
+We have a resource to represent the data in either XML,HTML or JSON format.
+Restful webservices are platform and language independent.
+----------------------------------
+We have some methods in HTTP which we used in Rest webservices to enter data,save data,update data or delete data.
+1)GET :-It is used to read a resource and display the data.
+2)PUT:- It is used to update an existing resource.
+3)POST:- It is used to create a new resource.
+4)DELETE:-It is used to delete the resource.
+-----------------------------------------------------------------
+example:- 
+GET/users :- It will retrive all the details of all users.
+GET/users/{id} :- It will retrive the details of the users whose id is mentioned.
+
+-------------------------
+POST/users :- It will create a user.
+--------------------------------------------------
+DELETE/users/{id} :- It will delete the details of the users whose id is mentioned.
+------------------------------------------------
+PUT/users/{id} :- It will UPDATE the details of the users whose id is mentioned.
+------------------------------------------------------------------------------------------------------------------
+404 ---RESOURCE NOT FOUND
+200---success
+500---server error
+401---Unauthorized 
+---------------------------------------------
+webservices :-mobile app bookmy show,amazon,flipcard,telephone bill payment.
+paytm :- all services are put together to make customers satisfied.
+amazon:- online shopping,utility bils payment.
+In this data tranformation will be done by using JSON,text,Html,xml 
+It can be reused.we can develop webservices using .net,java,php etc.
+We can comunicate with the services.
+
+we have service provider,service consumer,service repository.
+--------------------------------------------Example-7---------------------------------------------------
+package com.example.demo;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class SpringBootExample13Application {
+
+	public static void main(String[] args) {
+		SpringApplication.run(SpringBootExample13Application.class, args);
+	}
+
+}
+-------------------------------------------------------------------------
+package com.example.demo.controller;
+
+import java.util.*;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+import com.example.demo.model.Book;
+import com.example.demo.service.BookService;
+@RestController
+public class BookStoreController 
+{
+@Autowired
+private BookService bookservice;
+@GetMapping("/bookstore/books")
+public List<Book> getAllBook()
+{
+	List<Book> allBookList=bookservice.getAllBook();
+	return allBookList;
+}
+
+
+}
+-----------------------------------------------------------------
+package com.example.demo.model;
+
+public class Book 
+{
+private long bookid;
+private String title;
+private double price;
+public long getBookid() {
+	return bookid;
+}
+public void setBookid(long bookid) {
+	this.bookid = bookid;
+}
+public String getTitle() {
+	return title;
+}
+public void setTitle(String title) {
+	this.title = title;
+}
+public double getPrice() {
+	return price;
+}
+public void setPrice(double price) {
+	this.price = price;
+}
+public String getAuthorname() {
+	return Authorname;
+}
+public void setAuthorname(String authorname) {
+	Authorname = authorname;
+}
+private String Authorname;
+public Book(long bookid, String title, double price, String authorname) {
+	super();
+	this.bookid = bookid;
+	this.title = title;
+	this.price = price;
+	Authorname = authorname;
+}
+@Override
+public String toString() {
+	return "Book [bookid=" + bookid + ", title=" + title + ", price=" + price + ", Authorname=" + Authorname + "]";
+}
+
+}
+-----------------------------------------------------------------------------------
+package com.example.demo.service;
+import java.util.List;
+
+import com.example.demo.model.Book;
+public interface IBookService 
+{
+public void addBook(Book book);
+public void editBook(Book book,int bookid);
+public boolean deleteBook(int bookid);
+public Book getBookById(int bookid);
+public List<Book> getAllBook();
+
+}
+--------------------------------------------------------------------
+package com.example.demo.service;
+
+import java.util.*;
+import com.example.demo.model.Book;
+import org.springframework.stereotype.Component;
+@Component
+public class BookService implements IBookService
+{
+	private static List<Book> books = new ArrayList<Book>();
+	static
+	{
+	Book book1=new Book(1,"Core Java",300.00, "Shubham");
+	Book book2=new Book(2,"Adv Java",600.00, "Trupti");
+	Book book3=new Book(3,"Spring Boot",700.00, "Madhu");
+	books.add(book1);
+	books.add(book2);
+	books.add(book3);
+		}
+	public void addBook(Book book)
+	{
+	books.add(book);	 
+		}
+
+	public void editBook(Book book, int bookid) 
+	{
+	Book record=getBookById(bookid); 
+		books.remove(record);
+		book.setBookid(bookid);
+		books.add(book);
+	}
+
+	public boolean deleteBook(int bookid) {
+	 Book record =getBookById(bookid);
+	 books.remove(record);
+		return Boolean.TRUE;
+	}
+
+	public Book getBookById(int bookid) {
+		return null;
+		 
+		
+	}
+
+	public List<Book> getAllBook()
+	{
+		return books;
+	}
+
+}
+-------------------------------------------------------------------------------------------------------------
+<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-jersey</artifactId>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+----------------------------------------------------------
+properties
+-----------------
+server.port=8090
+---------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 	
