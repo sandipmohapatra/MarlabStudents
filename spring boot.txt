@@ -534,7 +534,7 @@ public class SpringBootExample13Application {
 	}
 
 }
--------------------------------------------------------------------------
+-----------------------------------Controller--------------------------------------
 package com.example.demo.controller;
 
 import java.util.*;
@@ -555,8 +555,32 @@ public List<Book> getAllBook()
 	return allBookList;
 }
 
+@GetMapping("/bookstore/books/{bookid}")
+public Book getBookById(@PathVariable String bookid)
+{
+	Book bookDetails=bookservice.getBookById(Integer.parseInt(bookid));
+	return bookDetails;
+	}
+@RequestMapping(method=RequestMethod.POST, value="/bookstore/books")
+public void addBook(@RequestBody Book book)
+{
+	bookservice.addBook(book);
+}
+
+@RequestMapping(method=RequestMethod.PUT, value="/bookstore/books/{bookid}")
+public void editBook(@RequestBody Book book,@PathVariable String bookid)
+{
+	bookservice.editBook(book,Integer.parseInt(bookid));
+}
+
+@RequestMapping(method=RequestMethod.DELETE, value="/bookstore/books/{bookid}")
+public void deleteBook(@RequestBody Book book,@PathVariable String bookid)
+{
+	bookservice.deleteBook(Integer.parseInt(bookid));
+}
 
 }
+
 -----------------------------------------------------------------
 package com.example.demo.model;
 
@@ -655,10 +679,9 @@ public class BookService implements IBookService
 		return Boolean.TRUE;
 	}
 
-	public Book getBookById(int bookid) {
-		return null;
-		 
-		
+	public Book getBookById(int bookid) 
+	{
+			return books.stream().filter(b ->b.getBookid() == bookid).findFirst().get();
 	}
 
 	public List<Book> getAllBook()
@@ -682,20 +705,72 @@ properties
 -----------------
 server.port=8090
 ---------------------------------------------
+output :-
+http://localhost:8090/bookstore/books(get)
+-----------------
+[    {
+        "bookid": 1,
+        "title": "Core Java",
+        "price": 300.0,
+        "authorname": "Shubham"
+    },
+    {
+        "bookid": 2,
+        "title": "Adv Java",
+        "price": 600.0,
+        "authorname": "Trupti"
+    },
+    {
+        "bookid": 3,
+        "title": "Spring Boot",
+        "price": 700.0,
+        "authorname": "Madhu"
+    }
+]
+
+--------------------------------------------------------
+
+http://localhost:8090/bookstore/books/1(get)
+-----------------
+ {
+        "bookid": 1,
+        "title": "Core Java",
+        "price": 300.0,
+        "authorname": "Shubham"
+    }
+
+---------------------------------------------POST-------------------------------
+body--->raw--->JSON
+--------------------------------
+http://localhost:8090/bookstore/books(post) ----adding new Records
+-------------------------------------------------------------------
+{
+"bookid": 4,
+"title": "Java Advance",
+"price": 700.0,
+"authorname": "Trupti"
+}
+------------------------------PUT----------------------------------------
+http://localhost:8090/bookstore/books/5(put) ----modify the data
+
+{
+"bookid": 5,
+"title": "Java j2ee",
+"price": 650.0,
+"authorname": "Trupti Patel"
+}
+-----------------------------DELETE-------------------------------------
+http://localhost:8090/bookstore/books/5(delete) ----delete the data
 
 
+{
+"bookid": 5,
+"title": "Java j2ee",
+"price": 650.0,
+"authorname": "Trupti Patel"
+}
 
-
-
-
-
-
-
-
-
-
-
-
+-------------------------------------------------------------------------
 
 
 
