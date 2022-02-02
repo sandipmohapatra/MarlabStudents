@@ -832,12 +832,26 @@ step-5:-create the .jsp files inside the views
 -------------------------------------------------------------------------
 package com.example.demo;
 
+import java.io.IOException;
+import java.io.PrintWriter;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class TestController 
 {
+	@Autowired
+	private HttpServletRequest req;
+	private HttpServletResponse res;
+	
+	
 	@GetMapping("/show")
 public String showLogin()
 {
@@ -850,7 +864,22 @@ public String showLogin()
 			return "register";
 	}
 	
+	@RequestMapping("/second")
+	public String doRegistration(HttpServletRequest req,HttpServletResponse res)
+			throws ServletException,IOException
+			{
+		res.setContentType("text/html");
+		PrintWriter pw=res.getWriter();
+		String a=req.getParameter("t1");
+		String b=req.getParameter("t2");
+		String c=req.getParameter("t3");
+		String d=req.getParameter("t4");
+		
+				return "success";
+		
+			}	
 }
+
 ---------------------------------------------------------------------------------
 @GetMapping("/show")  ------browser (http://localhost:8090/show
 It will display the return JSP page.
@@ -861,8 +890,14 @@ spring.mvc.view.prefix=/WEB-INF/views/
 spring.mvc.view.suffix=.jsp
 
 -------------------------------------------------------------------
+success.html
+----------------------
+<!DOCTYPE html>
+<title>Employee Registration Success< </title>
+<h1><center>Employee Registration Success</center></h1><hr>
+</html>
 
-
+-------------------------------------------------------
 
 
 
