@@ -864,7 +864,7 @@ public String showLogin()
 			return "register";
 	}
 	
-	@RequestMapping("/second")
+	@RequestMapping("/register")
 	public String doRegistration(HttpServletRequest req,HttpServletResponse res)
 			throws ServletException,IOException
 			{
