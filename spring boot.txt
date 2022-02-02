@@ -771,11 +771,87 @@ http://localhost:8090/bookstore/books/5(delete) ----delete the data
 }
 
 -------------------------------------------------------------------------
+@RequestBody :- It is HttpRequest is mapped with the model data.
 
+@PathVariable :- It is used to handle variables in the request URI mapping and set them as method parameter. 
+-------------------------------------------Assignment-1-----------------------------------------------
 
+Create employee model and do the following operations
+----------------------------------------------------------------------------
+public void addEmployee(Employee emp);
+public void editEmployee(Employee emp,int empid);
+public boolean deleteEmployee(int empid);
+public Book getEmployeeById(int empid);
+public List<Employee> getAllEmployee();
+---------------------------------------------------SpringBootWebMVC----------------------------------------------------------
+step-1:-file---new--starter project
+step-2 :- select war and spring web jar files.
+step-3:- create a folder inside webapp---WEB-INF
+step-4:- create a folder inside WEB-INF---views
+step-5:-create the .jsp files inside the views
+-------------------------------------------------------------------------------------
+<!DOCTYPE html>
+<title>EMPLOYEE REGISTRATION PAGE </title>
+<h1><center>Employee Registration Page</center></h1><hr>
+<form action=register>
+<table>
+<tr><td>Enter name<tr><input type=text name=t1 size=20></td></tr>
+<tr><td>Enter Phone no<tr><input type=text name=t2 size=20></td></tr>
+<tr><td>Enter email<tr><input type=text name=t3 size=20></td></tr>
+<tr><td>Enter address<tr><input type=text name=t4 size=20></td></tr>
+<tr><td>Enter salary<tr><input type=text name=t5 size=20></td></tr>
+<tr><td>Enter Designation<tr><input type=text name=t6 size=20></td></tr>
+<tr><td><tr><input type=submit value=submit></td></tr>
+</table>
+</form>
+</html>
+------------------------------------------
+<!DOCTYPE html>
+<title>EMPLOYEE LOGIN PAGE </title>
+<h1><center>Employee Login Page</center></h1><hr>
+<form action=login>
+<table>
+<tr><td>Enter Username<tr><input type=text name=t1 size=20></td></tr>
+<tr><td>Enter Password<tr><input type=text name=t2 size=20></td></tr>
+<tr><td><tr><input type=submit value=submit></td></tr>
+</table>
+</form>
+</html>
+-----------------------------------------------------------
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
 
+		<dependency>
+			<groupId>org.apache.tomcat.embed</groupId>
+			<artifactId>tomcat-embed-jasper</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		
+-------------------------------------------------------------------------
+package com.example.demo;
 
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 
+@Controller
+public class TestController 
+{
+	@GetMapping("/show")
+public String showLogin()
+{
+		return "login";
+}
+
+	@GetMapping("/show1")
+	public String showRegister()
+	{
+			return "register";
+	}
+	
+}
+---------------------------------------------------------------------------------
 
 
 
