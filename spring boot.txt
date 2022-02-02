@@ -852,7 +852,15 @@ public String showLogin()
 	
 }
 ---------------------------------------------------------------------------------
+@GetMapping("/show")  ------browser (http://localhost:8090/show
+It will display the return JSP page.
+-------------------------------------------------------------
+server.port=8090
 
+spring.mvc.view.prefix=/WEB-INF/views/
+spring.mvc.view.suffix=.jsp
+
+-------------------------------------------------------------------
 
 
 
