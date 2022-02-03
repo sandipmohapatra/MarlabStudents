@@ -1134,8 +1134,37 @@ public String showData(@RequestParam(value="sname",required = false,defaultValue
 ------------------------Data.jsp------------------------------------------------
 <h1>The Data is </h1>
 <h2>${name}</h2>
---------------------------------------------------------
+-----------------------------Example-5---------------------------
+package com.example.demo;
 
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+
+@Controller
+public class TestController 
+{
+@RequestMapping("/show")
+public String showData(@RequestParam(name = "ID", required = false,defaultValue="101") String ID, 
+		@RequestParam (required = false,defaultValue="sandip" ,name="name")String name, Model model)
+{
+	
+	System.out.println("The data is "+name+" "+ID);
+	model.addAttribute("name",name);
+	model.addAttribute("ID",ID);
+		return "Data";
+	
+}
+	
+}
+------------------------------------------------------------------------------------------
+<h1>The Data is </h1>
+<h2>${name}</h2>
+<h2>${ID}</h2>
+---------------------------------------------------
 
 
 
