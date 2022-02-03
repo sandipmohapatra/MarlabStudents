@@ -1053,10 +1053,62 @@ server.port=8090
 spring.mvc.view.prefix=/WEB-INF/views/
 spring.mvc.view.suffix=.jsp
 
-----------------------------------------------------------------------------
+-------------------------------------Example-3---------------------------------------
+controller
+------------------
+import java.util.Map;
 
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
 
+@Controller
+@RequestMapping("/student")
+public class StudentController {
 
+	@RequestMapping("/reg")
+	public String showReg() {
+		return "Register";
+	}
+	
+	
+	@RequestMapping("/home")
+	public String showHome(Map<String,Object> model) {
+		System.out.println(model.getClass().getName());
+		model.put("sid", 101);
+		model.put("sname", "SANDIP");
+		model.put("sfee", 6500.0);
+		return "Home";
+	}
+}
+
+-----------------------------------------------------------------------------------
+application.yml
+-------------------------
+server:
+  port:
+    8090
+spring:
+  mvc:
+    view:
+      prefix: /WEB-INF/views/
+      suffix: .jsp
+--------------------Home.jsp---------------------------------------
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<h1>WELCOME TO HOME PAGE</h1><hr>
+Data is: 
+${sid }, ${sname }, ${sfee }
+</body>
+</html>
+-------------------------Register.jsp--------------------------------
+<body>
+<h3>WELCOME TO REGISTER PAGE!!</h3>
+</body>
+----------------------------------------------------
 
 
 
