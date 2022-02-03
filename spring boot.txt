@@ -1161,6 +1161,8 @@ public String showData(@RequestParam(name = "ID", required = false,defaultValue=
 	
 }
 ------------------------------------------------------------------------------------------
+http://localhost:8090/show?name=madhu&ID=201
+------------------------------------------------------------------------------------------
 <h1>The Data is </h1>
 <h2>${name}</h2>
 <h2>${ID}</h2>
