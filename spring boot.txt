@@ -1164,8 +1164,108 @@ public String showData(@RequestParam(name = "ID", required = false,defaultValue=
 <h1>The Data is </h1>
 <h2>${name}</h2>
 <h2>${ID}</h2>
----------------------------------------------------
+----------------------------Example-6-----------------------
+package com.example.demo;
 
+public class Employee 
+{
+private Integer empid;
+private String empName;
+private Double empSal;
+public Integer getEmpid() {
+	return empid;
+}
+public void setEmpid(Integer empid) {
+	this.empid = empid;
+}
+public String getEmpName() {
+	return empName;
+}
+public void setEmpName(String empName) {
+	this.empName = empName;
+}
+public Double getEmpSal() {
+	return empSal;
+}
+public void setEmpSal(Double empSal) {
+	this.empSal = empSal;
+}
+public Employee(Integer empid, String empName, Double empSal) {
+	super();
+	this.empid = empid;
+	this.empName = empName;
+	this.empSal = empSal;
+}
+public Employee() {
+	super();
+}
+@Override
+public String toString() {
+	return "Employee [empid=" + empid + ", empName=" + empName + ", empSal=" + empSal + "]";
+}
+
+
+}
+---------------------------------Data.jsp-----------------------
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<!DOCTYPE html>
+<html>
+<body>
+<h2>The data are</h2>
+Data is :${emps}
+<hr>
+<table border="1">
+<tr>
+<th>ID</th>
+<th>NAME</th>
+<th>SALARY</th>
+</tr>
+<c:forEach items="${emps}" var="ob">
+<tr>
+<td>${ob.empid }</td>
+<td>${ob.empName }</td>
+<td>${ob.empSal }</td>
+</tr>
+</c:forEach>
+</table>
+</body>
+</html>
+-------------------------------------------------------------------
+<dependency>
+    <groupId>javax.servlet</groupId>
+    <artifactId>jstl</artifactId>
+    <version>1.2</version>
+</dependency>
+-----------------------------------------------------
+package com.example.demo;
+
+import java.util.List;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+
+@Controller
+public class TestController 
+{
+@RequestMapping("/show")
+public String showData(Model model)
+{
+	List<Employee> list=List.of(
+			new Employee(101,"sandip",45000.00),
+			new Employee(102,"sunil",45000.00),
+			new Employee(103,"sumit",45000.00),
+			new Employee(104,"shubham",45000.00)
+						);
+	model.addAttribute("emps",list);
+	return "Data";
+}
+	
+}
+--------------------------------------------------------------------
 
 
 
