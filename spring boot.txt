@@ -916,6 +916,7 @@ private String empAddr;
 private List<String> empLang;
 private String empDoj;
 private List<String> empBranch;
+
 public Integer getEmpid() {
 	return empid;
 }
@@ -1043,7 +1044,7 @@ public String readData(@ModelAttribute Employee employee,Model model)
 </select></tr>
 <tr><td><td><input type=submit value=submit></tr>
 </table>
-------------------------------------
+------------Data.jsp------------------------
 <h1>The Data is </h1>
 <h2>As a toString() :${emp}</h2>
 ------------------------------------------------------
