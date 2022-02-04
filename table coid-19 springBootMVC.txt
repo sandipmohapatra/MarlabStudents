@@ -1,0 +1,10 @@
+create table registration1 (name varchar2(30), dob DATE, emailid varchar2(30), contactnumber number, password varchar2(30), confirmpassword varchar2(30))
+-----------------------------------------------------------------------------------
+create table feedback (name varchar2(30), emailid varchar2(30), feedback varchar2(4000))
+----------------------------------------------------------------------------------------------
+create table doctor (name varchar2(200))
+-----------------------------------------------------------------------
+create table bed (name varchar2(30), dob varchar2(30), emailid varchar2(30), contactnumber number, gender varchar2(30), city varchar2(30), hospital varchar2(30), bed varchar2(30))
+--------------------------------------------------------------------------------
+create table ambulance (name varchar2(30), dob varchar2(30), emailid varchar2(30), contactnumber number, gender varchar2(30), city varchar2(30), ambulance varchar2(30))
+---------------------------------------------------------------------------
