@@ -1488,6 +1488,8 @@ private EmployeeRepository repo;
 		Employee s=opt.get();
 		System.out.println(s);
 	}
+	repo.findAll().forEach(System.out::println);
+	repo.findAllById(Arrays.asList(5,6,7,8)).forEach(System.out::println);
 	}
 	}
 
