@@ -1304,7 +1304,7 @@ i)we have to create a model class.
 ii)Repository interface.
 iii)Runner class:-Here we have to test the repository interface by calling save(),update(),delete()...etc.
 
------Example-1------------------------------
+-----Example-1-----To save the Data-------------------------
 model
 --------------
 package com.example.demo;
@@ -1436,9 +1436,15 @@ private EmployeeRepository repo;
 
 
 }
-----------------------------------------------------------------------------------
-
-
+---------------------To update the data we also use save() or saveAll()-------------------------------------------------------------
+Example-3
+------------------------
+boolean exist=repo.existsById(8);
+	System.out.println(exist);
+	
+	repo.deleteById(8);
+	repo.deleteAll();
+----------------------------------------------------------------------------
 
 
 
