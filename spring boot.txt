@@ -1401,7 +1401,42 @@ public interface EmployeeRepository extends JpaRepository<Employee, Integer>
 
 }
 -------------------------------------------------------------------------------
+example-2
+-----------------
+package com.example.demo;
 
+import java.util.Arrays;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.stereotype.Component;
+
+@Component
+public class EmployeeTest implements CommandLineRunner
+{
+@Autowired
+private EmployeeRepository repo;
+
+	@Override
+	public void run(String... args) throws Exception
+	{
+	repo.save(new Employee("sandip k",3000.30));
+	repo.save(new Employee("madhu r",3000.30));
+	repo.save(new Employee("shubham m",3000.30));
+	repo.save(new Employee("trupti p",3000.30));
+	System.out.println(repo.count());
+	repo.saveAll(Arrays.asList(
+			new Employee("Kiran",35000.89),
+			new Employee("Niraj",35000.89),
+			new Employee("sunil",35000.89),
+			new Employee("anil",35000.89)
+					));
+	System.out.println(repo.count());
+	}
+
+
+}
+----------------------------------------------------------------------------------
 
 
 
