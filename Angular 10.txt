@@ -9,6 +9,7 @@
 -----------------------------------------------------------------------------------------------------
 to install angular
 -----------------------
+goto desktop and create a folder by your name
 1)npm install -g @angular/cli
 
 2)ng new Angularproject        (all library and folder structure will be created)300mb
@@ -16,6 +17,8 @@ to install angular
 3)cd Angularproject
 
 4)ng serve -----to start the server
+
+5)open the browser :- localhost:4200
 ----------------------------------------------------------------
 example-1
 ----------------------
