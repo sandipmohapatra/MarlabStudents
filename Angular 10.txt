@@ -51,5 +51,59 @@ h1
 color:blue;
 }
 ------------------------------------------------------------
+to create a new module 
+
+1)ng g c login --skipTests
+i)login.component.html
+ii)login.component.css
+iii)login.component.ts
+
+These 3 files will be automatically created
+------------------------------------------------------------
+2)ng g c register --skipTests
+i)register.component.html
+ii)register.component.css
+iii)register.component.ts
+
+These 3 files will be automatically created
+---------------------------------------------------------
+1)ng g c contact --skipTests
+i)contact.component.html
+ii)contact.component.css
+iii)contact.component.ts
+
+These 3 files will be automatically created
+----------------------------------------------------------------------
+1)selector has to be copied to index.html
+2)component name should be given in the   bootstrap: [LoginComponent]
+---------------------------------------------------------------------------
+
+flow of control
+-------------------
+1)index.html
+2)app.module.ts
+ bootstrap: [LoginComponent,RegisterComponent]
+3)LoginComponent.ts
+LoginComponent.css
+LoginComponent.html
+--------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
