@@ -1,0 +1,12 @@
+1)Angular is combination of html,css,bootstrap,javascript,typescript(browser cannot understand typescript)our node will convert typescript to javascript.
+2)Angular is an open source ,cross platform.
+3)to test this angular framework we use jasmine,karma,protractor.
+4)It support oops concept and MVC framework.
+5)It is used for single page application.
+6)It use AOT compiler(ahead-of-time)
+7)example:- cricbuzz only the score part/change part of the page is updated.It will only render that part .It will only load that part.previous when webpages are developed with html it took lot of time to reload. 
+8)advance websites are developed with angular so that speed will be better.
+-----------------------------------------------------------------------------------------------------
+to install angular
+-----------------------
+1)npm install -g @angular/cli
