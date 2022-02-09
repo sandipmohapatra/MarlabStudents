@@ -222,6 +222,28 @@ export class AppModule { }
   </form></div></body></html>
 
 -----------------------------------------------------------------------------------
+example-4
+--------------------
+import {Component} from '@angular/core'
+@Component
+({
+    selector:'shubham',
+    template:`<form>
+    <table>
+    <tr><td><label>Product id</label><td><input type=text name=pid size=20/></td></tr>
+    <tr><td><label>Product Name</label><td><input type=text name=pname size=20/></td></tr>
+    <tr><td><label>Product Price</label><td><input type=text name=pprice size=20/></td></tr>
+    <tr><td><label>Product Weight</label><td><input type=text name=pweight size=20/></td></tr>
+    <tr><td><td><input type=submit value=submit/></td></tr>
+        </table>
+        </form> `
+})
+export class TestComponent
+{}
+----------------------------------------------
+app.module.ts
+-------------------------
+import { TestComponent } from './testcomponent';
 
 
 
