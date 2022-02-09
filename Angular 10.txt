@@ -244,7 +244,32 @@ export class TestComponent
 app.module.ts
 -------------------------
 import { TestComponent } from './testcomponent';
+------------------------------------------------------------------------------
+example-5
+------------------------
+import { Component } from "@angular/core";
+@Component
+({
+selector:'my-stud',
+templateUrl:'student.html'
+})
 
+export class AppStudent
+{
+MyName: string=`sandip `
+studList: string[]=["Madhu","Shubham","trupti","Mohit"]
+}
+-----------------------------------------------------------
+<html>
+<div>
+My name is {{MyName}}<br/>
+My Student list {{studList[0]}}<br/>
+My Student list {{studList[1]}}<br/>
+My Student list {{studList[2]}}<br/>
+My Student list {{studList[3]}}<br/>
+</div>
+</html>
+---------------------------------------------------
 
 
 
