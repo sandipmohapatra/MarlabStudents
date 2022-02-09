@@ -86,10 +86,74 @@ flow of control
 1)index.html
 2)app.module.ts
  bootstrap: [LoginComponent,RegisterComponent]
-3)LoginComponent.ts
-LoginComponent.css
-LoginComponent.html
+3)Login.Component.ts-------------logic
+Login.Component.css-------------style
+Login.Component.html----------Presentation(view)
+Login.Component.spec.ts--------------testing the functions.
 --------------------------------------------------------------------------
+for creating module.
+ng g c login --skipTests in this case the Login.Component.spec.ts will not be created.
+
+ng g c login in this case the Login.Component.spec.ts will be created.
+-----------------------------------------------------------------------------------
+1)we have to modify in index.html the selector name of the ts file which you want to execute.
+2)in the bootstrap: [<component name>] which you want to execute.
+-----------------------------------------------------------------------------------------
+app.module.ts :- It keeps the record of each and every file that are created inside the app folder.
+It will be automatically added when we give the ng g c command.
+----------------------------------------------------------------------------------------------------------
+Example-3
+-----------------------
+app.component.ts
+-------------------------
+import { Component } from '@angular/core';
+
+@Component({
+  selector: 'app-root',
+  template: `Menu <ul>
+  <li> <a [routerLink] ="['/Login']"> Employee Login Page</a></li>
+  <li> <a [routerLink] ="['/Register']"> Employee Registration Page</a></li>
+  </ul><hr><hr>
+  <router-outlet></router-outlet>
+  `
+  
+})
+export class AppComponent 
+{
+  title = 'Angularproject';
+}
+-------------------------------------------------------------------------------
+app.module.ts
+------------------------
+import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
+import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
+import { RouterModule , Routes } from '@angular/router';  <---add this
+
+const appRoutes: Routes =[		<---add this
+{path:'Login' , component:LoginComponent},
+{path:'Register', component:RegisterComponent},
+];
+
+@NgModule({
+  declarations: [
+    AppComponent,
+    LoginComponent,
+    RegisterComponent
+  ],
+  imports: [
+    BrowserModule,RouterModule.forRoot(appRoutes), <---add this
+    AppRoutingModule
+  ],
+  providers: [],
+  bootstrap: [AppComponent]
+})
+export class AppModule { }
+-----------------------------------------------------------------
 
 
 
