@@ -270,7 +270,39 @@ My Student list {{studList[3]}}<br/>
 </div>
 </html>
 ---------------------------------------------------
+Example-6
+--------------------
+import { Component } from "@angular/core";
+@Component
+({
+selector:'my-stud',
+templateUrl:'student.html'
+})
 
+export class AppStudent
+{
+public product={
+    Name: 'Samsung TV',
+    Price: 45000.50,
+    Modelno:2021
+};
+}
+-----------------------------------------------------------
+<html>
+<div>
+<h2>Product Details</h2>
+<dl>
+<dt>Name</dt>
+<dd>{{product.Name}}</dd>
+<dt>Price</dt>
+<dd>{{product.Price}}</dd>
+<dt>Model no</dt>
+<dd>{{product.Modelno}}</dd>
+<dd innerHTML="{{product.Modelno}}"></dd>
+</dl>
+</div>
+</html>
+---------------------------------------------------------------------------------
 
 
 
