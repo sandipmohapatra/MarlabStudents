@@ -303,6 +303,48 @@ public product={
 </div>
 </html>
 ---------------------------------------------------------------------------------
+example-7
+--------------------
+import { Component } from "@angular/core";
+@Component
+({
+selector:'my-stud',
+template:`
+<p>Hello my name is {{name}}</p>
+<p>Hello my email is {{email}}</p>
+<p>Hello my address is {{address.street}} {{address.loc}} {{address.state}} {{address.city}}</p>
+<p><Button (click)="sayName()">Say my Details..</Button></p>
+`
+})
+
+export class AppStudent
+{
+name:string;
+email:string;
+address:any;
+constructor()
+{
+    this.name='Sandip Mohapatra';
+    this.email='sandip@gmail.com';
+    this.address=
+    {
+        street:'MG Road',
+        loc:'Sivaji Nagar',
+        state:'Karnataka',
+        city:'Bangalore'
+    }
+}
+sayName()
+{
+    console.log("my name is ",this.name);
+    console.log("my email is ",this.email);
+    console.log("my address is ",this.address);
+document.write("Hello all");
+    alert("Hello all");
+        }
+
+}
+-----------------------------------------------
 
 
 
