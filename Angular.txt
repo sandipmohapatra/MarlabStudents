@@ -400,14 +400,97 @@ example in html:-
 Enter your name<input type=text name=t1 size=20>
 
 example in Angular:-
-Enter your name<input type=text [(ngModule)]="name" size=20>
+Enter your name<input type=text [(ngModel)]="name" size=20>
 In this when we change the name will be updated.
 ------------------------------------------------------------------------------
-when we use [(ngModule)] we have to import
+when we use [(ngModel)] we have to import
 import {FormsModule} from '@angular/forms';
 in the app.module.ts.
 ----------------------------------------------------------------------------------------
+Example-8
+-------------------------
+import { Component } from '@angular/core';
 
+@Component({
+  selector: 'app-twoway',
+  templateUrl: './twoway.component.html',
+  styleUrls: ['./twoway.component.css']
+})
+export class TwowayComponent  {
+
+ public name="Samsung TV";
+ public city="Bangalore";
+ public InStock=true;
+ public product=
+ {
+   name:"",
+   city:"",
+   InStock:false
+ };
+ public updateProduct()
+ {
+   this.product=
+   {
+   name:this.name,
+   city:this.city,
+   InStock:this.InStock
+ };
+  
+ }
+}
+------------------------------------------------------------------------------------
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <div class="container">
+<div class="form-group">
+<label>Name:</label>
+<input type="text" class="form-control" [(ngModel)]="name">
+</div>
+<div class="form-group">
+    <label>Address:</label>
+    <select [(ngModel)]="city" class="form-control">
+        <option>Bangalore</option>
+        <option>Hyderabad</option>
+    </select>
+    </div>
+    <div class="form-group">
+        <div>
+        <input type="checkbox" class="form-control" [(ngModel)]="InStock">Yes
+        </div></div>
+        <div class="form-group">
+            <button (click)="updateProduct()" class="btn btn-primary">Update</button>
+            </div>    
+            <div class="col-9">
+<table class="table table-hover">
+<tr>
+    <td>Name</td>
+    <td [innerHTML]="product.name"></td>
+</tr>
+<tr>
+    <td>Address</td>
+    <td [innerHTML]="product.city"></td>
+</tr>
+<tr>
+    <td>Stock Status</td>
+    <td>{{(product.InStock==true)?"stock Available ":"Out of Stock"}}</td>
+</tr>
+</table>
+            </div></div>
+        </body>
+            </html>
+--------------------------------------------------------------------------------
+app.module.ts
+----------------------------
+import { FormsModule } from '@angular/forms';
 
 
 
