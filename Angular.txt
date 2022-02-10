@@ -221,7 +221,7 @@ export class AppModule { }
 <button type="submit" class="btn btn-default">Submit</button> 
   </form></div></body></html>
 
------------------------------------------------------------------------------------
+----------------------------------Menu Bar(created in BootStrap)-------------------------------------------------
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -374,6 +374,48 @@ document.write("Hello all");
 
 }
 ----------------------------------------------------------------------------------------------------------
+DataBinding
+------------------------
+There are 2 ways of data binding
+----------------------------------------------
+1)One-way binding
+2)two-way binding
+----------------------------
+1)one-way binding
+i)interpolation :- we are using double curly braces {{}}.It is also called as expression.
+example:-
+<p>The sum of 6 and 7 is {{6+7}}</p>
+<p>The name is {{name}}</p>
+-----------------------------------------------------
+2)property binding:- in this we use sqaure brackets.The property is binded with DOM elements.
+<img[src]="shirt.jpg">
+---------------------------------------------------------------
+3)eventBinding :-In this we use circular brackets.The event is binded with the button.
+<button(onclick)="fun()">save</button>
+------------------------------------------------------------------------------------------------
+Two-way binding:- It takes the input and update the entry.It is dynamic.
+we make change in the HTML page dynamically we require 2 way binding.
+example:- Entering the employees data into a form.
+example in html:-
+Enter your name<input type=text name=t1 size=20>
+
+example in Angular:-
+Enter your name<input type=text [(ngModule)]="name" size=20>
+In this when we change the name will be updated.
+------------------------------------------------------------------------------
+when we use [(ngModule)] we have to import
+import {FormsModule} from '@angular/forms';
+in the app.module.ts.
+----------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
 
 
 
