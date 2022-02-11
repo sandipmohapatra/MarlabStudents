@@ -703,7 +703,53 @@ export class FordemoComponent
  </div>
 </div>
 ------------------------------------------------------------------------------------
+Example-Event
+------------------------
+example-12
+----------------------------------------------------------------------
+	Eventsdemo.component.ts
+----------------------------------------------------------------------
+import { Component, OnInit } from '@angular/core';
 
+@Component({
+  selector: 'app-eventsdemo',
+  templateUrl: './eventsdemo.component.html',
+  styleUrls: ['./eventsdemo.component.css']
+})
+export class EventsdemoComponent {
+    public msg;
+    public txtName;
+    public OnFocus() {
+      this.msg = 'Name in Block Letters';
+    }
+    public OnBlur() {
+      this.msg = '';
+      this.txtName = this.txtName.toUpperCase();
+    }
+    public onCut(){
+      this.msg = 'Removed and Placed on Clipboard';
+    }
+    public onCopy(){
+      this.msg = 'Copied to Clipboard';
+    }
+    public onPaste() {
+      this.msg = 'Inserted from Clipboard';
+    }
+}
+----------------------------------------------------------------
+	Eventsdemo.component.html
+----------------------------------------------------------------
+<div class="container-fluid">
+  <h2>Register for Cut/copy/paste</h2><hr>
+  <div class="form-group">
+      <label>User Name</label>
+      <div>
+          <input (cut)="onCut()" (copy)="onCopy()" (paste)="onPaste()" [(ngModel)]="txtName" (focus)="OnFocus()" (blur)="OnBlur()" class="form-control" type="text" placeholder="Block Letters Only">
+          <span>{{msg}}</span>
+      </div>
+  </div>
+</div>
+------------------------------------------------------------------------------
 
 
 
