@@ -994,7 +994,86 @@ constructor(x:CalcService)
 *service name will be in the provider not in the declaration.
 -----------------------------------------------------------------------------------
 
+Example-2
+--------------------
+import { Injectable } from "@angular/core";
 
+@Injectable({
+providedIn:'root'
+})
+
+export class CaptchaService
+{
+    public GenerateCode()
+    {
+        let a = Math.random() * 10;
+        let b = Math.random() * 10;
+        let c = Math.random() * 10;
+        let d = Math.random() * 10;
+        let e = Math.random() * 10;
+        let f = Math.random() * 10;
+        let code=`${Math.round(a)} ${Math.round(b)} ${Math.round(c)} ${Math.round(d)} ${Math.round(e)} ${Math.round(f)}`;
+        return code;
+    }
+}
+----------------------------------------------------------
+import { Component } from '@angular/core';
+import { CaptchaService } from '../captchaService';
+
+@Component({
+  selector: 'app-logins',
+  templateUrl: './logins.component.html',
+  styleUrls: ['./logins.component.css']
+})
+export class LoginsComponent {
+
+ constructor(public cap:CaptchaService)
+ {}
+ public code=this.cap.GenerateCode();
+
+public refreshClick()
+{
+  this.code=this.cap.GenerateCode();
+}
+}
+--------------------------------------------------------------------------------
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+</head>
+<div class="container-fluid">
+    <div class="form-group">
+<label>User name</label>
+    <div>
+        <input type="text" class="form-control">
+        </div>
+    </div>
+<div class="form-group">
+    <label>Password</label>
+        <div>
+            <input type="password" class="form-control">
+            </div>
+    </div>
+<div class="form-group">
+        <label>Varify Code</label>
+            <div>
+{{code}} <button (click)="refreshClick()" class="btn">Click</button>
+                </div>
+        </div>
+        <div>
+        <!--<input type=text class="form-control"> -->
+    </div>
+    <div class="form-control">
+<br><br><button class="btn btn-primary">Login</button>
+    </div>
+</div>
+------------------------------------------------------------------------------------------------
 
 
 
