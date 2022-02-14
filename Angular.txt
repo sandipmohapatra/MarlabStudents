@@ -928,12 +928,71 @@ shopping.component.html
     </div>
   </div>
 -----------------------------------------------------------------------------------------------------------------------------
+Angular Service
+---------------------------------
+It is used to create user-defined business logic which can be reused in the application by injecting into any component.
 
+Diffence between function and service.
+----------------------------------------------------
+function is ment for a single application and can be used within the same folder.
+example:- ToggleCartDisplay()
+Service is ment for any component for any project or folder not for single application.
+-------------------------------------------------------------------------------------------------------------
+step 1:- to create a service in a separate folder.
+step 2:- we will inject it to a component and use it.
 
+we have to follow these steps within the program.
+1)import {Injectable} from '@angular/core'
+2)@Injectable()
+3)providedIn:'root'
+-------------------------------------------------
+step 1:-
+create a service in the app folder.
+-----------------------------------------------
+calc.service.ts
+------------------------------------------------
+import { Injectable } from "@angular/core";
 
+@Injectable({
+    providedIn:'root'
+})
 
+export class CalcService
+{
+    public add(...params: number[]): number
+    {
+        let result = 0;
+        for (let val of params)
+        {
+            result += val;
+                    }
+                    return result;
+    }
+}
+-----------------------------------------------------------------------------------------
+calc.calculatorcomponent.ts
+---------------------------------------------
+import { Component } from '@angular/core';
+import { CalcService } from '../calc.service';
 
-
+@Component({
+  selector: 'app-calc',
+  template: `Service Example`
+  
+})
+export class CalcComponent  {
+sum: number = 0;
+constructor(x:CalcService)
+{
+  this.sum = x.add(44,55,66,77);
+  console.log("The sum is"+this.sum);
+}
+}
+----------------------------------------------------------------------
+ providers: [CalcService]
+-----------------------------------------------------------
+*service name will be in the provider not in the declaration.
+-----------------------------------------------------------------------------------
 
 
 
