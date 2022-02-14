@@ -959,12 +959,12 @@ import { Injectable } from "@angular/core";
 
 export class CalcService
 {
-    public add(...params: number[]): number
+    public add(...params: number[]): number  
     {
         let result = 0;
         for (let val of params)
         {
-            result += val;
+            result = result+val;
                     }
                     return result;
     }
@@ -1074,6 +1074,95 @@ public refreshClick()
     </div>
 </div>
 ------------------------------------------------------------------------------------------------
+Angular Pipe
+---------------------------------
+1)Pipe is used to transform data.
+2)we have to
+ import {PipeTransform} from '@angular/core'
+3)we have some pre-defined pipes and we have custom pipe.
+4)every pipe is defined with a pipe name,which is configured using "@Pipe({name:"uppercase"})".
+------------------------------------------------------------------------
+example-1
+----------------------
+import { Component } from '@angular/core';
+
+@Component({
+  selector: 'app-pipedemo',
+  templateUrl: './pipedemo.component.html',
+  styleUrls: ['./pipedemo.component.css']
+})
+export class PipedemoComponent {
+
+  MyName : string ='sandip';
+  stuList : string[]=["Madhu","shubham","trupti","geetanjali"];
+}
+----------------------------------------------------------
+<div>
+    My name is {{MyName}}<br>
+    My student name is {{stuList[0]|uppercase}}<br>
+    My student name is {{stuList[1]|uppercase}}<br>
+    My student name is {{stuList[2]|uppercase}}<br>
+    My student name is {{stuList[3]|uppercase}}<br>
+    
+</div>
+-------------------------------------------------------------
+Example-2
+---------------------
+import { Component } from '@angular/core';
+@Component({
+  selector: 'app-pipe-demo',
+  templateUrl: './pipe-demo.component.html',
+  styleUrls: ['./pipe-demo.component.css']
+})
+export class PipeDemoComponent {
+Name: string ='Sai Gopal';
+Namelist: string[]=["bibhudatta","Madhavi","sahil"]
+public product=
+{
+  Name:'Samsung TV',
+  Price:45000.00,
+  Mfd:new Date('01-10-2022')
+}
+  }
+-------------------------------------------------------------------------------------
+<div>
+The name is {{Name}}<br>
+The Listname is {{Namelist[0]|uppercase}}<br>
+The name is {{Namelist[1]|uppercase}}<br>
+The name is {{Namelist[2]|uppercase}}<br>
+The product name is{{product.Name|titlecase}}<br>
+The product price is{{product.Price|number}}<br>
+The product price is{{product.Price|currency}}<br>
+The product price is{{product.Price|currency:'INR'}}<br>
+The product price is{{product.Price|currency:'&#8377;'}}<br>
+The product Manufacturing Date is{{product.Mfd|date:'MMM-dd-yyyy'}}<br>
+The product Manufacturing Date is{{product.Mfd|date:'shortDate'}}<br>
+The product Manufacturing Date is{{product|json}}<br>
+The listName is {{Namelist[0]|slice:1:3}}<br>
+The listName is {{Namelist[0]|slice:1:5}}<br>
+The listName is {{Namelist[0]|slice:0:5}}<br>
+</div>
+--------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
