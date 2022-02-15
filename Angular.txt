@@ -1143,7 +1143,55 @@ The listName is {{Namelist[0]|slice:1:5}}<br>
 The listName is {{Namelist[0]|slice:0:5}}<br>
 </div>
 --------------------------------------------------------------------------------------------
+custom pipes
+-------------------
+import {Pipe, PipeTransForm} from '@angular/core';
+@Pipe({name:'Pipename'}) 
 
+export class PipeClass implements PipeTransform
+{
+transform(parameters):returntype
+{}
+}
+------------------------------------------------------------------------------------------
+Pipename ----we can give any name to the pipe.
+Pipeclass---This is name of the class assigned to pipe.
+transform ---This is the function to work with the pipe.
+Returtype---This is the return type of the pipe.
+--------------------------------------------------------------------------------------------
+testpipe.ts
+--------------------
+import {Pipe, PipeTransform} from '@angular/core';
+@Pipe({name:'Multiplier'}) 
+
+export class PipeClass implements PipeTransform
+{
+transform(value:number, multiply: number):number
+{
+return multiply * value;
+
+}
+}
+--------------------------------------------------------------------------
+pipedemo.component.ts
+-------------------------------------------
+import { Component } from '@angular/core';
+
+@Component({
+  selector: 'app-pipe-demo',
+  template: `
+  <p> Multiplying 2 nos{{5 | Multiplier: 20}}<br>
+  <p> Multiplying 2 nos{{6 | Multiplier: 20}}<br>
+  <p> Multiplying 2 nos{{7 | Multiplier: 20}}<br>
+  <p> Multiplying 2 nos{{8 | Multiplier: 20}}<br>
+  <p> Multiplying 2 nos{{9 | Multiplier: 20}}<br>
+  
+  `
+  
+})
+export class PipeDemoComponent {
+}
+----------------------------------------------------------------------------
 
 
 
