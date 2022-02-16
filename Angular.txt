@@ -1255,9 +1255,46 @@ public class SwaggerConfig {
 			<version>2.9.2</version>
 		</dependency>
 --------------------------------------------------------------------------------------------
+spring+angular
+---------------------------------
+1)student-all:- It will display the list of students.It has 2 buttons :-delete and edit.
+2)student create:- we can insert data into the database.
+3)student-edit:-The button is there in student all.to edit the student.
+4)app.component.ts:- In this we have selector:"app-root",
+5)student.service.ts:-we have http service for intraction with spring rest.we have 5 methods in it.
+i)getAllStudents()
+ii)deleteOneStudent(id:number)
+iii)createStudent(student:Student)
+iv) getOneStudent(id: number)
+v)updateStudent(id: number, student: Student)
 
+6) private basePath = 'http://localhost:8090/rest/student';    <---In Angular service.
+7)@CrossOrigin(origins = "http://localhost:4200")      <---In springboot controller.
 
+Angular is having endPoint URL of springBoot and springBoot is having URL of angular.
 
+8)Observable :- It is a stream of event or data.
+
+basePath='http://localhost:8090/rest/student';
+
+ return this.http.get<Student[]>(`${this.http://localhost:8090/rest/student/all}`);
+
+we have 5 endPoint URL:-
+--------------------------------------------------------------------------
+1)http://localhost:8090/rest/student/all
+2)http://localhost:8090/rest/student/remove/${id}
+3)http://localhost:8090/rest/student/save
+4)http://localhost:8090/rest/student/one/${id}
+5)http://localhost:8090/rest/student/modify/${id}
+--------------------------------------------------------------------------------------------
+These Urls will interact with spring Controller and return some data.
+These data will be displayed when called in 
+i)student-all.ts
+ii)student-create.ts
+iii)student-edit.ts
+---------------------------------------------------------
+for publishing the data we use subscribe.which will print the data which is a return from student.service.ts
+-------------------------------------------------------------------------------------------------------------
 
 
 
