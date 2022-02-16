@@ -1339,13 +1339,33 @@ boolean isStudentExist(Integer id);
 7)swagger :- It is a testing tool.
 8)util:- It is used to modify the data.
 ----------------------------------------------------------------------------------------------------
+controller has 5 endPoint URL to navigate
+-------------------------------------------------------------------------
+1)@PostMapping("/save") :- to save the data.
+2)@GetMapping("/all"):- to retrive the data.
+3)@GetMapping("/one/{id}"):- It will display only one record according to search.
+4)@DeleteMapping("/remove/{id}") :- It will delete by id.
+5)@PutMapping("/modify/{id}"):- It will modify by id.
+---------------------------------------Controller---------------------------------------------------------------
+1)public ResponseEntity<String> saveStudent(@RequestBody Student student)
 
+ResponseEntiy is used transfer HTTP response.
 
+@RequestBody :- This will store the data into a object which will be deserialized automatically.
+saveStudent return type=String.
 
+2)public ResponseEntity<?> getAllStudents()
+This represent the entire HTTP response.
+we can control the status code,header and body .
 
-
-
-
+ResponseEntity<String> saveStudent=template.getForEntiry("http://xyz.com",class);
+String body=saveStudent.getBody();
+getHeader(),getStatusCode()----200(ok),404(page not found),500(page not found);
+----------------------------------------Assignment-1------------------------------------------------
+create an enployee form
+having empno,name,salary,design,emial,phoneno,deptname
+display all employees and give option to delete and edit
+----------------------------------------------------------------------------------------------------------
 
 
 
