@@ -1256,10 +1256,11 @@ public class SwaggerConfig {
 		</dependency>
 --------------------------------------------------------------------------------------------
 spring+angular
----------------------------------
+--------------3 modules-------------------
 1)student-all:- It will display the list of students.It has 2 buttons :-delete and edit.
 2)student create:- we can insert data into the database.
 3)student-edit:-The button is there in student all.to edit the student.
+-------------------------------------------------
 4)app.component.ts:- In this we have selector:"app-root",
 5)student.service.ts:-we have http service for intraction with spring rest.we have 5 methods in it.
 i)getAllStudents()
@@ -1295,9 +1296,49 @@ iii)student-edit.ts
 ---------------------------------------------------------
 for publishing the data we use subscribe.which will print the data which is a return from student.service.ts
 -------------------------------------------------------------------------------------------------------------
+springBoot
+-----------------------
+1)main
+2)controller
+3)model ---Student.java
+4)repo:-public interface StudentRepository extends JpaRepository<Student, Integer>
 
+predefined methods in JpaRepository/CrudRepository:-
+----------------------------------------------------------------------
+save: Pass an Entity Bean or a subclass to Entity Bean and it will be persisted. The persisted entity will be returned. Any auto-generated field or default fields will be initialised and returned with the entity.
 
+saveAll: Pass an iterable of the Entities and will be saved.
 
+findById: Pass the ID field and the matching entity will be returned. It returns an Entity wrapped in an Optional object.
+
+existsById: Checks if the given ID exists into the table and returns boolean.
+
+findAll: This method returns all the entities from table.
+
+findAllById: Returns iterable of all the entities that match the given ID.
+
+count: The count of entities.
+
+deleteById: Find an entity by given ID and delete.
+
+delete: Find an entity matching to the given entity and delete.
+
+deleteAll: If given an iterable of entities all those entities are removed. If called without any argument, all the entities are deleted.
+--------------------------------------------------------------------------------------------------
+5)service has some methods:-(Interface)
+-----------------------------------------------------
+Integer saveStudent(Student s);
+void updateStudent(Student s);
+void deleteStudent(Integer id);
+Optional<Student> getOneStudent(Integer id);
+List<Student> getAllStudents();
+boolean isStudentExist(Integer id);
+------------------------------------------------------------------
+6)serviceImplement :- it conatins body of the service.
+------------------------------------------
+7)swagger :- It is a testing tool.
+8)util:- It is used to modify the data.
+----------------------------------------------------------------------------------------------------
 
 
 
