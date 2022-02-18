@@ -1,0 +1,71 @@
+SpringBoot Microservices
+-------------------------------------------------------------------------------------------------------------------------------------
+1)Monolithic application :- Creating one project that contains many modules.
+2)In case of java finally we get one single jar/war file.
+3)In single project we have a collection of multiple modules.
+4)One request made by client goes to the server and the server process it and give the response.
+Server are multithreaded and can give support to a max to 200 request.It is by default we can change this.
+when the request comes to the server the load is on server increases.
+1 thread is called as 1 load to server.
+we have tomcat server ,jetty server they have max capacity of handling of 200 threads.(default)   
+when we increase the capacity only it will not work we have increase the server count also or ram capacity to handle the load.
+-----------------------------------------------------------------------------------------------------------------------------------------
+Load Balance :- It is distrubuting the load among the servers.
+There is a tool in microservices to balance the load of the server.
+Instance :- An application running under one server is called as one instance.
+Scaling :- It the process of increasing performance of a server.ie fast executing more number of request handling.
+we have 2 types of scaling:-
+1)Horizontal Scaling :- creating new instance or new server instance.
+example:- Run application at 3 servers.
+2)vertical scaling:- Increase capacity/configuration of a system.
+example :- your system has 8gm ram.you increased to 16gb ram.The performance will increase.
+--------------------------------------------------------------------------------------------------------------------------------------------------
+LBS =load balancer server.It holds InstanceID ,IP,Port etc of the client.
+-----------------------------------------------------------------------------------------------------------------------
+Monolithic appliaction advantage
+-------------------------------------------------
+1)simple to develop.(one technology,framework and code).
+2)simple to test end to end using selenium.
+3)simple to build and deploy.
+4)simple to scale and load balance.
+-------------------------------------------------------------------------
+Limitation of Monolithic
+-------------------------------------------
+1)The services are tightly connected.any small modification we have to re-deploy.
+2)If there is any bug in one module it may effect the other modules.
+3)Adopting new technology is not a easy process.
+4)If new modules are added after development it size may increase and the application may become more complex.
+5) Testing and debuging will take more time.
+---------------------------------------------------------------------------------------------------------------------------
+ Microservices Architecture
+------------------------------------------------------
+1)It is de-coupled Architecture Design pattern.
+2)In this one or two services/module behaves like one application or project.
+3)In this one service communicates with other using webservices concept.
+4)in simple divide monolithic application modules into projects and link them.
+
+Advantage :-
+------------------
+1)re-deploy of all services not required if we modify any one service code.
+2)If one service is not working it will not effect other service.
+3)adopting new technology is a easy process.It used webservices to integrate one service with another.
+4)Enhance new modules or service will be easy to code and integrate.
+5)testing is also easy in this case.
+
+Limitations:-
+-------------------------
+1)maintaining multiple services and monitering is not a easy process.
+2)hardware and networking configurations is required mostly.
+3)microservices concept is good only if it a distributed application and has multiple clients.
+example:- SBI has many clients.
+-->mobile application
+-->ATM
+-->Internet Banking
+4)If application is very big having multiple services and number of users are more then we can use micro-services.
+5)It is not required for small application,less user .(example:-restaurants billing s/w ,hospital billing )
+6)can can used for large scale application.(amazon,flipcard)
+------------------------------------------------------------------------------------------------
+
+
+
+
