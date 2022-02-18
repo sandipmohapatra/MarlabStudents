@@ -65,6 +65,98 @@ example:- SBI has many clients.
 5)It is not required for small application,less user .(example:-restaurants billing s/w ,hospital billing )
 6)can can used for large scale application.(amazon,flipcard)
 ------------------------------------------------------------------------------------------------
+SOA :- Service Oriented Architecture
+------------------------------------------------------------
+It is a intergration of two projects /application which are running in two different server.
+
+Integration types:-
+1)Homogeneous integration:- two projects are developed using same language.
+2)Hetrogeneous integration.:- two projects are developed using different language.
+
+SOA is a Architecture used to link Homogeneous application.
+
+SOA has 3 components and 3 operations.
+Three components are :- Service provider:- Who develops the service writing the logic.
+service register:-It holds all the service providers services.
+service consumer:- consumer uses the service.
+
+There are 3 operations:-
+1)publish:- Read service provider code.
+2)find:-Consumer application will communicate and find the service.
+3)bind:- It need to define a client code,to makes http request and get httpreponse .
+
+In case any code modification are done in provider then we must re-publish and re-find.
+-------------------------------------------------------------------------------------------------------------------------------------
+Example of Microservice
+------------------------------------------
+1)Fare microservice
+2)booking microservice
+3)Search microservices
+4)checkin microservices
+to each services to communicate between each other we use RabbitMQ as a messaging listener.
+
+There are different messaging listener present :- 1)RabbitMQ ,2)ActiveMQ ,3)Kafka
+
+we have HTTP listener like :- 1)tomcat server  2)jetty server 3)weblogic server which are embeded in springBoot.
+
+each Microservices are self contained means every microservices should have it own
+1)Project code 2)project lib 3)embedded server 4)JVM 5)operating system.
+
+------------------------------------------
+1)Microservices uses lightweight protocols such as rest and http.
+2)It focuses on decoupling.
+3)It uses simple messaging listener.
+4)microservices are much better in fault tolerance.
+5)Each microservices may have independent databases.
+6)Microservices uses Spring Cloud.
+
+Features of Microservices
+------------------------------------
+1)It supports publish and find operation with Registery server.
+publish : provides microservice details to Registery server.
+find:able to fetch other microservices from same Registery server.
+
+2)supports Intra communication with other Microservices using any client.
+
+There are 3 different types of clients which communicates between each other.
+1)Discovery client
+2)Load balance client
+3)Declarative client.
+
+3)Support circuit breaker process
+If any MS is throwing exception for continious request then it will stop executing and 
+provide alert to the dashboard.
+
+4)API Gateway support
+every MS might be running in different servers (IP:Port).we can not give all MS 
+URLS to end clients.
+There must be single-entry and single-exist point provided.ie called as API Gateway.
+
+5)Register and Discovery server (R&D server)
+
+Every MS must be registered with R&D server.
+It means MS will provide details like IP,PORT ,ServiceID ,InstanceID,Load Details etc.
+
+6)Spring cloud Netflix Eureka is software tool provided to implement R&D server.
+
+each MS after coding must be published into R&D server by using key-value 
+eureka.client.register-with-eureka=true
+
+each MS should able to fetch into MS details by using key-value 
+eureka.client.fetch-register=true
+
+-------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
 
 
 
