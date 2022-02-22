@@ -343,7 +343,7 @@ public class ConsumeService {
 		ServiceInstance si=list.get(0); 3)Read one ServiceInstance from the list at index#0
 		URI uri=si.getUri();		4)read URI from si
 
-		String url=uri+"/address/show"; 5)add path to URI
+		String uri=uri+"/address/show"; 5)add path to URI
 		
 		RestTemplate rt=new RestTemplate(); 6)RestTemplate call
 		
