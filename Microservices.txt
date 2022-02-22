@@ -119,7 +119,7 @@ find:able to fetch other microservices from same Registery server.
 2)supports Intra communication with other Microservices using any client.
 
 There are 3 different types of clients which communicates between each other.
-1)Discovery client
+1)Discovery client/EurekaClient
 2)Load balance client
 3)Declarative client.
 
@@ -146,18 +146,257 @@ each MS should able to fetch into MS details by using key-value
 eureka.client.fetch-register=true
 
 -------------------------------------------------------------------------------------------------
+Eureka server : R&D server
+register and discovery server :- The microservices are registered here.They communicate between each other by using activeMQ ,Kafka.
+
+1)Client :- it is developed using restAPI.
+It will communicate using HTTP and JSON to transfer the data.
+
+2)API Gateway and security for checking the authentication and autherization of the data.
+
+3)Once the authentication and autherization is done it can communicate with the microservices.
+
+4)we have the database to store data or to check the authentication and autherization of the user.
+
+5)ActiveMQ:- It is used to communicate between 2 or more microservice.
+example:- we have a MS called BookMyShow when you book a ticket it will communicate with the paytm wallet for money.This communication is done by ActiveMQ,Kafka,RabitMQ.
+
+6)Eureka server:- It is also known as Register and discovery server.
+All the microservices are registered here.They are given different portno and IP address to run.
+The MS will fetch other MS information present in the container.That is known as discovery or fetching of information.
+This eureka server will support Load Balancing.
+
+7)CircuitBreaker (Hystrix) server :- it is used for exception handling.When error is happening continiously it will stop the client from accessing the server.
+
+8)config server :- It has the configuration(IP address,Port no,service id,instance id) of each MS.It will be in the form of key and value pair.
+
+when a client is communicating with a MS an instance is created.as many client want to intract with the MS that many instances will be created.
+-----------------------------------------------------------Eureka server---------------------------------------------------
+Eureka server:-It run on port no 8761
+
+eureka.client.register-with-eureka=false. (regsitry)
+
+eureka.client.fetch-register=false.(discovery)
+--------------------------------------------------------------------
+step-1:- file ->new ->spring starter project.
+step-2:-create a project and paste the src and pom.xml
+step3:-localhost:8761
+--------------------------------------------------------------------------------------
+client:-
+server.port=8866
+spring.application.name=ADDRESS-SERVICE
+eureka.client.service-url.default-zone=http://localhost:8761/eureka
+---------------------------------------------------------------------------------------------------------------
+step-1 :- run the eureka server first
+step-2 :- Then run the client 
+-------------------------------------------------------------------------
+example-1
+Address Client
+---------------------
+package com.example.demo;
+
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+@RequestMapping("/address")
+public class AddressController 
+{
+@GetMapping("/show")
+public String showMsg()
+{
+	String address="My address is Bangalore";
+	System.out.println("Hello welcome to Bangalore");
+	return address;
+	
+}
+}
+----------------------------------------------------------------------------------
+main.java
+-----------------
+package com.example.demo;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
+
+@SpringBootApplication
+@EnableEurekaClient  or DiscoveryClient
+public class SpringcloudAddressServiceApplication {
+
+	public static void main(String[] args) {
+		SpringApplication.run(SpringcloudAddressServiceApplication.class, args);
+	}
+
+}
+---------------------------------------
+server.port=8866
+spring.application.name=ADDRESS-SERVICE
+eureka.client.service-url.default-zone=http://localhost:8761/eureka
+-------------------------------------------------------------------------------
+Bank client
+------------------------
+package com.example.demo;
+
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+@RequestMapping("/bank")
+public class BankController 
+{
+@GetMapping("/details")
+public String showMsg()
+{
+	String bankdetail="My Bank is SBI";
+	System.out.println("Hello welcome to SBI");
+	return bankdetail;
+	
+}
+}
+--------------------------------------------------------------------------------------------
+main.java
+-------------------
+package com.example.demo;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
+
+@SpringBootApplication
+@EnableEurekaClient
+public class SpringcloudAddressServiceApplication {
+
+	public static void main(String[] args) {
+		SpringApplication.run(SpringcloudAddressServiceApplication.class, args);
+	}
+
+}
+---------------------------------------------------
+server.port=8877
+spring.application.name=BANK-SERVICE
+eureka.client.service-url.default-zone=http://localhost:8761/eureka
+
+---------------------------------------------------------------------
+Eureka Server
+-------------------------
+package com.example.demo;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.netflix.eureka.server.EnableEurekaServer;
+
+@SpringBootApplication
+@EnableEurekaServer
+public class SpringcloudEurekaServerDemoApplication {
+
+	public static void main(String[] args) {
+		SpringApplication.run(SpringcloudEurekaServerDemoApplication.class, args);
+	}
+
+}
+----------------------------------------
+server.port=8761
+eureka.client.register-with-eureka=false
+eureka.client.fetch-register=false
+-----------------------------------------------------------
+Consumer
+-------------------
+package com.example.demo;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
+
+@SpringBootApplication
+@EnableEurekaClient
+public class SpringcloudAddressServiceApplication {
+
+	public static void main(String[] args) {
+		SpringApplication.run(SpringcloudAddressServiceApplication.class, args);
+	}
+
+}
+------------------------------------------------------------------------------
+package com.example.demo;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cloud.client.ServiceInstance;
+import org.springframework.cloud.client.discovery.DiscoveryClient;
+import org.springframework.stereotype.Component;
+import org.springframework.web.client.RestTemplate;
+
+
+
+@Component
+public class ConsumeService {
+	@Autowired <--------------------------------1)Autowire DiscoveryClient
+	private DiscoveryClient client;
+	public String calladdressMethods()
+	{                                                               2)It calls getInstances() by passing serviceId of provider and return List
+		List<ServiceInstance> list = client.getInstances("ADDRESS-SERVICE");
+
+		ServiceInstance si=list.get(0); 3)Read one ServiceInstance from the list at index#0
+		URI uri=si.getUri();		4)read URI from si
+
+		String url=uri+"/address/show"; 5)add path to URI
+		
+		RestTemplate rt=new RestTemplate(); 6)RestTemplate call
+		
+		String x=rt.getForObject(url, String.class);
+		
+		return x;
+	}
+
+
+	public String callbankMethods() 
+	{
+		List<ServiceInstance> list1 =client.getInstances("BANK-SERVICE"); 
+		ServiceInstance si1=list1.get(0);
+			String url1=si1.getUri() +"/bank/details"; 
+			RestTemplate rt=new RestTemplate(); 
+			String y=rt.getForObject(url1, String.class); 
+			return y;
+
+	}
+
+
+}
+-----------------------------------------------------------------------------------
+package com.example.demo;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+import com.example.demo.ConsumeService;
+@RestController
+@RequestMapping("/cust")
+public class AccessController 
+{
+	@Autowired   <-----------------------------we are accessing the consumeService
+	private ConsumeService cons;
+	
+@GetMapping("/access")
+public String showMsg()
+{
+	String detail="My Address details"+ cons.calladdressMethods();
+	String detail1="My Bank details"+ cons.callbankMethods();
+		return (detail + " "+detail1);
+	
+}
+}
+----------------------------------------------------------------------------------------------------------------------
+service provider-----Bank ----showmsg()
+service provider-----Address----showmsg()
+service consumer----AccessController -----showmsg() in this we combine both bank and address showmsg().
+-------------------------------------------------------------------------------------------------------------------------------
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
+ 
