@@ -396,6 +396,140 @@ service provider-----Address----showmsg()
 service consumer----AccessController -----showmsg() in this we combine both bank and address showmsg().
 -------------------------------------------------------------------------------------------------------------------------------
 
+wap to create a calculator service
+wap to create a currency convertor service.(example:- 1 dollor=Rs 74)
+wap to create a service consumer to consume the 2 services.
+------------------------------------------------------------------------------------------------------------ 
+we have 3 types of client
+1)Discovery client/EurekaClient
+2)Load balance client
+3)Declarative client.
+
+2)Load balance client
+This client is used to fetch only one Instance which has less load factor based on given ServiceId.
+we have client and server as Eureka server.When the client is hiting the server it is known as load factor.
+to reduce the load of the server we use multiple servers.The load balancer client will deside which server to hit.
+example:-
+server 1 has 20 client
+server 2 have 15 clients
+so the load balancer client will hit the server 2.
+--------------------------------------------------------------------------------------------------------------------------
+ The load balnacer client will only fetch one instance from eureka.
+so we have to 
+1)Autowire LoadBalancerClient at consumer code.
+2)call method choose(ServiceId)
+3)Read URI from serviceInstance
+4)add path to uri that provide URL
+5)make http call using RestTemplate
+-----------------------------------------------------------------------------------------------
+service-provider
+-------------------------
+package in.sandip;
+
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+import java.util.*;
+@RestController
+@RequestMapping("/gst")
+public class GstRestController {
+	
+	@Value("${server.port}")
+	private String port;
+	
+	@GetMapping("/data")
+	public String getDetails() 
+	{
+		int id=101;
+		String name="Samsung TV";
+		double price=45000.56;
+		System.out.println("product id :"+id);
+		System.out.println("product name :"+name);
+		System.out.println("product price:"+price);
+		double gst=price*0.18;
+		double total=price+gst;
+		return "Total With  GST = "+total+" " + "port :"+port;
+	}
+}
+------------------------------------------------------------------------------------------------------------
+server.port=9902
+#ServiceId
+spring.application.name=GST-SERVICE
+# Eureka Details
+eureka.client.service-url.defaultZone=http://localhost:8761/eureka
+# Instance Id
+eureka.instance.instance-id=${spring.application.name}:${random.value}
+---------------------------------------------------------------------------------------------------------
+service-consumer
+----------------------------------
+package in.sandip;
+
+import java.net.URI;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cloud.client.ServiceInstance;
+import org.springframework.cloud.client.loadbalancer.LoadBalancerClient;
+import org.springframework.stereotype.Component;
+import org.springframework.web.client.RestTemplate;
+
+@Component
+public class GstRestConsumer {
+
+	//1. Autowire LoadBalancerClient
+	@Autowired
+	private LoadBalancerClient client;
+	
+	public String getDetailsFromGst() {
+		//2. get one ServiceInstance by using ServiceId
+		ServiceInstance si = client.choose("GST-SERVICE");
+		
+		//3. Read URI from SI
+		URI uri = si.getUri();
+		
+		//4. Add path to get URL
+		String url = uri + "/gst/data";
+		
+		//5. Use RestTemplate
+		RestTemplate rt = new RestTemplate();
+		
+		//6. make HTTP call
+		String response = rt.getForObject(url, String.class);
+		
+		return response;
+	}
+}
+-----------------------------------------------------------------------------------------------------------------------
+package in.sandip;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+@RestController
+@RequestMapping("/invoice")
+public class InvoiceRestController {
+	@Autowired
+	private GstRestConsumer consumer;
+
+	@GetMapping("/info")
+	public String showInfo() {
+		return "FROM INVOICE => " + consumer.getDetailsFromGst();
+	}
+}
+------------------------------------------------------------------------------------------------------------------------------
+server.port=8086
+spring.application.name=INVOICE-SERVICE
+eureka.client.service-url.defaultZone=http://localhost:8761/eureka
+------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
 
 
 
