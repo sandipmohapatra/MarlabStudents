@@ -581,9 +581,236 @@ public String getPayMsg()
 return "from payment"+consumer.findMsg();
 }}
 ---------------------------------------------------------------------------------------------------------------------
+pom.xml
+--------------------
+<dependency>
+<groupId>org.springframework.cloud</groupId>
+<artifactId>spring-cloud-starter-openfeign</artifactId>
+</dependency>
+-----------------------------------------------------------------------------------------------------
+Example-1
+FeignClient(service-provider)
+-----------------------------------------------
+package com.example.demo;
+
+public class Cart 
+{
+private Integer id;
+private String code;
+private Double cost;
+public Integer getId() {
+	return id;
+}
+public void setId(Integer id) {
+	this.id = id;
+}
+public String getCode() {
+	return code;
+}
+public void setCode(String code) {
+	this.code = code;
+}
+public Double getCost() {
+	return cost;
+}
+public void setCost(Double cost) {
+	this.cost = cost;
+}
+public Cart(Integer id, String code, Double cost) {
+	super();
+	this.id = id;
+	this.code = code;
+	this.cost = cost;
+}
+public Cart() {
+	super();
+}
+@Override
+public String toString() {
+	return "Cart [id=" + id + ", code=" + code + ", cost=" + cost + "]";
+}
+
+}
+-----------------------------------------------------
+package com.example.demo;
+
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+@RequestMapping("/cart")
+public class CartRestController 
+{
+@Value("${server.port}")
+private String port;
+
+@GetMapping("/msg")
+public String getMsg()
+{
+	return "From service-provider "+ port;
+}
+
+@GetMapping("/ob/{code}")
+public Cart getCart(@PathVariable String code)
+{
+	return new Cart(101,code,45000.56);
+}
+
+@PostMapping("/insert")
+public ResponseEntity<String> createCart(@RequestBody Cart cart)
+{
+	return ResponseEntity.ok(cart.toString());
+}
+
+}
+------------------------------------------------------------------------------------
+package com.example.demo;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
+
+@SpringBootApplication
+@EnableEurekaClient
+public class SpringCloudFeignCartServiceApplication {
+
+	public static void main(String[] args) {
+		SpringApplication.run(SpringCloudFeignCartServiceApplication.class, args);
+	}
+
+}
+---------------------------------------------------------------------
+server.port=9900
+spring.application.name=CART-SERVICE
+eureka.client.service-url.defaultZone=http://localhost:8761/eureka
+eureka.instance.instance-id=${spring.application.name}:${random.value}
+-------------------------------------------------
+feignClient consumer
+-----------------------------------------------
+package com.example.demo;
+
+public class Cart 
+{
+private Integer id;
+private String code;
+private Double cost;
+public Integer getId() {
+	return id;
+}
+public void setId(Integer id) {
+	this.id = id;
+}
+public String getCode() {
+	return code;
+}
+public void setCode(String code) {
+	this.code = code;
+}
+public Double getCost() {
+	return cost;
+}
+public void setCost(Double cost) {
+	this.cost = cost;
+}
+public Cart(Integer id, String code, Double cost) {
+	super();
+	this.id = id;
+	this.code = code;
+	this.cost = cost;
+}
+public Cart() {
+	super();
+}
+@Override
+public String toString() {
+	return "Cart [id=" + id + ", code=" + code + ", cost=" + cost + "]";
+}
+
+}
+-------------------------------------------------------------------------
+package com.example.demo;
+
+import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
 
+@FeignClient("CART-SERVICE")
+public interface CartRestConsumer {
+@GetMapping("/cart/msg")
+public String findMsg();
 
+@GetMapping("/cart/ob/{code}")
+public String findCart(@PathVariable String code);
+
+@PostMapping("/cart/insert")
+public ResponseEntity<String> createCart(@RequestBody Cart cart);
+}
+----------------------------------------------------------------------------------------------
+package com.example.demo;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+@RequestMapping("/pay")
+public class PaymentRestController 
+{
+@Autowired
+private CartRestConsumer cons;
+
+@GetMapping("/msg")
+public String getPayMsg()
+{
+	return "from payment "+cons.findMsg();
+}
+
+@GetMapping("/ob")
+public String getCartCord()
+{
+	return "from payment "+cons.findCart("Sumsung TV");
+}
+
+@PostMapping("/create")
+public String createCart()
+{
+	return "from payment "+cons.createCart(new Cart(101,"Samsung Refrizerator",17500.34));
+}}
+---------------------------------------------------------------------------
+package com.example.demo;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
+import org.springframework.cloud.openfeign.EnableFeignClients;
+
+@SpringBootApplication
+@EnableEurekaClient
+@EnableFeignClients
+public class SpringCloudFeignCartConsumerApplication {
+
+	public static void main(String[] args) {
+		SpringApplication.run(SpringCloudFeignCartConsumerApplication.class, args);
+	}
+
+}
+-------------------------------------------------------------------------------------
+server.port=8686
+spring.application.name=PAYMENT-SERVICE
+eureka.client.service-url.defaultZone=http://localhost:8761/eureka
+-------------------------------------------------------------------------------------------------
 
 
 
