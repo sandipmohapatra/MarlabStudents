@@ -828,7 +828,7 @@ insert,select,delete,getbyId
 			<artifactId>mysql-connector-java</artifactId>
 			<version>5.1.46</version>
 		</dependency>
-----------------------------------------------------------------------------------------------------------
+----------------------------------------Service-provider------------------------------------------------------------------
 Couse eaxmple:-
 ---------------------------
 model
@@ -1046,6 +1046,56 @@ public ResponseEntity<?> getCourseId(@PathVariable Integer id)
 }
 
 }
---------------------------------------------------
+---------------------------------------------------------------------------------------------------------------------------------
+Service provider :-
+----------------------------------
+address and company (has-a) relationship
+----------------------------------
+address :- id=1,lane,street,city,state,country,pincode
+company:- id=1,name,regid,ctype,parentorg,modeofoperate,servicecode,aidfk=1
+
+first it will display the company then it will display the address.
+
+one company ---one address.
+---------------------------------------------
+There are 4 types of relationship
+-----------------------------------------------------
+one--to--one relationship(one company--one address)
+one--to--many relationship(one teacher---many student)
+many--to--one relationship (reverse)
+many---to---many(in collage we have many teachers for different subjects and many students in a class.
+----------------------------------------------------------------------------------------------------------------------------------------------
+cascade :- it is a feature of hibernate which is used to mange the state of the mapped entity whenever the state of its relationship owner change then this entity associated with it should also be changed.
+
+Cascade.All :- it cascades all operations(save,persist,remove,lock,merge etc).It perform all cascade types that are listed below.
+-----------------------------------
+Cascade.delete/remove
+Cascade.Detach
+Cascade.merge
+Cascade.lock
+Cascade.persist
+Cascade.refresh
+Cascade.save/update
+
+we have a parent table company -----any operation done to the parent will automatically effect the child table.
+The child table is address.
+*example company is deleted then the address will be deleted.
+
+@OneToOne(cascade = CascadeType.ALL , fetch = FetchType.EAGER)
+@JoinColumn(name ="aidFK")
+private Address addr;
+
+
+fetch = FetchType.EAGER when we fetch the parent table the child table data will also be fetched.
+----------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
 
  
