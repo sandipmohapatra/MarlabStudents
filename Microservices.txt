@@ -829,6 +829,8 @@ insert,select,delete,getbyId
 			<version>5.1.46</version>
 		</dependency>
 ----------------------------------------Service-provider------------------------------------------------------------------
+Micro-service(course--student) :- many-one (many student can take one course)
+------------------------------------------------------------------------------------------------------------------------------
 Couse eaxmple:-
 ---------------------------
 model
@@ -846,7 +848,13 @@ public class Course
 @GeneratedValue
 private Integer cid;
 private String cname;
-public Course(Integer cid, String cname, Double cfee, String ctype, Double discount, Double gst) {
+private Double cfee;
+private String ctype;
+private Double discount;
+private Double gst;
+
+public Course(Integer cid, String cname, Double cfee, String ctype, Double discount, Double gst) 
+{
 	this.cid = cid;
 	this.cname = cname;
 	this.cfee = cfee;
@@ -860,10 +868,7 @@ public String getCname() {
 public void setCname(String cname) {
 	this.cname = cname;
 }
-private Double cfee;
-private String ctype;
-private Double discount;
-private Double gst;
+
 public Integer getCid() {
 	return cid;
 }
@@ -1047,6 +1052,279 @@ public ResponseEntity<?> getCourseId(@PathVariable Integer id)
 
 }
 ---------------------------------------------------------------------------------------------------------------------------------
+course model
+-----------------
+package com.example.demo;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+@Entity
+public class Course 
+{
+@Id
+@GeneratedValue
+private Integer cid;
+private String cname;
+private Double cfee;
+private String ctype;
+private Double discount;
+private Double gst;
+public Integer getCid() {
+	return cid;
+}
+public void setCid(Integer cid) {
+	this.cid = cid;
+}
+public String getCname() {
+	return cname;
+}
+public void setCname(String cname) {
+	this.cname = cname;
+}
+public Double getCfee() {
+	return cfee;
+}
+public void setCfee(Double cfee) {
+	this.cfee = cfee;
+}
+public String getCtype() {
+	return ctype;
+}
+public void setCtype(String ctype) {
+	this.ctype = ctype;
+}
+public Double getDiscount() {
+	return discount;
+}
+public void setDiscount(Double discount) {
+	this.discount = discount;
+}
+public Double getGst() {
+	return gst;
+}
+public void setGst(Double gst) {
+	this.gst = gst;
+}
+
+
+}
+---------------------------------------------------------
+student
+-------------
+package com.example.demo;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
+@Entity
+public class Student
+{
+@Id
+@GeneratedValue
+private Integer stdId;
+private String stdName;
+private Double stdFee;
+
+@ManyToOne
+@JoinColumn(name="cidFk")
+private Course cob;
+
+public Integer getStdId() {
+	return stdId;
+}
+
+public void setStdId(Integer stdId) {
+	this.stdId = stdId;
+}
+
+public String getStdName() {
+	return stdName;
+}
+
+public void setStdName(String stdName) {
+	this.stdName = stdName;
+}
+
+public Double getStdFee() {
+	return stdFee;
+}
+
+public void setStdFee(Double stdFee) {
+	this.stdFee = stdFee;
+}
+
+public Course getCob() {
+	return cob;
+}
+
+public void setCob(Course cob) {
+	this.cob = cob;
+}
+}
+-------------------------------------------------------------------------------------------
+studentRepository
+-------------------------------
+package com.example.demo;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface StudentRepository extends JpaRepository<Student, Integer>
+{
+
+}
+------------------------------------------------------------------------------------------------------------
+IStudentService
+--------------------------
+package com.example.demo;
+
+import java.util.List;
+
+public interface IStudentService 
+{
+public Integer saveStudent(Student s);
+public List<Student> getAllStudents();
+}
+------------------------------------------------------------------------------
+StudentServiceImpl
+---------------------------------
+package com.example.demo;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+@Service
+public class StudentServiceImpl implements IStudentService{
+@Autowired
+	private StudentRepository repo;
+	
+	@Override
+	public Integer saveStudent(Student s) {
+				return repo.save(s).getStdId();
+	}
+
+	@Override
+	public List<Student> getAllStudents() {
+		
+		return repo.findAll();
+	}
+
+}
+------------------------------------------------Explaination-------------------------------------------------------------
+student----- stdId,stdName,stdFee,cidFk;
+course----- cid,cname,cfee,ctype,discount,gst;
+cidFk---courseId which will be repeated as mant student can take a single course(c,c++,java)
+
+stdId=1
+StdName=Shubham
+stdFee=5000
+cob = 101 <---course/{id} .This course id will be taken from the course micro-service.
+--------------------------------------------------------------------------------------------------------------------------------
+cid=101,
+cname=java,
+cfee=7000,
+ctype=Normal Track,
+discount=10%,
+gst=18%;
+-----------------------------------------------------------------------------------
+In the consumer we have to write a 
+@GetMapping("/couse/{id}")
+It will take the data from the name="COURSE-SERVICE"
+------------------------------------------End of Explaination--------------------------------------------
+CourseRestConsumer
+--------------------------------
+package com.example.demo;
+
+import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+
+@FeignClient(name="COURSE-SERVICE")
+public interface CourseRestConsumer {
+
+	@GetMapping("/course/{id}")
+	public ResponseEntity<Course> getCourseById(@PathVariable Integer id);
+}
+-------------------------------------------------------------------------------------------------------------------
+StudentRestController
+---------------------------------------
+package com.example.demo;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+@RequestMapping("/student")
+public class StudentRestController
+{
+@Autowired
+private IStudentService service;
+@Autowired
+private CourseRestConsumer consumer;
+
+@PostMapping
+public ResponseEntity<String> saveStudent(@RequestBody Student student)
+{
+	//read courseid from JSON object and get Full Course Object
+	Course cob=consumer.getCourseById(student.getCob().getCid()).getBody();
+	student.setCob(cob);
+	Integer id=service.saveStudent(student);
+	ResponseEntity<String> resp=ResponseEntity.ok("Student ' " +id+ " ' saved");
+	return resp;
+	}
+
+@GetMapping("/all")
+public List<Student> getAllStudents()
+{
+	List<Student> allStudents=service.getAllStudents();
+	return allStudents;
+}	
+}
+------------------------------------------------------------------
+pom.xml
+------------------
+<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-openfeign</artifactId>
+</dependency>
+<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>5.1.46</version>
+</dependency>
+-----------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+-----------------------------------------------------------------------------------------------------------------
+Micro-service (company--address)(one-to-one) Has-a relationship
+-----------------------------------------------------------------------------------------------------------------
 Service provider :-
 ----------------------------------
 address and company (has-a) relationship
@@ -1087,7 +1365,8 @@ private Address addr;
 
 
 fetch = FetchType.EAGER when we fetch the parent table the child table data will also be fetched.
-----------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------------------
+
 
 
 
