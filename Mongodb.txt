@@ -1,0 +1,102 @@
+mongod is the server.First start mongod.
+mongo as the database.
+------------------------------------------------------
+databases:- Mysql,sqlserver,oracle ------>structured database(rows and columns)
+
+Mongodb,cascendra,redis ---->unstructured data.data will be in the form of document.
+*company :- facebook,paytm .
+
+Mongodb:- it is a cross-platform,document oriented base,high performance,easyly scalable.
+It works on the the concept of collection and document.
+--------------------------------------------------------------------------------
+RDBMS					Mongodb
+----------------------------------------------------------------------------------------
+Table 		  			collection
+Row/Tuple				document
+primarykey				default keyid provided by mongodb itself.
+table join 				embedded document
+-------------------------------------------------------------------------------------------
+document :- It is a set of key-value pairs.(JSON format)
+collection is a group of mongodb document.
+--------------------------------------------------------------------------
+example of collection
+---------------------------------------
+comment:
+[
+{
+user:"Shubham",
+message:" Good Morning",    <-----document 1
+like:12
+},
+{
+user:"Sunil",
+message:" Good Morning",    <------document 2
+dislike:1,
+like:14
+}
+]
+--------------------------------------------------------------------------------------
+create folder :- c:\data\db
+---------------------------------------------------------------------------------------
+
+1)to view databases
+show databases;
+show dbs;
+-----------------------------------------------------
+2)to switch database and also create database.
+use marlabsstud;
+---------------------------------------------------------------
+3)to create table/collection
+db.createCollection('student');
+----------------------------------------------------------------------
+4)to insert data into the collection
+-------------------------------------------------------------------
+> db.student.insert({name:'shubham',email:'shubham@gmail.com',emplyee:'marlabs',address:'Kolkotta'});
+
+> db.student.insert({name:'trupti',email:'trupti@gmail.com',emplyee:'marlabs',address:'orissa',pin:'7690012'});
+
+> db.student.insert({name:'deleep',email:'deleep@gmail.com',emplyee:'marlabs',address:'hyd',gender:'male'});
+
+---------------------------------------------------------------------------
+5)to display data 
+db.student.find();
+db.student.find().pretty();
+
+--------------------------------------------------------------------------------------------
+ db.student.find().pretty();
+{
+        "_id" : ObjectId("621f32be2259a0f843d7cffa"),
+        "name" : "shubham",
+        "email" : "shubham@gmail.com",
+        "emplyee" : "marlabs",
+        "address" : "Kolkotta"
+}
+{
+        "_id" : ObjectId("621f33162259a0f843d7cffb"),
+        "name" : "trupti",
+        "email" : "trupti@gmail.com",
+        "emplyee" : "marlabs",
+        "address" : "orissa",
+        "pin" : "7690012"
+}
+{
+        "_id" : ObjectId("621f33552259a0f843d7cffc"),  <-----primary key fields are auto generated
+        "name" : "deleep",
+        "email" : "deleep@gmail.com",
+        "emplyee" : "marlabs",
+        "address" : "hyd",
+        "gender" : "male"
+}
+
+-----------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
