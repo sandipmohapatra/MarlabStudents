@@ -1366,15 +1366,837 @@ private Address addr;
 
 fetch = FetchType.EAGER when we fetch the parent table the child table data will also be fetched.
 -------------------------------------------------------------------------------------------------------------------------------
+Company is the service provider
+----------------------------------------
+entity---address
+------------------
+package in.sandip.entity;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+import lombok.Data;
 
 
+@Entity
+@Table(name="addr_tab")
+public class Address {
+	@Id
+	@Column(name="com_id_col")
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Long id;
+	
+	@Column(name="addr_line1_col")
+	private String line1;
+	
+	@Column(name="addr_line2_col")
+	private String line2;
+	
+	@Column(name="addr_city_col")
+	private String city;
+	
+	@Column(name="addr_state_col")
+	private String state;
+	
+	@Column(name="addr_country_col")
+	private String country;
+	
+	@Column(name="addr_pincode_col")
+	private Long pincode;
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public String getLine1() {
+		return line1;
+	}
+
+	public void setLine1(String line1) {
+		this.line1 = line1;
+	}
+
+	public String getLine2() {
+		return line2;
+	}
+
+	public void setLine2(String line2) {
+		this.line2 = line2;
+	}
+
+	public String getCity() {
+		return city;
+	}
+
+	public void setCity(String city) {
+		this.city = city;
+	}
+
+	public String getState() {
+		return state;
+	}
+
+	public void setState(String state) {
+		this.state = state;
+	}
+
+	public String getCountry() {
+		return country;
+	}
+
+	public void setCountry(String country) {
+		this.country = country;
+	}
+
+	public Long getPincode() {
+		return pincode;
+	}
+
+	public void setPincode(Long pincode) {
+		this.pincode = pincode;
+	}
+	
+}
+------------------------------------------
+company
+---------------------
+package in.sandip.entity;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+
+import org.hibernate.annotations.DynamicUpdate;
+@Entity
+@Table(name="company_tab")
+@DynamicUpdate
+public class Company {
+	
+	@Id
+	@Column(name="com_id_col")
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Long id;
+	
+	@Column(name="com_name_col")
+	private String name;
+	
+	@Column(name="com_regid_col")
+	private String cregId;
+	
+	@Column(name="com_type_col")
+	private String ctype;
+	
+	@Column(name="com_parent_col")
+	private String parentOrg;
+	
+	@Column(name="com_mode_col")
+	private String modeOfOperate;
+	
+	@Column(name="com_service_code_col")
+	private String serviceCode;
+	
+	
+	@OneToOne(
+			cascade = CascadeType.ALL,
+			fetch = FetchType.EAGER)
+	@JoinColumn(name="aidFk")
+	private Address addr;//HAS-A
 
 
+	public Long getId() {
+		return id;
+	}
 
 
+	public void setId(Long id) {
+		this.id = id;
+	}
 
 
+	public String getName() {
+		return name;
+	}
 
 
+	public void setName(String name) {
+		this.name = name;
+	}
 
+
+	public String getCregId() {
+		return cregId;
+	}
+
+
+	public void setCregId(String cregId) {
+		this.cregId = cregId;
+	}
+
+
+	public String getCtype() {
+		return ctype;
+	}
+
+
+	public void setCtype(String ctype) {
+		this.ctype = ctype;
+	}
+
+
+	public String getParentOrg() {
+		return parentOrg;
+	}
+
+
+	public void setParentOrg(String parentOrg) {
+		this.parentOrg = parentOrg;
+	}
+
+
+	public String getModeOfOperate() {
+		return modeOfOperate;
+	}
+
+
+	public void setModeOfOperate(String modeOfOperate) {
+		this.modeOfOperate = modeOfOperate;
+	}
+
+
+	public String getServiceCode() {
+		return serviceCode;
+	}
+
+
+	public void setServiceCode(String serviceCode) {
+		this.serviceCode = serviceCode;
+	}
+
+
+	public Address getAddr() {
+		return addr;
+	}
+
+
+	public void setAddr(Address addr) {
+		this.addr = addr;
+	}
+	
+}
+-----------------------------------------------------------------------------------
+User Defined exception
+1)CompanyNotFoundException
+
+public class CompanyNotFoundException extends RunTimeExeception 
+//java.lang.RunTimeException :-It is the super class of exception.
+----------------------------------------------------------------------------------------------------------------------
+CompanyNotFoundException.java
+--------------------------------------------------------
+package in.sandip.exception;
+
+public class CompanyNotFoundException extends RuntimeException {
+
+		public CompanyNotFoundException() {
+		super();
+	}
+	
+	public CompanyNotFoundException(String message) {
+		super(message);
+	}
+}
+--------------------------------------------
+ErrorMessage.java
+------------------------------------
+String DateTime;
+String message;
+int status;
+String code;
+--------------------------------------------------------------------------------------
+CompanyExceptionHandler.java
+------------------------------------------------
+@ExceptionHandler(CompanyNotFoundException.class)
+	public ResponseEntity<ErrorMesage> handleCompanyNotFoundException(
+			CompanyNotFoundException cnfe)
+	{
+		return ResponseEntity.internalServerError().body(
+				new ErrorMesage(
+						new Date().toString(), 
+						cnfe.getMessage(), 
+						HttpStatus.INTERNAL_SERVER_ERROR.value(), 
+						HttpStatus.INTERNAL_SERVER_ERROR.name()
+						)
+				
+				);
+
+--------------------------------------------------------------------------------------------------------------------------
+repository
+----------------
+package in.sandip.repo;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import in.sandip.entity.Company;
+
+public interface CompanyRepository extends JpaRepository<Company, Long> {
+
+}
+---------------------------------------------------------------
+package in.sandip.service;
+
+import java.util.List;
+
+import in.sandip.entity.Company;
+
+public interface ICompanyService {
+
+	Long createCompany(Company cob);
+	void updateCompany(Company cob);
+	Company getOneCompany(Long id);
+	List<Company> getAllCompanies();
+}
+---------------------------------------------------------------
+package in.sandip.service.impl;
+
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import in.sandip.entity.Company;
+import in.sandip.exception.CompanyNotFoundException;
+import in.sandip.repo.CompanyRepository;
+import in.sandip.service.ICompanyService;
+
+@Service
+public class CompanyServiceImpl implements ICompanyService {
+
+	@Autowired
+	private CompanyRepository repo;
+	
+	@Override
+	public Long createCompany(Company cob) {
+		return repo.save(cob).getId();
+	}
+
+	@Override
+	public void updateCompany(Company cob) {
+		if(cob.getCregId()!=null && repo.existsById(cob.getId()))
+			repo.save(cob);
+	}
+
+	@Override
+	public Company getOneCompany(Long id) {
+		Optional<Company> opt = repo.findById(id);
+		if(opt.isEmpty()) {
+			throw new CompanyNotFoundException("Given '"+id+"' Not exist");
+		} else {
+			return opt.get();
+		}
+	}
+
+	@Override
+	public List<Company> getAllCompanies() {
+		return repo.findAll();
+	}
+
+}
+-------------------------------------------------------------------
+controller
+------------------------------
+package in.sandip.rest;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import in.sandip.entity.Company;
+import in.sandip.exception.CompanyNotFoundException;
+import in.sandip.service.ICompanyService;
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
+@RestController
+@RequestMapping("/company")
+public class CompanyRestController {
+
+	@Autowired
+	private ICompanyService service;
+
+	//1. create company
+	@PostMapping("/create")
+	public ResponseEntity<String> createCompany(
+			@RequestBody Company company
+			) 
+	{
+			ResponseEntity<String> response = null;
+		try {
+			Long id = service.createCompany(company);
+			response = ResponseEntity.ok("CREATED WITH ID : "+ id);
+					} catch (Exception e) {
+			e.printStackTrace();
+					}
+				return response;
+	}
+
+	//2. fetch all
+	@GetMapping("/all")
+	public ResponseEntity<List<Company>> getAllCompanies() {
+		ResponseEntity<List<Company>> response = null;
+				try {
+			List<Company> list = service.getAllCompanies();
+			response = ResponseEntity.ok(list);
+				} catch (Exception e) {
+			e.printStackTrace();
+					}
+				return response;
+	}
+
+	//3. fetch one
+	@GetMapping("/fetch/{id}")
+	public ResponseEntity<Company> getOneCompany(
+			@PathVariable Long id
+			)
+	{
+		ResponseEntity<Company> response = null;
+			try {
+			Company cob = service.getOneCompany(id);
+			response = ResponseEntity.ok(cob);
+					} catch (CompanyNotFoundException e) {
+			//e.printStackTrace();
+					throw e;
+		}
+			return response;
+	}
+
+	
+}
+--------------------------------------------------------------------------------------
+Customer ----consumer
+--------------------------------------
+entity-----customer
+--------------------------------
+package in.sandip.entity;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+@Entity
+@Table(name="cust_tab")
+public class Customer {
+
+	@Id
+	//@GeneratedValue(strategy = GenerationType.SEQUENCE) //for oracle
+	@GeneratedValue(strategy = GenerationType.IDENTITY) //for mysql
+	@Column(name="cust_id_col")
+	private Long id;
+	
+	@Column(name="cust_name_col")
+	private String name;
+	
+	@Column(name="cust_email_col")
+	private String email;
+	
+	@Column(name="cust_gender_col")
+	private String gender;
+	
+	@Column(name="cust_img_col")
+	private String imagePath;
+	
+	@Column(name="cust_mob_col")
+	private String mobile;
+	
+	@Column(name="cust_addr_col")
+	private String address;
+	
+	@Column(name="cust_pan_col")
+	private String panCardId;
+	
+	@Column(name="cust_aadhar_col")
+	private String aadharId;
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getGender() {
+		return gender;
+	}
+
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
+
+	public String getImagePath() {
+		return imagePath;
+	}
+
+	public void setImagePath(String imagePath) {
+		this.imagePath = imagePath;
+	}
+
+	public String getMobile() {
+		return mobile;
+	}
+
+	public void setMobile(String mobile) {
+		this.mobile = mobile;
+	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+	public String getPanCardId() {
+		return panCardId;
+	}
+
+	public void setPanCardId(String panCardId) {
+		this.panCardId = panCardId;
+	}
+
+	public String getAadharId() {
+		return aadharId;
+	}
+
+	public void setAadharId(String aadharId) {
+		this.aadharId = aadharId;
+	}
+}
+------------------------------------------------------------------------------------------------------------
+package in.sandip.exception;
+
+public class CustomerNotFoundException extends RuntimeException {
+
+	private static final long serialVersionUID = 1L;
+	
+	public CustomerNotFoundException() {
+		super();
+	}
+	
+	public CustomerNotFoundException(String message) {
+		super(message);
+	}
+
+}
+--------------------------------------------
+ErrorMessage.java
+-------------------------------
+package in.sandip.payload.response;
+public class ErrorMesage {
+	private String dateTime;
+	private String message;
+	private int status;
+	private String code;
+	public String getDateTime() {
+		return dateTime;
+	}
+	public void setDateTime(String dateTime) {
+		this.dateTime = dateTime;
+	}
+	public String getMessage() {
+		return message;
+	}
+	public void setMessage(String message) {
+		this.message = message;
+	}
+	public int getStatus() {
+		return status;
+	}
+	public void setStatus(int status) {
+		this.status = status;
+	}
+	public String getCode() {
+		return code;
+	}
+	public void setCode(String code) {
+		this.code = code;
+	}
+	public ErrorMesage(String dateTime, String message, int status, String code) {
+		super();
+		this.dateTime = dateTime;
+		this.message = message;
+		this.status = status;
+		this.code = code;
+	}
+	public ErrorMesage() {
+		super();
+	}	
+}
+---------------------------------------------------------------------------------------------
  
+package in.sandip.handler;
+
+import java.util.Date;
+
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.RestControllerAdvice;
+
+import in.sandip.exception.CustomerNotFoundException;
+import in.sandip.payload.response.ErrorMesage;
+
+@RestControllerAdvice
+public class CustomExceptionHandler {
+
+	/**
+	 * If CustomerNotFoundException is thrown from any RestController
+	 * then below method is executed and Returns Error Message with 500 Status code.
+	 * It is like a Reusable Catch block code.
+	 */
+	@ExceptionHandler(CustomerNotFoundException.class)
+	public ResponseEntity<ErrorMesage> handleCustomerNotFoundException(
+			CustomerNotFoundException cnfe)
+	{
+		return ResponseEntity.internalServerError().body(
+				new ErrorMesage(new Date().toString(),cnfe.getMessage(), 
+						HttpStatus.INTERNAL_SERVER_ERROR.value(), 
+						HttpStatus.INTERNAL_SERVER_ERROR.name()
+						)
+				
+				);
+	}
+}
+----------------------------------------------------------------------------
+repository
+----------------
+package in.sandip.repo;
+
+import java.util.Optional;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import in.sandip.entity.Customer;
+
+public interface CustomerRepository extends JpaRepository<Customer, Long> {
+
+	Optional<Customer> findByEmail(String email);
+	Optional<Customer> findByAadharId(String aadharId);
+	Optional<Customer> findByPanCardId(String panCardId);
+	Optional<Customer> findByMobile(String mobile);
+}
+-------------------------------------------------------------------------------------------------
+package in.sandip.service;
+
+import java.util.List;
+
+import in.sandip.entity.Customer;
+
+public interface ICustomerService {
+
+	Long saveCustomer(Customer cust);
+	Customer getOneCustomer(Long id);
+	Customer getOneCustomerByEmail(String email);
+	Customer getOneCustomerByPanCard(String panCard);
+	Customer getOneCustomerByMobile(String mobile);
+	Customer getOneCustomerByAadhar(String aadhar);
+	
+	List<Customer> getAllCustomers();
+}
+----------------------------------------------------------------------------------------
+serviceImpl
+-------------------------------
+package in.sandip.impl;
+
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import in.sandip.entity.Customer;
+import in.sandip.exception.CustomerNotFoundException;
+import in.sandip.repo.CustomerRepository;
+import in.sandip.service.ICustomerService;
+
+@Service
+public class CustomerServiceImpl implements ICustomerService {
+
+	@Autowired
+	private CustomerRepository repo;
+
+	public Long saveCustomer(Customer cust) {
+		return repo.save(cust).getId();
+	}
+
+	public Customer getOneCustomer(Long id) {
+		Optional<Customer> opt = repo.findById(id);
+		return validateInput(opt, id.toString());
+	}
+
+	public Customer getOneCustomerByEmail(String email) {
+		Optional<Customer> opt = repo.findByEmail(email);
+		return validateInput(opt, email);
+	}
+
+	public Customer getOneCustomerByPanCard(String panCard) {
+		Optional<Customer> opt = repo.findByPanCardId(panCard);
+		return validateInput(opt, panCard);
+	}
+
+	public Customer getOneCustomerByMobile(String mobile) {
+		Optional<Customer> opt = repo.findByMobile(mobile);
+		return validateInput(opt, mobile);
+	}
+
+	public Customer getOneCustomerByAadhar(String aadhar) {
+		Optional<Customer> opt = repo.findByAadharId(aadhar);
+		return validateInput(opt, aadhar);
+	}
+
+	public List<Customer> getAllCustomers() {
+		return repo.findAll();
+	}
+	
+	private Customer validateInput(Optional<Customer> opt,String input) {
+		/*if (opt.isEmpty()) {
+			throw new CustomerNotFoundException("Customer '" + input + "' not found");
+		} else {
+			return opt.get();
+		}*/
+		//JDK 1.8
+		return opt.orElseThrow(
+				()-> new CustomerNotFoundException(
+						"Customer '" + input + "' not found")
+				);
+	}
+	
+
+}
+---------------------------------------------------------------------------------------------------
+RestController
+-----------------------
+package in.sandip.rest;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import in.sandip.entity.Customer;
+import in.sandip.exception.CustomerNotFoundException;
+import in.sandip.service.ICustomerService;
+
+@RestController
+@RequestMapping("/customer")
+public class CustomerRestController {
+
+	@Autowired
+	private ICustomerService service;
+	
+	//1. save customer
+	@PostMapping("/create")
+	public ResponseEntity<String> createCustomer(@RequestBody Customer customer)
+	{
+		ResponseEntity<String> response = null;
+		
+		Long id = service.saveCustomer(customer);
+		response = ResponseEntity.ok("Customer '"+id+"' Created!");
+		
+		return response;
+	}
+	
+	//2. fetch all customers
+	@GetMapping("/all")
+	public ResponseEntity<List<Customer>> getAllCustomers() {
+		ResponseEntity<List<Customer>> response  = null;
+		List<Customer> list = service.getAllCustomers();
+		response = ResponseEntity.ok(list);
+		return response;
+	}
+	
+	
+	//3. fetch one customer by email
+	@GetMapping("/find/{mail}")
+	public ResponseEntity<Customer> getOneCustomerByEmail(@PathVariable String mail) 
+	{
+		ResponseEntity<Customer> response = null;
+		try {
+			Customer cust = service.getOneCustomerByEmail(mail);
+			response = new ResponseEntity<Customer>(cust,HttpStatus.OK);
+		} catch (CustomerNotFoundException cnfe) {
+			cnfe.printStackTrace();
+			throw cnfe;
+		}
+		return response;
+	}
+	
+	//4. fetch one customer by pancard
+	//5. fetch one customer by aadharId
+	//6. fetch one customer by mobile
+	
+}
+----------------------------------------customer------------------------------------------
+get---http://192.168.43.76:9920/customer/all
+-------------------------------------------------------------------------
+[{"id":1,"name":"sandip","email":"sandip@gmil.com","gender":"Male","imagePath":"c:/abc.jpg","mobile":"7766554433","address":"Bangalore","panCardId":"AJVP1222A","aadharId":"7788665599"}]
+-----------------------------------------------------------------------------------------------------
+http://192.168.43.76:9920/customer/find/sandip@gmil.com
+------------------------------------------------------------------------------------
+{"id":1,"name":"sandip","email":"sandip@gmil.com","gender":"Male","imagePath":"c:/abc.jpg","mobile":"7766554433","address":"Bangalore","panCardId":"AJVP1222A","aadharId":"7788665599"}
+-----------------------------------------------------Company------------------------------------------------
+http://192.168.43.76:9901/company/all
+--------------------------------------------------------------
+[{"id":1,"name":"Amazon","cregId":"101","ctype":"product based","parentOrg":"ABC","modeOfOperate":"online","serviceCode":"1001","addr":{"id":1,"line1":"10","line2":"20","city":"Bangalore","state":"Karnataka","country":"India","pincode":560012}}]
+----------------------------------------------------------------------------------------------------
+http://192.168.43.76:9901/company/fetch/1
+------------------------------------------------------------------
+{"id":1,"name":"Amazon","cregId":"101","ctype":"product based","parentOrg":"ABC","modeOfOperate":"online","serviceCode":"1001","addr":{"id":1,"line1":"10","line2":"20","city":"Bangalore","state":"Karnataka","country":"India","pincode":560012}}
+-----------------------------------------------------------------------------------------------------
