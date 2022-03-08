@@ -2200,3 +2200,168 @@ http://192.168.43.76:9901/company/fetch/1
 ------------------------------------------------------------------
 {"id":1,"name":"Amazon","cregId":"101","ctype":"product based","parentOrg":"ABC","modeOfOperate":"online","serviceCode":"1001","addr":{"id":1,"line1":"10","line2":"20","city":"Bangalore","state":"Karnataka","country":"India","pincode":560012}}
 -----------------------------------------------------------------------------------------------------
+Config Server
+-----------------------
+we are mentaining application.properties for each Micro-services.
+In that place we can maintain a common application.properties in the git Repository(paid).Native Repository.
+we have to create a config server like eureka server and in its application.properties we can give the path of the file stored in the git Repository or in the local file system.
+---------------------------------------------------------------------------------------------------------------
+we have to start executing in this order.
+1)config server
+2)Eureka server
+3)Company Micro-service
+4)Customer Micro-service.
+ 
+----------------------------------------------------------------------------------------------------------------------
+
+1)Config Server is used to store common key-value pairs as a properties file for all Microservices.
+2)No need of writing same/duplicate key-values in multiple microservices.
+3)Modify of key-value will be easy .we neednot modify at multiple places.
+4)The concept is used for common key-value and not for all key-value.
+----------------------------------------------------------------------------------------------------------------
+They are 2 types 
+1)External config server:- The properties files are stored in the github and link is provided in the config server properties files.
+2)Native Config server:-we place it inside the project or inside a drive location.
+3)The default port no is 8888.
+4)It is also registered with eureka server.
+5)Config server also has a properties file where the common application properties are stored.
+--------------------------------------------------------------------------------------------------
+config server to add the dependency we use.
+----------------------------------------------------------
+<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-config-server</artifactId>
+</dependency>
+
+----------------------------------------------------------------
+In the main class we have to use the stereotype anotation
+@EnableConfigServer
+---------------------------------------------------------------------------------------------------------------------------------
+Actuator:-
+It is used to check the health and info of each microservice.
+health is the basic details of the microservice.
+info:- It is the key-value information
+project name:,version,author,client,.....etc.
+---------------------------------------------------------------------------------------------------------------
+To Enable the details of the micro-services
+-----------------------------------------------------------
+management.endpoints.web.exposure.include=*
+------------------------------------------------------------
+http://localhost:8080/actuator/default
+http://localhost:8080/actuator/beans
+http://localhost:8080/actuator/configprops
+http://localhost:8080/actuator/env
+------------------------------------------------------------------------------------------------------
+ConfigServer +Actuator
+------------------------------------
+Example-1
+---------------------
+package com.example.demo;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.config.server.EnableConfigServer;
+
+@SpringBootApplication
+@EnableConfigServer
+public class SpringCloudConfigServerApplication {
+
+	public static void main(String[] args) {
+		SpringApplication.run(SpringCloudConfigServerApplication.class, args);
+	}
+
+}
+-----------------------------------------------------------------------------
+application.properties
+-------------------------------------
+server.port=9999
+spring.profiles.active=native
+### classpath=src/main/resources
+spring.cloud.config.server.native.search-locations=classpath:/my-config
+-------------------------------------------------------------
+my-config------>application.properties
+---------------------------------------------------------------
+title=Marlabs Students
+--------------------------------------------------------------------------------------------------------
+Message Queues
+-----------------------------------------
+Message Queues is use to send data from one system(application) to another system (application) in continuous flow.
+Or in a periodical interval there should be updatation or refreshing of browser.
+These may be common or it may be personal.
+Example:-
+1)Live Train Status.--Common 
+2)Food Delivery status--Personal
+3)Stock market update--Common
+4)Cricket score details--Common
+* Common thinks will be broadcasted from server to personal devices.
+
+There will be one consumer and one producer or There may be multiple consumer and one producer.
+*Don't consider whatsup and mobile messenger .
+
+The producer will send a message .There will be a middleware known as MOM (Message Oriented Middleware).
+it will have a memory block where the message is stored .It is also known as Destination.
+It send the data or broadcast the data to the consumer.
+
+The single consumer uses Peer to peer communication.The destination type is known as Queue.
+The mutiple consumer user Pub/Sub Communication .The destination type is known as Topic.
+
+JMS (Java message service)
+---------------------------------------------------------------------------------
+1)It uses TCP protocol.
+2)Data sender is called as Producer,data receiver is called as consumer.
+3)Producer and consumer will communicate using MOM.
+Mediator software :- Apache ActiveMQ.
+
+4)JMS supports two types of communication.
+a)peer-to-peer communication(single consumer)
+b)publish and subscribe (pub/sub) communication.(multiple consumer)
+
+-------------------------------------------------------------------------------------------------
+MOM contains one destination that holds messages given by Producer app.
+a)Queue Destination for P2P communication.
+b)Topic Destination for Pub/Sub Communication.
+-------------------------------------------------------------------------------------
+
+step 1:- MOM setup
+https://activemq.apache.org/components/classic/download/
+step 2:-
+apache-activemq-5.16.4-bin.zip
+step 3:-
+upzip it.
+apache-activemq-5.16.4-bin
+step 4:-
+goto to bin ------>win64----->activemq.bat---->double click to start .
+step 5:- 
+http://127.0.0.1:8161
+step 6:-
+username:admin
+password:admin
+
+step 6:-to close this goto activemq.bat 
+ctrl+c
+do you want to exit --press y
+---------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
