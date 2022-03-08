@@ -2457,8 +2457,52 @@ https://docs.microsoft.com/en-us/azure/azure-functions/functions-bindings-timer?
 	@Scheduled(cron = "0 */1 * * * *")
 
 ----------------------------------------------------------------------------------------------------------------------------------
+Circuit Breaker
+----------------------------
+It is use to handle the error .If the error occur then it will jump to FallBack().
+In case of multiple microservices one microservice will try to communicate with another microservice.such communication link is called circuit.
+close circuit :- It is called closed circuit when the communication is over.But there may be again communication in futer.
+The circuit is connected .
+open circuit:-The connection is broken.There may be an error between the communication.
+---------------------------------------------------------------------------------------------------------------------------------
+We have a tool called Hystrix which will try to communicate between the 2 microservices.
+It try to close the circuit.but if the error exist then the circuit remains open.
+-------------------------------------------------
+Hystrix is a tool of Netflix.
+-----------------------------------------------
+The common properties is stored in the 
+https://github.com/Netflix/Hystrix/wiki/Configuration#circuitBreaker.requestVolumeThreshold
+---------------------------------------------------------------------------------------------------------------------
+we can use within the controller:-
+-----------------------------------------------
+@RestController
+@RequestMapping("/payment")
+public class PaymentRestController
+{
+@GetMapping("/pay")
+@HystrixCommand(fallbackMethod = "doPaymentFallBack",
+						commandProperties={
+		@HystrixProperty(name="circuitBreaker.requestVolumeThreshold",value="5"),
+@HystrixProperty(name="circuitBreaker.sleepWindowInMilliseconds",value="60000")})
+
+public String doPayment()
+{
+system.out.println("from actual service");
+if(new Random().nextInt(9)<10)
+{
+throw new RuntimeException("Pin incorrect");
+}
+}
 
 
+public String doPaymentFallBack()
+{
+System.out.println("from fallback service");
+return "Please try after sometimes";
+}
+}
+
+-------------------------------------------------------------------------------------------------------------------------------
 
 
 
