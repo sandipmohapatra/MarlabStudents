@@ -2341,17 +2341,123 @@ step 6:-to close this goto activemq.bat
 ctrl+c
 do you want to exit --press y
 ---------------------------------------------------------------------
+spring:-
+-----------------------
+@Configuration
+public class AppConfig{
+@Bean
+public ConnectionFactory conn()
+{
+ActiveMQConnectionFactory cf=new ActiveMQConnectionFactory();
+cf.setBrokerURL("tcp://localhost:61616");
+cf.setUserName("admin");
+cf.setPassword("admin");
+return cf;
+}
+@Bean
+public JmsTemplate jms()
+{
+JmsTemplate jt=new JmsTemplate();
+jt.setConn(conn());
+return jt;
+}
+
+
+springBoot:-Example-1
+step 1:-MessageSender/producer part:-
+---------------
+application.properties
+-----------------------------------
+spring.activemq.broker-url=tcp://localhost:61616
+spring.activemq.user=admin
+spring.activemq.password=admin
+spring.jms.pub-sub-domain=false
+my.mq.desti-name=sample
+------------------------------------------------------------------------------
+step 2:-
+MessageSender/producer part:-
+------------------------------------------------------
+file->spring startup project.
+1)main file
+2)CommandLineRunner
+------------------------------Producer Part----------------------------------------------------------------------------
+@Component
+public class MessageSender implements CommandLineRunner
+{
+@Autowired
+private JmsTemplate jt;
+@Value("${my.mq.desti-name}")
+private String destinationName;
+
+@Override
+public void run(String... args)throws Exception
+{
+jt.send(destinationName,ses -> ses.createTextMessage("Hello from producer->"+new Date()));
+}
+}
+-----------------------------------------------------------------------------------------------
+
+Consumer part:-
+----------------------------
+step 1:-
+application.properties
+-----------------------------------------------------------------------------
+spring.activemq.broker-url=tcp://localhost:61616
+spring.activemq.user=admin
+spring.activemq.password=admin
+spring.jms.pub-sub-domain=false
+my.mq.desti-name=sample
+----------------------------------------------------------------------------
+step 2:-
+----------------
+file->spring startup project.
+1)main file
+2)CommandLineRunner
+@Component
+public class MessageReader
+{
+@JmsListener(destination="sample")
+public void readMsg(String message)
+{
+System.out.println("Data at consumer -->"+message);
+}
+}
+------------------------------------------------------------------------------------
+pom.xml
+------------------------------------------------------------------
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-activemq</artifactId>
+		</dependency>
+-------------------------------------------------------------
+Example 2:-
+
+step 1:-
+@EnableScheduling
+step 2:-
+Make change in the message sender only.
+previous:-
+---------------------
+@Override
+public void run(String... args)throws Exception
+{
+jt.send(destinationName,ses -> ses.createTextMessage("Hello from producer->"+new Date()));
+}
+-------------------------------
+ current
+---------------
+@Scheduled(cron = "0 4 10 * * *")
+public void send()
+{
+jt.send(destinationName,ses -> ses.createTextMessage("Hello from scheduled producer->"+new Date()));
+}
+--------------------------------------------------------------------------------------------------------------
+https://docs.microsoft.com/en-us/azure/azure-functions/functions-bindings-timer?tabs=csharp
+----------------------------------------------------------------------------------------------------------------------
 
 
 
 
-
-
-
-
-
-
- 
 
 
 
