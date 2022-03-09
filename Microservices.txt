@@ -2527,13 +2527,13 @@ Kalle
 -----------------------------------------------------------------
 Table :-
 ------------------------Producer-------------------------------
-1)Registration---
-2)Flight Details--------
+1)Registration of customer ---(about customer details) regno,customer name,age,address,searchCustomerById()
+2)Flight Details--------(about flight details) flightno,indigo,source,destination,price,searchFlightById()
 -----------------Consumer-------------------------------------------------
-3)Search flight------depending upon the flight details.
-4)Book Ticket-------Depending on Registration
-5)Flight Boarding -------Depending on Book Tickets
---------------------------------------------------------------------------------
+3)Search flight------depending upon the flight details.-------------------searchFlightById()
+4)Book Ticket-------Depending on Registration (customer registration available +flight details available or not)
+5)Flight Boarding -------Depending on Book Tickets(time,date,customerbooking id,flight id---flight details)
+------------------------------------------------------------------------------------------------------------------------------------------------
 
 
 
