@@ -2503,6 +2503,40 @@ return "Please try after sometimes";
 }
 
 -------------------------------------------------------------------------------------------------------------------------------
+Spring Security
+--------------------------------------------
+Airline reservation system
+--------------------------------------------------------------
+Eureka server,ConfigServer---common application.properties.,Feign Client-----Microservices dependency(producer and consumer),actuator to see the health and info of the microservices.
+---------------------------------------------------------------
+Spring Boot,Mqsql/Oracle
+-----------------------------------------------------------------
+Afreenbanu
+Trupti
+Shubham
+Rohit
+Mohit
+---------------------------------------------------------------------------------
+Madhau
+Deelep
+Geetanjali
+Amajad
+shohaib
+Shilpa
+Kalle
+-----------------------------------------------------------------
+Table :-
+------------------------Producer-------------------------------
+1)Registration---
+2)Flight Details--------
+-----------------Consumer-------------------------------------------------
+3)Search flight------depending upon the flight details.
+4)Book Ticket-------Depending on Registration
+5)Flight Boarding -------Depending on Book Tickets
+--------------------------------------------------------------------------------
+
+
+
 
 
 
