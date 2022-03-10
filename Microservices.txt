@@ -2534,6 +2534,65 @@ Table :-
 4)Book Ticket-------Depending on Registration (customer registration available +flight details available or not)
 5)Flight Boarding -------Depending on Book Tickets(time,date,customerbooking id,flight id---flight details)
 ------------------------------------------------------------------------------------------------------------------------------------------------
+SpringBoot Security
+---------------------------------
+InMemory AuthenticationManager(RAM)
+--------------------------------------------------
+username | Password  | authorities 
+-----------------------------------------------
+sandip	|1234		| admin
+shubham| 1234		|employee
+Madhu	|1234		|student
+----------------------------------------------------------------
+example code:-
+-----------------------
+auth.inMomoryAuthentication().withUser("sandip").password("{noop}1234").authorities("ADMIN");
+auth.inMomoryAuthentication().withUser("shubham").password("{noop}1234").authorities("EMPLOYEE");
+auth.inMomoryAuthentication().withUser("Madhu").password("{noop}1234").authorities("STUDENT");
+-------------------------------------------------------------------
+URL    		| 	UI 						| Access Details
+--------------------------------------------------------------------------
+/home			homepage.html			permitall
+/welcome		welcome.html			only login users.
+/admin			adminpage.html			only admin
+/emp			employeepage.html		only employee
+/std				studentpage.html			only student
+
+------------------------------------------------------------------------------------------
+antMatchers(path)  :- This method is uesd to match/compare request URL path.
+and display the UI and then display the login page to give permission.
+example:-
+.antMatchers("/show").permitAll()
+.antMatchers("/export").permitAll()
+.antMatchers("/save").hasAuthority("ADMIN");
+-----------------------------------------------------------
+http.authorizeRequests()
+.antMatchers("/home").permitAll()
+.antMatchers("/welcome").authenticated()
+.antMatchers("/admin").hasAuthority("ADMIN")
+.antMatchers("/emp").hasAuthority("EMPLOYEE")
+.antMatchers("/std").hasAuthority("STUDENT")
+-------------------------------------------------------------
+loginForm provided by spring
+-------------------------------------------------
+login form details
+-------------------------------
+.and()
+.formLogin()
+.defaultSuccessURL("/welcome",true)
+---------------------------------------------------------------------
+logout form details
+-------------------------------
+.and()
+.logout()
+.logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+-----------------------------------------------------------------------------------------------
+//exception Details
+-------------------------------
+.and()
+.exceptionHandling()
+.accessDeniedPage("/denied")
+---------------------------------------------------------------------
 
 
 
